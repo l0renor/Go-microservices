@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+service Movie_Service {
+    rpc CreateMovie(CreateMovieMsg) returns (CreateMovieResponseMsg) {}
+    rpc DeleteMovie(DeleteMovieMsg) returns (DeleteMovieResponseMsg) {}
+    rpc GetMovie(GetMovieMsg) returns (GetMovieResponseMsg) {}
+    rpc GetMovies(GetMoviesMsg) returns (GetMoviesResponseMsg) {}
+}
+
+message CreateMovieMsg {
+    string name = 1;
+}
+
+message CreateMovieResponseMsg {
+    int32 id = 2;
+}
+
+message DeleteMovieMsg {
+    int32 id = 3;
+}
+
+message DeleteMovieResponseMsg {
+    bool success = 4;
+}
+
+message GetMovieMsg {
+    int32 id = 5;
+}
+
+message GetMovieResponseMsg {
+    string title = 6;
+}
+
+message GetMoviesMsg {
+}
+
+message GetMoviesResponseMsg {
+    repeated string movies = 7;
+}
