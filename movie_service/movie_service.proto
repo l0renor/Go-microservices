@@ -35,5 +35,10 @@ message GetMoviesMsg {
 }
 
 message GetMoviesResponseMsg {
-    repeated string movies = 7;
+    repeated Tuple movies = 7;
+}
+
+message Tuple {
+    string title = 8;
+    int32 id = 9;
 }

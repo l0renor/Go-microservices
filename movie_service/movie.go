@@ -2,6 +2,7 @@ package movie_service
 
 import (
 	"context"
+	"fmt"
 )
 
 //depricated
@@ -32,7 +33,7 @@ func (m *movieService) GetMovie(ctx context.Context, req *GetMovieMsg, rsp *GetM
 	id := req.Id
 	res, ok := m.movies[id]
 	if ok {
-		res.title = res.title
+		rsp.Title = res
 	} else {
 		rsp.Title = ""
 	}
@@ -40,8 +41,14 @@ func (m *movieService) GetMovie(ctx context.Context, req *GetMovieMsg, rsp *GetM
 }
 
 func (m *movieService) GetMovies(ctx context.Context, req *GetMoviesMsg, rsp *GetMoviesResponseMsg) error {
-	//convert map to array
-	return nil
+	var res []*Tuple
+	for k, v := range m.movies {
+		res = append(res, &Tuple{
+			Title: v,
+			Id:    k,
+		})
+	}
+	rsp.Movies = res
 }
 
 func idGenerator() func() int32 {
