@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+service Room_Service {
+    rpc CreateRoom(CreateRoomMsg) returns (CreateRoomResponseMsg) {}
+    rpc DeleteRoom(DeleteRoomMsg) returns (DeleteRoomResponseMsg) {}
+    rpc GetRoom(GetRoomMsg) returns (GetRoomResponseMsg) {}
+    rpc GetRooms(GetRoomsMsg) returns (GetRoomsResponseMsg) {}
+}
+
+message CreateRoomMsg {
+    string name = 1;
+    int32 nrOfSeats = 2;
+}
+
+message CreateRoomResponseMsg {
+    int32 id = 3;
+}
+
+message DeleteRoomMsg {
+    int32 id = 4;
+}
+
+message DeleteRoomResponseMsg {
+    bool success = 5;
+}
+
+message GetRoomMsg {
+    int32 id = 6;
+}
+
+message GetRoomResponseMsg {
+    RoomData room = 7;
+}
+
+message GetRoomsMsg {
+}
+
+message GetRoomsResponseMsg {
+    repeated RoomData Rooms = 8;
+}
+
+
+message RoomData {
+    string name = 9;
+    int32 id = 10;
+    int32 nrOfSeats =  11;
+}
