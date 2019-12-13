@@ -2,7 +2,6 @@ package room_service
 
 import (
 	"context"
-	"fmt"
 )
 
 type Room struct {
@@ -37,19 +36,24 @@ func (m *Service) GetRoom(ctx context.Context, req *GetRoomMsg, rsp *GetRoomResp
 	id := req.Id
 	res, ok := m.rooms[id]
 	if ok {
-		rsp.Name = res.name
+		rsp.Room = &RoomData{
+			Name:      res.name,
+			Id:        id,
+			NrOfSeats: res.nrOfSeats,
+		}
 	} else {
-		rsp.Name = ""
+		rsp.Room = &RoomData{}
 	}
 	return nil
 }
 
 func (m *Service) GetRooms(ctx context.Context, req *GetRoomsMsg, rsp *GetRoomsResponseMsg) error {
-	var res []*Tuple
-	for k, v := range m.Rooms {
-		res = append(res, &Tuple{
-			Title: v,
-			Id:    k,
+	var res []*RoomData
+	for k, v := range m.rooms {
+		res = append(res, &RoomData{
+			Name:      v.name,
+			Id:        k,
+			NrOfSeats: v.nrOfSeats,
 		})
 	}
 	rsp.Rooms = res
