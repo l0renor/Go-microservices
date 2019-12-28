@@ -2,6 +2,8 @@ package room_service
 
 import (
 	"context"
+	"github.com/ob-vss-ws19/blatt-4-myteam/api"
+
 )
 
 type Room struct {
@@ -14,7 +16,7 @@ type Service struct {
 	nextID func() int32
 }
 
-func (m *Service) CreateRoom(ctx context.Context, req *CreateRoomMsg, rsp *CreateRoomResponseMsg) error {
+func (m *Service) CreateRoom(ctx context.Context, req *api.CreateRoomMsg, rsp *api.CreateRoomResponseMsg) error {
 	id := m.nextID()
 	m.rooms[id] = Room{
 		nrOfSeats: req.NrOfSeats,
@@ -24,7 +26,7 @@ func (m *Service) CreateRoom(ctx context.Context, req *CreateRoomMsg, rsp *Creat
 	return nil
 }
 
-func (m *Service) DeleteRoom(ctx context.Context, req *DeleteRoomMsg, rsp *DeleteRoomResponseMsg) error {
+func (m *Service) DeleteRoom(ctx context.Context, req *api.DeleteRoomMsg, rsp *api.DeleteRoomResponseMsg) error {
 	id := req.Id
 	delete(m.rooms, id)
 	_, ok := m.rooms[id]
@@ -32,31 +34,32 @@ func (m *Service) DeleteRoom(ctx context.Context, req *DeleteRoomMsg, rsp *Delet
 	return nil
 }
 
-func (m *Service) GetRoom(ctx context.Context, req *GetRoomMsg, rsp *GetRoomResponseMsg) error {
+func (m *Service) GetRoom(ctx context.Context, req *api.GetRoomMsg, rsp *api.GetRoomResponseMsg) error {
 	id := req.Id
 	res, ok := m.rooms[id]
 	if ok {
-		rsp.Room = &RoomData{
+		rsp.Room = &api.RoomData{
 			Name:      res.name,
 			Id:        id,
 			NrOfSeats: res.nrOfSeats,
 		}
 	} else {
-		rsp.Room = &RoomData{}
+		rsp.Room = &api.RoomData{}
 	}
 	return nil
 }
 
-func (m *Service) GetRooms(ctx context.Context, req *GetRoomsMsg, rsp *GetRoomsResponseMsg) error {
-	var res []*RoomData
+func (m *Service) GetRooms(ctx context.Context, req *api.GetRoomsMsg, rsp *api.GetRoomsResponseMsg) error {
+	var res []*api.RoomData
 	for k, v := range m.rooms {
-		res = append(res, &RoomData{
+		res = append(res, &api.RoomData{
 			Name:      v.name,
 			Id:        k,
 			NrOfSeats: v.nrOfSeats,
 		})
 	}
 	rsp.Rooms = res
+	return nil
 }
 
 func idGenerator() func() int32 {
