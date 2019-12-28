@@ -1,0 +1,41 @@
+syntax = "proto3";
+option go_package = "api";
+
+service Screening_Service {
+    rpc CreateScreening(CreateScreeningReq) returns (CreateScreeningResp) {}
+    rpc DeleteScreening(DeleteScreeningReq) returns (DeleteScreeningResp) {}
+    rpc GetScreening(GetScreeningReq) returns (GetScreeningResp) {}
+    rpc GetScreenings(GetScreeningsReq) returns (GetScreeningsResp) {}
+}
+
+message CreateScreeningReq {
+    int32 movieID = 1;
+    int32 roomID = 2;
+}
+
+message CreateScreeningResp {
+    int32 screeningID = 1;
+}
+
+message DeleteScreeningReq {
+    int32 screeningID = 1;
+}
+
+message DeleteScreeningResp {
+    bool success = 1;
+}
+
+message GetScreeningReq {
+    int32 screeningID = 1;
+}
+
+message GetScreeningResp {
+    int32 movieID = 1;
+    int32 roomID = 2;
+}
+
+message GetScreeningsReq {}
+
+message GetScreeningsResp {
+    repeated GetScreeningResp Screenings = 1;
+}
