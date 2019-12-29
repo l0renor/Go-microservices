@@ -3,6 +3,7 @@ option go_package = "api";
 
 service Screening_Service {
     rpc CreateScreening(CreateScreeningReq) returns (CreateScreeningResp) {}
+    rpc ChangeFreeSeats(ChangeFreeSeatsReq) returns (ChangeFreeSeatsResp) {}
     rpc DeleteScreening(DeleteScreeningReq) returns (DeleteScreeningResp) {}
     rpc GetScreening(GetScreeningReq) returns (GetScreeningResp) {}
     rpc GetScreenings(GetScreeningsReq) returns (GetScreeningsResp) {}
@@ -15,6 +16,15 @@ message CreateScreeningReq {
 
 message CreateScreeningResp {
     int32 screeningID = 1;
+}
+
+message ChangeFreeSeatsReq {
+    int32 screeningID = 1;
+    int32 change = 2;
+}
+
+message ChangeFreeSeatsResp {
+    bool success = 1;
 }
 
 message DeleteScreeningReq {

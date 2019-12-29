@@ -8,6 +8,7 @@ service Reservation_Service {
 message CreateReservationReq {
     int32 userID = 1;
     int32 screeningID = 2;
+    int32 nrOfSeats = 3;
 }
 
 message CreateReservationResp {
@@ -37,7 +38,8 @@ message GetReservationReq {
 message GetReservationResp {
     int32 userID = 1;
     int32 screeningID = 2;
-    bool active = 3;
+    int32 nrOfSeats = 3;
+    bool active = 4;
 }
 
 message GetReservationsReq {}

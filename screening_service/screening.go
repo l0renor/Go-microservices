@@ -6,8 +6,9 @@ import (
 )
 
 type Screening struct {
-	movieID int32
-	roomID  int32
+	movieID   int32
+	roomID    int32
+	freeSeats int32
 }
 
 type Service struct {
@@ -17,9 +18,11 @@ type Service struct {
 
 func (service *Service) CreateScreening(ctx context.Context, req *api.CreateScreeningReq, resp *api.CreateScreeningResp) {
 	screeningID := service.nextID()
+	// TODO: Check if Movie and Romm ID are valid
 	service.screenings[screeningID] = Screening{
-		movieID: req.GetMovieID(),
-		roomID:  req.GetRoomID(),
+		movieID:   req.GetMovieID(),
+		roomID:    req.GetRoomID(),
+		freeSeats: 0, // TODO: Get nr of Seats in Room
 	}
 	resp.ScreeningID = screeningID
 }
