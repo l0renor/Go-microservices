@@ -35,6 +35,7 @@ var _ server.Option
 
 type Screening_Service interface {
 	CreateScreening(ctx context.Context, in *CreateScreeningReq, opts ...client.CallOption) (*CreateScreeningResp, error)
+	ChangeFreeSeats(ctx context.Context, in *ChangeFreeSeatsReq, opts ...client.CallOption) (*ChangeFreeSeatsResp, error)
 	DeleteScreening(ctx context.Context, in *DeleteScreeningReq, opts ...client.CallOption) (*DeleteScreeningResp, error)
 	GetScreening(ctx context.Context, in *GetScreeningReq, opts ...client.CallOption) (*GetScreeningResp, error)
 	GetScreenings(ctx context.Context, in *GetScreeningsReq, opts ...client.CallOption) (*GetScreeningsResp, error)
@@ -61,6 +62,16 @@ func NewScreening_Service(name string, c client.Client) Screening_Service {
 func (c *screening_Service) CreateScreening(ctx context.Context, in *CreateScreeningReq, opts ...client.CallOption) (*CreateScreeningResp, error) {
 	req := c.c.NewRequest(c.name, "Screening_Service.CreateScreening", in)
 	out := new(CreateScreeningResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *screening_Service) ChangeFreeSeats(ctx context.Context, in *ChangeFreeSeatsReq, opts ...client.CallOption) (*ChangeFreeSeatsResp, error) {
+	req := c.c.NewRequest(c.name, "Screening_Service.ChangeFreeSeats", in)
+	out := new(ChangeFreeSeatsResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -102,6 +113,7 @@ func (c *screening_Service) GetScreenings(ctx context.Context, in *GetScreenings
 
 type Screening_ServiceHandler interface {
 	CreateScreening(context.Context, *CreateScreeningReq, *CreateScreeningResp) error
+	ChangeFreeSeats(context.Context, *ChangeFreeSeatsReq, *ChangeFreeSeatsResp) error
 	DeleteScreening(context.Context, *DeleteScreeningReq, *DeleteScreeningResp) error
 	GetScreening(context.Context, *GetScreeningReq, *GetScreeningResp) error
 	GetScreenings(context.Context, *GetScreeningsReq, *GetScreeningsResp) error
@@ -110,6 +122,7 @@ type Screening_ServiceHandler interface {
 func RegisterScreening_ServiceHandler(s server.Server, hdlr Screening_ServiceHandler, opts ...server.HandlerOption) error {
 	type screening_Service interface {
 		CreateScreening(ctx context.Context, in *CreateScreeningReq, out *CreateScreeningResp) error
+		ChangeFreeSeats(ctx context.Context, in *ChangeFreeSeatsReq, out *ChangeFreeSeatsResp) error
 		DeleteScreening(ctx context.Context, in *DeleteScreeningReq, out *DeleteScreeningResp) error
 		GetScreening(ctx context.Context, in *GetScreeningReq, out *GetScreeningResp) error
 		GetScreenings(ctx context.Context, in *GetScreeningsReq, out *GetScreeningsResp) error
@@ -127,6 +140,10 @@ type screening_ServiceHandler struct {
 
 func (h *screening_ServiceHandler) CreateScreening(ctx context.Context, in *CreateScreeningReq, out *CreateScreeningResp) error {
 	return h.Screening_ServiceHandler.CreateScreening(ctx, in, out)
+}
+
+func (h *screening_ServiceHandler) ChangeFreeSeats(ctx context.Context, in *ChangeFreeSeatsReq, out *ChangeFreeSeatsResp) error {
+	return h.Screening_ServiceHandler.ChangeFreeSeats(ctx, in, out)
 }
 
 func (h *screening_ServiceHandler) DeleteScreening(ctx context.Context, in *DeleteScreeningReq, out *DeleteScreeningResp) error {

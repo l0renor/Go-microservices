@@ -2,11 +2,16 @@ syntax = "proto3";
 option go_package = "api";
 
 service Screening_Service {
-    rpc CreateScreening(CreateScreeningReq) returns (CreateScreeningResp) {}
-    rpc ChangeFreeSeats(ChangeFreeSeatsReq) returns (ChangeFreeSeatsResp) {}
-    rpc DeleteScreening(DeleteScreeningReq) returns (DeleteScreeningResp) {}
-    rpc GetScreening(GetScreeningReq) returns (GetScreeningResp) {}
-    rpc GetScreenings(GetScreeningsReq) returns (GetScreeningsResp) {}
+    rpc CreateScreening (CreateScreeningReq) returns (CreateScreeningResp) {
+    }
+    rpc ChangeFreeSeats (ChangeFreeSeatsReq) returns (ChangeFreeSeatsResp) {
+    }
+    rpc DeleteScreening (DeleteScreeningReq) returns (DeleteScreeningResp) {
+    }
+    rpc GetScreening (GetScreeningReq) returns (GetScreeningResp) {
+    }
+    rpc GetScreenings (GetScreeningsReq) returns (GetScreeningsResp) {
+    }
 }
 
 message CreateScreeningReq {
@@ -42,9 +47,11 @@ message GetScreeningReq {
 message GetScreeningResp {
     int32 movieID = 1;
     int32 roomID = 2;
+    int32 nrOfFreeSeats = 3;
 }
 
-message GetScreeningsReq {}
+message GetScreeningsReq {
+}
 
 message GetScreeningsResp {
     repeated GetScreeningResp Screenings = 1;

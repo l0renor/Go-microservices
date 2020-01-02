@@ -31,6 +31,7 @@ func (service *Service) CreateReservation(ctx context.Context, req *api.CreateRe
 func (service *Service) ActivateReservation(ctx context.Context, req *api.ActivateReservationReq, resp *api.ActivateReservationResp) {
 	reservation, ok := service.reservations[req.ReservationID]
 	if ok {
+		// TODO: Check if screening still has free seats and book them
 
 	}
 }

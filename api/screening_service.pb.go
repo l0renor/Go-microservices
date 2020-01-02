@@ -118,6 +118,100 @@ func (m *CreateScreeningResp) GetScreeningID() int32 {
 	return 0
 }
 
+type ChangeFreeSeatsReq struct {
+	ScreeningID int32 `protobuf:"varint,1,opt,name=screeningID,proto3" json:"screeningID,omitempty"`
+	Change      int32 `protobuf:"varint,2,opt,name=change,proto3" json:"change,omitempty"`
+}
+
+func (m *ChangeFreeSeatsReq) Reset()      { *m = ChangeFreeSeatsReq{} }
+func (*ChangeFreeSeatsReq) ProtoMessage() {}
+func (*ChangeFreeSeatsReq) Descriptor() ([]byte, []int) {
+	return fileDescriptor_00551891490cfeb7, []int{2}
+}
+func (m *ChangeFreeSeatsReq) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *ChangeFreeSeatsReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_ChangeFreeSeatsReq.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *ChangeFreeSeatsReq) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ChangeFreeSeatsReq.Merge(m, src)
+}
+func (m *ChangeFreeSeatsReq) XXX_Size() int {
+	return m.Size()
+}
+func (m *ChangeFreeSeatsReq) XXX_DiscardUnknown() {
+	xxx_messageInfo_ChangeFreeSeatsReq.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ChangeFreeSeatsReq proto.InternalMessageInfo
+
+func (m *ChangeFreeSeatsReq) GetScreeningID() int32 {
+	if m != nil {
+		return m.ScreeningID
+	}
+	return 0
+}
+
+func (m *ChangeFreeSeatsReq) GetChange() int32 {
+	if m != nil {
+		return m.Change
+	}
+	return 0
+}
+
+type ChangeFreeSeatsResp struct {
+	Success bool `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+}
+
+func (m *ChangeFreeSeatsResp) Reset()      { *m = ChangeFreeSeatsResp{} }
+func (*ChangeFreeSeatsResp) ProtoMessage() {}
+func (*ChangeFreeSeatsResp) Descriptor() ([]byte, []int) {
+	return fileDescriptor_00551891490cfeb7, []int{3}
+}
+func (m *ChangeFreeSeatsResp) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *ChangeFreeSeatsResp) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_ChangeFreeSeatsResp.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *ChangeFreeSeatsResp) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ChangeFreeSeatsResp.Merge(m, src)
+}
+func (m *ChangeFreeSeatsResp) XXX_Size() int {
+	return m.Size()
+}
+func (m *ChangeFreeSeatsResp) XXX_DiscardUnknown() {
+	xxx_messageInfo_ChangeFreeSeatsResp.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ChangeFreeSeatsResp proto.InternalMessageInfo
+
+func (m *ChangeFreeSeatsResp) GetSuccess() bool {
+	if m != nil {
+		return m.Success
+	}
+	return false
+}
+
 type DeleteScreeningReq struct {
 	ScreeningID int32 `protobuf:"varint,1,opt,name=screeningID,proto3" json:"screeningID,omitempty"`
 }
@@ -125,7 +219,7 @@ type DeleteScreeningReq struct {
 func (m *DeleteScreeningReq) Reset()      { *m = DeleteScreeningReq{} }
 func (*DeleteScreeningReq) ProtoMessage() {}
 func (*DeleteScreeningReq) Descriptor() ([]byte, []int) {
-	return fileDescriptor_00551891490cfeb7, []int{2}
+	return fileDescriptor_00551891490cfeb7, []int{4}
 }
 func (m *DeleteScreeningReq) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -168,7 +262,7 @@ type DeleteScreeningResp struct {
 func (m *DeleteScreeningResp) Reset()      { *m = DeleteScreeningResp{} }
 func (*DeleteScreeningResp) ProtoMessage() {}
 func (*DeleteScreeningResp) Descriptor() ([]byte, []int) {
-	return fileDescriptor_00551891490cfeb7, []int{3}
+	return fileDescriptor_00551891490cfeb7, []int{5}
 }
 func (m *DeleteScreeningResp) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -211,7 +305,7 @@ type GetScreeningReq struct {
 func (m *GetScreeningReq) Reset()      { *m = GetScreeningReq{} }
 func (*GetScreeningReq) ProtoMessage() {}
 func (*GetScreeningReq) Descriptor() ([]byte, []int) {
-	return fileDescriptor_00551891490cfeb7, []int{4}
+	return fileDescriptor_00551891490cfeb7, []int{6}
 }
 func (m *GetScreeningReq) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -248,14 +342,15 @@ func (m *GetScreeningReq) GetScreeningID() int32 {
 }
 
 type GetScreeningResp struct {
-	MovieID int32 `protobuf:"varint,1,opt,name=movieID,proto3" json:"movieID,omitempty"`
-	RoomID  int32 `protobuf:"varint,2,opt,name=roomID,proto3" json:"roomID,omitempty"`
+	MovieID       int32 `protobuf:"varint,1,opt,name=movieID,proto3" json:"movieID,omitempty"`
+	RoomID        int32 `protobuf:"varint,2,opt,name=roomID,proto3" json:"roomID,omitempty"`
+	NrOfFreeSeats int32 `protobuf:"varint,3,opt,name=nrOfFreeSeats,proto3" json:"nrOfFreeSeats,omitempty"`
 }
 
 func (m *GetScreeningResp) Reset()      { *m = GetScreeningResp{} }
 func (*GetScreeningResp) ProtoMessage() {}
 func (*GetScreeningResp) Descriptor() ([]byte, []int) {
-	return fileDescriptor_00551891490cfeb7, []int{5}
+	return fileDescriptor_00551891490cfeb7, []int{7}
 }
 func (m *GetScreeningResp) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -298,13 +393,20 @@ func (m *GetScreeningResp) GetRoomID() int32 {
 	return 0
 }
 
+func (m *GetScreeningResp) GetNrOfFreeSeats() int32 {
+	if m != nil {
+		return m.NrOfFreeSeats
+	}
+	return 0
+}
+
 type GetScreeningsReq struct {
 }
 
 func (m *GetScreeningsReq) Reset()      { *m = GetScreeningsReq{} }
 func (*GetScreeningsReq) ProtoMessage() {}
 func (*GetScreeningsReq) Descriptor() ([]byte, []int) {
-	return fileDescriptor_00551891490cfeb7, []int{6}
+	return fileDescriptor_00551891490cfeb7, []int{8}
 }
 func (m *GetScreeningsReq) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -340,7 +442,7 @@ type GetScreeningsResp struct {
 func (m *GetScreeningsResp) Reset()      { *m = GetScreeningsResp{} }
 func (*GetScreeningsResp) ProtoMessage() {}
 func (*GetScreeningsResp) Descriptor() ([]byte, []int) {
-	return fileDescriptor_00551891490cfeb7, []int{7}
+	return fileDescriptor_00551891490cfeb7, []int{9}
 }
 func (m *GetScreeningsResp) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -379,6 +481,8 @@ func (m *GetScreeningsResp) GetScreenings() []*GetScreeningResp {
 func init() {
 	proto.RegisterType((*CreateScreeningReq)(nil), "CreateScreeningReq")
 	proto.RegisterType((*CreateScreeningResp)(nil), "CreateScreeningResp")
+	proto.RegisterType((*ChangeFreeSeatsReq)(nil), "ChangeFreeSeatsReq")
+	proto.RegisterType((*ChangeFreeSeatsResp)(nil), "ChangeFreeSeatsResp")
 	proto.RegisterType((*DeleteScreeningReq)(nil), "DeleteScreeningReq")
 	proto.RegisterType((*DeleteScreeningResp)(nil), "DeleteScreeningResp")
 	proto.RegisterType((*GetScreeningReq)(nil), "GetScreeningReq")
@@ -390,30 +494,34 @@ func init() {
 func init() { proto.RegisterFile("api/screening_service.proto", fileDescriptor_00551891490cfeb7) }
 
 var fileDescriptor_00551891490cfeb7 = []byte{
-	// 359 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x94, 0x53, 0x3f, 0x4f, 0x3a, 0x41,
-	0x10, 0xdd, 0x85, 0xfc, 0xf8, 0x99, 0x41, 0x03, 0xcc, 0x11, 0x73, 0x39, 0x93, 0x0d, 0xd9, 0x8a,
-	0xea, 0x88, 0x10, 0xff, 0x35, 0x16, 0x7a, 0xc1, 0xd0, 0x1e, 0x9d, 0x0d, 0xc1, 0xcb, 0xc4, 0x5c,
-	0x22, 0xdc, 0x71, 0x8b, 0xd4, 0x16, 0x7e, 0x00, 0x3f, 0x86, 0x1f, 0xc5, 0x92, 0x92, 0x52, 0x96,
-	0xc6, 0x92, 0x8f, 0x60, 0x00, 0x41, 0xee, 0x8e, 0xc4, 0x50, 0xbe, 0xd9, 0x79, 0x33, 0x6f, 0xde,
-	0xcb, 0xc2, 0x49, 0x37, 0xf4, 0x6b, 0xca, 0x8b, 0x88, 0xfa, 0x7e, 0xff, 0xb1, 0xa3, 0x28, 0x1a,
-	0xf9, 0x1e, 0xd9, 0x61, 0x14, 0x0c, 0x03, 0xd9, 0x04, 0xbc, 0x8d, 0xa8, 0x3b, 0xa4, 0xf6, 0xba,
-	0xc1, 0xa5, 0x01, 0x9a, 0xf0, 0xbf, 0x17, 0x8c, 0x7c, 0x6a, 0x39, 0x26, 0xaf, 0xf0, 0xea, 0x3f,
-	0x77, 0x0d, 0xf1, 0x18, 0x72, 0x51, 0x10, 0xf4, 0x5a, 0x8e, 0x99, 0x59, 0x3e, 0xfc, 0x20, 0x79,
-	0x01, 0x46, 0x6a, 0x8e, 0x0a, 0xb1, 0x02, 0xf9, 0xcd, 0xe6, 0xcd, 0xb0, 0xed, 0x92, 0x3c, 0x07,
-	0x74, 0xe8, 0x89, 0x12, 0x02, 0xfe, 0xe6, 0xd5, 0xc0, 0x48, 0xf1, 0x54, 0xb8, 0x50, 0xae, 0x9e,
-	0x3d, 0x8f, 0x94, 0x5a, 0x92, 0x0e, 0xdc, 0x35, 0x94, 0x0d, 0x28, 0xdc, 0xd1, 0x70, 0xcf, 0x2d,
-	0x0e, 0x14, 0xe3, 0xa4, 0xd5, 0x8a, 0x3d, 0xcd, 0xc1, 0xf8, 0x14, 0xe5, 0xd2, 0x40, 0x36, 0xa1,
-	0x94, 0xa8, 0xa9, 0x10, 0x4f, 0x01, 0x7e, 0x2b, 0x26, 0xaf, 0x64, 0xab, 0xf9, 0x7a, 0xc9, 0x4e,
-	0x2a, 0x70, 0xb7, 0x9a, 0xea, 0xaf, 0x19, 0x28, 0x6d, 0x60, 0xa7, 0xbd, 0x0a, 0x17, 0xaf, 0xa1,
-	0x90, 0x88, 0x03, 0x0d, 0x3b, 0x1d, 0xb4, 0x55, 0xb6, 0x77, 0xa4, 0x26, 0xd9, 0x82, 0x9f, 0x70,
-	0x17, 0x0d, 0x3b, 0x9d, 0x93, 0x55, 0xb6, 0x77, 0x84, 0x20, 0x19, 0x9e, 0xc1, 0xe1, 0xb6, 0x6a,
-	0x2c, 0x26, 0x8e, 0x18, 0x58, 0xe9, 0xb3, 0x24, 0xc3, 0x4b, 0x38, 0x8a, 0x99, 0x82, 0xf1, 0xae,
-	0x85, 0x71, 0x16, 0xda, 0x29, 0xdf, 0x24, 0xbb, 0xb9, 0x1a, 0x4f, 0x05, 0x9b, 0x4c, 0x05, 0x9b,
-	0x4f, 0x05, 0x7f, 0xd1, 0x82, 0xbf, 0x6b, 0xc1, 0x3f, 0xb4, 0xe0, 0x63, 0x2d, 0xf8, 0xa7, 0x16,
-	0xfc, 0x4b, 0x0b, 0x36, 0xd7, 0x82, 0xbf, 0xcd, 0x04, 0x1b, 0xcf, 0x04, 0x9b, 0xcc, 0x04, 0xbb,
-	0xcf, 0x76, 0x43, 0xff, 0x21, 0xb7, 0xfc, 0x09, 0x8d, 0xef, 0x00, 0x00, 0x00, 0xff, 0xff, 0x1a,
-	0x1f, 0x4a, 0x65, 0x28, 0x03, 0x00, 0x00,
+	// 424 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x94, 0x53, 0x4d, 0xaf, 0xd2, 0x50,
+	0x10, 0xbd, 0xf7, 0x11, 0x9f, 0x66, 0x9e, 0x2f, 0xef, 0x31, 0x25, 0xa6, 0xc1, 0xe4, 0x86, 0xdc,
+	0xb8, 0x60, 0x55, 0x22, 0xc4, 0xaf, 0x8d, 0x0b, 0x21, 0x18, 0x36, 0x9a, 0x94, 0x9d, 0x1b, 0x52,
+	0x9b, 0x11, 0x6b, 0xa4, 0x2d, 0xbd, 0x95, 0xb5, 0x3f, 0xc1, 0x9f, 0xe1, 0x0f, 0x71, 0xe1, 0x92,
+	0x25, 0x4b, 0x29, 0x1b, 0x97, 0xfc, 0x04, 0xd3, 0xd6, 0x56, 0xda, 0x4b, 0x24, 0x2c, 0x67, 0x3a,
+	0x67, 0xe6, 0xdc, 0x73, 0x4e, 0xe1, 0xa1, 0x13, 0x7a, 0x3d, 0xe5, 0x46, 0x44, 0xbe, 0xe7, 0xcf,
+	0x67, 0x8a, 0xa2, 0x95, 0xe7, 0x92, 0x15, 0x46, 0x41, 0x1c, 0xc8, 0x31, 0xe0, 0x30, 0x22, 0x27,
+	0xa6, 0x69, 0x31, 0x60, 0xd3, 0x12, 0x4d, 0xb8, 0xbb, 0x08, 0x56, 0x1e, 0x4d, 0x46, 0x26, 0xef,
+	0xf0, 0xee, 0x1d, 0xbb, 0x28, 0xf1, 0x01, 0x5c, 0x46, 0x41, 0xb0, 0x98, 0x8c, 0xcc, 0x8b, 0xec,
+	0xc3, 0xdf, 0x4a, 0x3e, 0x03, 0x43, 0xdb, 0xa3, 0x42, 0xec, 0xc0, 0x55, 0x79, 0xb9, 0x5c, 0x76,
+	0xd8, 0x92, 0x6f, 0x00, 0x87, 0x1f, 0x1d, 0x7f, 0x4e, 0xe3, 0x88, 0x68, 0x4a, 0x4e, 0xac, 0x52,
+	0x02, 0x27, 0x71, 0x29, 0x11, 0x37, 0xc3, 0x15, 0x44, 0xf2, 0x4a, 0xf6, 0xc0, 0xd0, 0xf6, 0xa9,
+	0x30, 0x7d, 0x91, 0xfa, 0xe2, 0xba, 0xa4, 0x54, 0xb6, 0xec, 0x9e, 0x5d, 0x94, 0xf2, 0x29, 0xe0,
+	0x88, 0x3e, 0x53, 0x4d, 0x81, 0xd3, 0xc4, 0x7b, 0x60, 0x68, 0xb8, 0xff, 0x1e, 0x1a, 0xc0, 0xcd,
+	0x6b, 0x8a, 0xcf, 0xbc, 0xf2, 0x09, 0x6e, 0xab, 0xa0, 0xfc, 0xc4, 0x79, 0xee, 0xe0, 0x23, 0xb8,
+	0xf6, 0xa3, 0xb7, 0x1f, 0x4a, 0x49, 0xcc, 0x46, 0xf6, 0xb9, 0xda, 0x94, 0x58, 0xbd, 0x95, 0x1a,
+	0x21, 0xc7, 0xd0, 0xac, 0xf5, 0x54, 0x88, 0x8f, 0x01, 0xfe, 0x75, 0x4c, 0xde, 0x69, 0x74, 0xaf,
+	0xfa, 0x4d, 0xab, 0xce, 0xd3, 0x3e, 0x18, 0xea, 0xff, 0xb8, 0x80, 0x66, 0x59, 0xce, 0xa6, 0x79,
+	0x06, 0xf1, 0x25, 0xdc, 0xd4, 0x52, 0x83, 0x86, 0xa5, 0xe7, 0xb1, 0xdd, 0xb2, 0x8e, 0x84, 0x4b,
+	0xb2, 0x0c, 0x5f, 0x35, 0x3b, 0xc5, 0x6b, 0x71, 0x4a, 0xf1, 0x7a, 0x26, 0x72, 0x7c, 0xcd, 0x43,
+	0x34, 0x2c, 0x3d, 0x0d, 0xed, 0x96, 0x75, 0xc4, 0x6a, 0xc9, 0xf0, 0x09, 0xdc, 0x3f, 0x7c, 0x35,
+	0xde, 0xd6, 0x44, 0x58, 0xb6, 0x75, 0x59, 0x24, 0xc3, 0xe7, 0x70, 0x5d, 0x11, 0x15, 0xab, 0x53,
+	0x19, 0x65, 0xb4, 0x34, 0xdd, 0x25, 0x7b, 0xf5, 0x62, 0xbd, 0x15, 0x6c, 0xb3, 0x15, 0x6c, 0xbf,
+	0x15, 0xfc, 0x6b, 0x22, 0xf8, 0xf7, 0x44, 0xf0, 0x9f, 0x89, 0xe0, 0xeb, 0x44, 0xf0, 0x5f, 0x89,
+	0xe0, 0xbf, 0x13, 0xc1, 0xf6, 0x89, 0xe0, 0xdf, 0x76, 0x82, 0xad, 0x77, 0x82, 0x6d, 0x76, 0x82,
+	0xbd, 0x6b, 0x38, 0xa1, 0xf7, 0xfe, 0x32, 0xfb, 0xe1, 0x07, 0x7f, 0x02, 0x00, 0x00, 0xff, 0xff,
+	0xf7, 0x1b, 0xfb, 0xb8, 0x0f, 0x04, 0x00, 0x00,
 }
 
 func (this *CreateScreeningReq) Equal(that interface{}) bool {
@@ -463,6 +571,57 @@ func (this *CreateScreeningResp) Equal(that interface{}) bool {
 		return false
 	}
 	if this.ScreeningID != that1.ScreeningID {
+		return false
+	}
+	return true
+}
+func (this *ChangeFreeSeatsReq) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*ChangeFreeSeatsReq)
+	if !ok {
+		that2, ok := that.(ChangeFreeSeatsReq)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if this.ScreeningID != that1.ScreeningID {
+		return false
+	}
+	if this.Change != that1.Change {
+		return false
+	}
+	return true
+}
+func (this *ChangeFreeSeatsResp) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*ChangeFreeSeatsResp)
+	if !ok {
+		that2, ok := that.(ChangeFreeSeatsResp)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if this.Success != that1.Success {
 		return false
 	}
 	return true
@@ -564,6 +723,9 @@ func (this *GetScreeningResp) Equal(that interface{}) bool {
 	if this.RoomID != that1.RoomID {
 		return false
 	}
+	if this.NrOfFreeSeats != that1.NrOfFreeSeats {
+		return false
+	}
 	return true
 }
 func (this *GetScreeningsReq) Equal(that interface{}) bool {
@@ -637,6 +799,27 @@ func (this *CreateScreeningResp) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
+func (this *ChangeFreeSeatsReq) GoString() string {
+	if this == nil {
+		return "nil"
+	}
+	s := make([]string, 0, 6)
+	s = append(s, "&api.ChangeFreeSeatsReq{")
+	s = append(s, "ScreeningID: "+fmt.Sprintf("%#v", this.ScreeningID)+",\n")
+	s = append(s, "Change: "+fmt.Sprintf("%#v", this.Change)+",\n")
+	s = append(s, "}")
+	return strings.Join(s, "")
+}
+func (this *ChangeFreeSeatsResp) GoString() string {
+	if this == nil {
+		return "nil"
+	}
+	s := make([]string, 0, 5)
+	s = append(s, "&api.ChangeFreeSeatsResp{")
+	s = append(s, "Success: "+fmt.Sprintf("%#v", this.Success)+",\n")
+	s = append(s, "}")
+	return strings.Join(s, "")
+}
 func (this *DeleteScreeningReq) GoString() string {
 	if this == nil {
 		return "nil"
@@ -671,10 +854,11 @@ func (this *GetScreeningResp) GoString() string {
 	if this == nil {
 		return "nil"
 	}
-	s := make([]string, 0, 6)
+	s := make([]string, 0, 7)
 	s = append(s, "&api.GetScreeningResp{")
 	s = append(s, "MovieID: "+fmt.Sprintf("%#v", this.MovieID)+",\n")
 	s = append(s, "RoomID: "+fmt.Sprintf("%#v", this.RoomID)+",\n")
+	s = append(s, "NrOfFreeSeats: "+fmt.Sprintf("%#v", this.NrOfFreeSeats)+",\n")
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
@@ -762,6 +946,72 @@ func (m *CreateScreeningResp) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = l
 	if m.ScreeningID != 0 {
 		i = encodeVarintScreeningService(dAtA, i, uint64(m.ScreeningID))
+		i--
+		dAtA[i] = 0x8
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *ChangeFreeSeatsReq) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *ChangeFreeSeatsReq) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *ChangeFreeSeatsReq) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Change != 0 {
+		i = encodeVarintScreeningService(dAtA, i, uint64(m.Change))
+		i--
+		dAtA[i] = 0x10
+	}
+	if m.ScreeningID != 0 {
+		i = encodeVarintScreeningService(dAtA, i, uint64(m.ScreeningID))
+		i--
+		dAtA[i] = 0x8
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *ChangeFreeSeatsResp) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *ChangeFreeSeatsResp) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *ChangeFreeSeatsResp) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Success {
+		i--
+		if m.Success {
+			dAtA[i] = 1
+		} else {
+			dAtA[i] = 0
+		}
 		i--
 		dAtA[i] = 0x8
 	}
@@ -877,6 +1127,11 @@ func (m *GetScreeningResp) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
+	if m.NrOfFreeSeats != 0 {
+		i = encodeVarintScreeningService(dAtA, i, uint64(m.NrOfFreeSeats))
+		i--
+		dAtA[i] = 0x18
+	}
 	if m.RoomID != 0 {
 		i = encodeVarintScreeningService(dAtA, i, uint64(m.RoomID))
 		i--
@@ -988,6 +1243,33 @@ func (m *CreateScreeningResp) Size() (n int) {
 	return n
 }
 
+func (m *ChangeFreeSeatsReq) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.ScreeningID != 0 {
+		n += 1 + sovScreeningService(uint64(m.ScreeningID))
+	}
+	if m.Change != 0 {
+		n += 1 + sovScreeningService(uint64(m.Change))
+	}
+	return n
+}
+
+func (m *ChangeFreeSeatsResp) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Success {
+		n += 2
+	}
+	return n
+}
+
 func (m *DeleteScreeningReq) Size() (n int) {
 	if m == nil {
 		return 0
@@ -1035,6 +1317,9 @@ func (m *GetScreeningResp) Size() (n int) {
 	}
 	if m.RoomID != 0 {
 		n += 1 + sovScreeningService(uint64(m.RoomID))
+	}
+	if m.NrOfFreeSeats != 0 {
+		n += 1 + sovScreeningService(uint64(m.NrOfFreeSeats))
 	}
 	return n
 }
@@ -1090,6 +1375,27 @@ func (this *CreateScreeningResp) String() string {
 	}, "")
 	return s
 }
+func (this *ChangeFreeSeatsReq) String() string {
+	if this == nil {
+		return "nil"
+	}
+	s := strings.Join([]string{`&ChangeFreeSeatsReq{`,
+		`ScreeningID:` + fmt.Sprintf("%v", this.ScreeningID) + `,`,
+		`Change:` + fmt.Sprintf("%v", this.Change) + `,`,
+		`}`,
+	}, "")
+	return s
+}
+func (this *ChangeFreeSeatsResp) String() string {
+	if this == nil {
+		return "nil"
+	}
+	s := strings.Join([]string{`&ChangeFreeSeatsResp{`,
+		`Success:` + fmt.Sprintf("%v", this.Success) + `,`,
+		`}`,
+	}, "")
+	return s
+}
 func (this *DeleteScreeningReq) String() string {
 	if this == nil {
 		return "nil"
@@ -1127,6 +1433,7 @@ func (this *GetScreeningResp) String() string {
 	s := strings.Join([]string{`&GetScreeningResp{`,
 		`MovieID:` + fmt.Sprintf("%v", this.MovieID) + `,`,
 		`RoomID:` + fmt.Sprintf("%v", this.RoomID) + `,`,
+		`NrOfFreeSeats:` + fmt.Sprintf("%v", this.NrOfFreeSeats) + `,`,
 		`}`,
 	}, "")
 	return s
@@ -1302,6 +1609,170 @@ func (m *CreateScreeningResp) Unmarshal(dAtA []byte) error {
 					break
 				}
 			}
+		default:
+			iNdEx = preIndex
+			skippy, err := skipScreeningService(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthScreeningService
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthScreeningService
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *ChangeFreeSeatsReq) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowScreeningService
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: ChangeFreeSeatsReq: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: ChangeFreeSeatsReq: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ScreeningID", wireType)
+			}
+			m.ScreeningID = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowScreeningService
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.ScreeningID |= int32(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 2:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Change", wireType)
+			}
+			m.Change = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowScreeningService
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Change |= int32(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		default:
+			iNdEx = preIndex
+			skippy, err := skipScreeningService(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthScreeningService
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthScreeningService
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *ChangeFreeSeatsResp) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowScreeningService
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: ChangeFreeSeatsResp: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: ChangeFreeSeatsResp: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Success", wireType)
+			}
+			var v int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowScreeningService
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				v |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			m.Success = bool(v != 0)
 		default:
 			iNdEx = preIndex
 			skippy, err := skipScreeningService(dAtA[iNdEx:])
@@ -1606,6 +2077,25 @@ func (m *GetScreeningResp) Unmarshal(dAtA []byte) error {
 				b := dAtA[iNdEx]
 				iNdEx++
 				m.RoomID |= int32(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 3:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field NrOfFreeSeats", wireType)
+			}
+			m.NrOfFreeSeats = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowScreeningService
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.NrOfFreeSeats |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
