@@ -46,7 +46,7 @@ func (service *Service) GetScreening(ctx context.Context, req *api.GetScreeningR
 }
 
 func (service *Service) GetScreenings(ctx context.Context, req *api.GetScreeningsReq, resp *api.GetScreeningsResp) {
-	var screenings []*api.GetScreeningResp
+	screenings := make([]*api.GetScreeningResp, 0)
 	for _, screening := range service.screenings {
 		screenings = append(screenings, &api.GetScreeningResp{
 			MovieID: screening.movieID,

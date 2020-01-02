@@ -34,6 +34,11 @@ var _ server.Option
 // Client API for Reservation_Service service
 
 type Reservation_Service interface {
+	CreateReservation(ctx context.Context, in *CreateReservationReq, opts ...client.CallOption) (*CreateReservationResp, error)
+	ActivateReservation(ctx context.Context, in *ActivateReservationReq, opts ...client.CallOption) (*ActivateReservationResp, error)
+	DeleteReservation(ctx context.Context, in *DeleteReservationReq, opts ...client.CallOption) (*DeleteReservationResp, error)
+	GetReservation(ctx context.Context, in *GetReservationReq, opts ...client.CallOption) (*GetReservationResp, error)
+	GetReservations(ctx context.Context, in *GetReservationsReq, opts ...client.CallOption) (*GetReservationsResp, error)
 }
 
 type reservation_Service struct {
@@ -54,13 +59,73 @@ func NewReservation_Service(name string, c client.Client) Reservation_Service {
 	}
 }
 
+func (c *reservation_Service) CreateReservation(ctx context.Context, in *CreateReservationReq, opts ...client.CallOption) (*CreateReservationResp, error) {
+	req := c.c.NewRequest(c.name, "Reservation_Service.CreateReservation", in)
+	out := new(CreateReservationResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *reservation_Service) ActivateReservation(ctx context.Context, in *ActivateReservationReq, opts ...client.CallOption) (*ActivateReservationResp, error) {
+	req := c.c.NewRequest(c.name, "Reservation_Service.ActivateReservation", in)
+	out := new(ActivateReservationResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *reservation_Service) DeleteReservation(ctx context.Context, in *DeleteReservationReq, opts ...client.CallOption) (*DeleteReservationResp, error) {
+	req := c.c.NewRequest(c.name, "Reservation_Service.DeleteReservation", in)
+	out := new(DeleteReservationResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *reservation_Service) GetReservation(ctx context.Context, in *GetReservationReq, opts ...client.CallOption) (*GetReservationResp, error) {
+	req := c.c.NewRequest(c.name, "Reservation_Service.GetReservation", in)
+	out := new(GetReservationResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *reservation_Service) GetReservations(ctx context.Context, in *GetReservationsReq, opts ...client.CallOption) (*GetReservationsResp, error) {
+	req := c.c.NewRequest(c.name, "Reservation_Service.GetReservations", in)
+	out := new(GetReservationsResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Reservation_Service service
 
 type Reservation_ServiceHandler interface {
+	CreateReservation(context.Context, *CreateReservationReq, *CreateReservationResp) error
+	ActivateReservation(context.Context, *ActivateReservationReq, *ActivateReservationResp) error
+	DeleteReservation(context.Context, *DeleteReservationReq, *DeleteReservationResp) error
+	GetReservation(context.Context, *GetReservationReq, *GetReservationResp) error
+	GetReservations(context.Context, *GetReservationsReq, *GetReservationsResp) error
 }
 
 func RegisterReservation_ServiceHandler(s server.Server, hdlr Reservation_ServiceHandler, opts ...server.HandlerOption) error {
 	type reservation_Service interface {
+		CreateReservation(ctx context.Context, in *CreateReservationReq, out *CreateReservationResp) error
+		ActivateReservation(ctx context.Context, in *ActivateReservationReq, out *ActivateReservationResp) error
+		DeleteReservation(ctx context.Context, in *DeleteReservationReq, out *DeleteReservationResp) error
+		GetReservation(ctx context.Context, in *GetReservationReq, out *GetReservationResp) error
+		GetReservations(ctx context.Context, in *GetReservationsReq, out *GetReservationsResp) error
 	}
 	type Reservation_Service struct {
 		reservation_Service
@@ -71,4 +136,24 @@ func RegisterReservation_ServiceHandler(s server.Server, hdlr Reservation_Servic
 
 type reservation_ServiceHandler struct {
 	Reservation_ServiceHandler
+}
+
+func (h *reservation_ServiceHandler) CreateReservation(ctx context.Context, in *CreateReservationReq, out *CreateReservationResp) error {
+	return h.Reservation_ServiceHandler.CreateReservation(ctx, in, out)
+}
+
+func (h *reservation_ServiceHandler) ActivateReservation(ctx context.Context, in *ActivateReservationReq, out *ActivateReservationResp) error {
+	return h.Reservation_ServiceHandler.ActivateReservation(ctx, in, out)
+}
+
+func (h *reservation_ServiceHandler) DeleteReservation(ctx context.Context, in *DeleteReservationReq, out *DeleteReservationResp) error {
+	return h.Reservation_ServiceHandler.DeleteReservation(ctx, in, out)
+}
+
+func (h *reservation_ServiceHandler) GetReservation(ctx context.Context, in *GetReservationReq, out *GetReservationResp) error {
+	return h.Reservation_ServiceHandler.GetReservation(ctx, in, out)
+}
+
+func (h *reservation_ServiceHandler) GetReservations(ctx context.Context, in *GetReservationsReq, out *GetReservationsResp) error {
+	return h.Reservation_ServiceHandler.GetReservations(ctx, in, out)
 }
