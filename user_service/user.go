@@ -62,3 +62,27 @@ func (service *Service) GetUsers(ctx context.Context, req *api.GetUsersReq, resp
 	resp.Users = users
 	return nil
 }
+
+func (service *Service) AddReservation(ctx context.Context, req *api.AddReservationReq, resp *api.AddReservationResp) error {
+	// check user exists
+	user, ok := service.users[req.UserID]
+	if !ok {
+		return errors.NotFound("usr_not_found", "User not found")
+	}
+	// check reservation not exists
+	existsAlready := contains(user.reservations, req.ReservationID)
+	if existsAlready {
+		return errors.Conflict("Reservation exists", "This reservation already exists")
+	}
+	user.reservations = append(user.reservations, req.ReservationID)
+	return nil
+}
+
+func contains(s []int32, e int32) bool {
+	for _, a := range s {
+		if a == e {
+			return true
+		}
+	}
+	return false
+}
