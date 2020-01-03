@@ -5,10 +5,6 @@ import (
 	"github.com/ob-vss-ws19/blatt-4-myteam/api"
 )
 
-//depricated
-type movie struct {
-	title string
-}
 type movieService struct {
 	movies map[int32]string
 	nextID func() int32
