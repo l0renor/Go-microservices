@@ -2,51 +2,63 @@ package user_service
 
 import (
 	"context"
+	"github.com/micro/go-micro/errors"
 	"github.com/ob-vss-ws19/blatt-4-myteam/api"
 )
 
+type User struct {
+	name         string
+	reservations []int32
+}
+
 type Service struct {
-	users              map[int32]string
+	users              map[int32]User
 	nextID             func() int32
 	reservationService api.Reservation_Service
 }
 
 func (service *Service) CreateUser(ctx context.Context, req *api.CreateUserReq, resp *api.CreateUserResp) error {
 	userID := service.nextID()
-	service.users[userID] = req.GetName()
+	service.users[userID] = User{
+		name: req.GetName(),
+	}
 	resp.UserID = userID
 	return nil
 }
 
 func (service *Service) DeleteUser(ctx context.Context, req *api.DeleteUserReq, resp *api.DeleteUserResp) error {
-	_, ok := service.users[req.GetUserID()]
+	user, ok := service.users[req.GetUserID()]
 	if ok {
-		// TODO: Check reservations
+		if len(user.reservations) > 0 {
+			return errors.Conflict("usr_has_res", "The user still has reservations;can't be deleted")
+		}
 		delete(service.users, req.GetUserID())
 		resp.Success = true
 	} else {
 		resp.Success = false
+		return errors.NotFound("usr_not_found", "User can't be deleted not found")
 	}
 	return nil
 }
 
 func (service *Service) GetUser(ctx context.Context, req *api.GetUserReq, resp *api.GetUserResp) error {
-	name, ok := service.users[req.GetUserID()]
+	user, ok := service.users[req.GetUserID()]
 	if ok {
-		resp.Name = name
+		resp.Name = user.name
 	} else {
-		re
+		return errors.NotFound("usr_not_found", "User not found")
 	}
 	return nil
 }
 
 func (service *Service) GetUsers(ctx context.Context, req *api.GetUsersReq, resp *api.GetUsersResp) error {
 	users := make([]*api.GetUsersResp_User, 0)
-	for userID, name := range service.users {
+	for userID, user := range service.users {
 		users = append(users, &api.GetUsersResp_User{
 			UserID: userID,
-			Name:   name,
+			Name:   user.name,
 		})
 	}
 	resp.Users = users
+	return nil
 }
