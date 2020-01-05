@@ -2,6 +2,7 @@ package screening_service
 
 import (
 	"context"
+	"github.com/micro/go-micro/errors"
 	"github.com/ob-vss-ws19/blatt-4-myteam/api"
 )
 
@@ -20,7 +21,6 @@ type Service struct {
 
 func (service *Service) CreateScreening(ctx context.Context, req *api.CreateScreeningReq, resp *api.CreateScreeningResp) error {
 	screeningID := service.nextID()
-	// TODO: Check if Movie and Romm ID are valid
 	_, err := service.movieService.GetMovie(ctx, &api.GetMovieMsg{Id: req.MovieID})
 	if err != nil {
 		//TODO error handling
@@ -54,6 +54,8 @@ func (service *Service) GetScreening(ctx context.Context, req *api.GetScreeningR
 	if ok {
 		resp.MovieID = screening.movieID
 		resp.RoomID = screening.roomID
+	} else {
+		return errors.NotFound("screening_not_found", "screening(ID: %v not found", req.ScreeningID)
 	}
 	return nil
 }
