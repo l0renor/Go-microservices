@@ -78,9 +78,35 @@ func (service *Service) AddReservation(ctx context.Context, req *api.AddReservat
 	return nil
 }
 
+func (service *Service) DeleteReservation(ctx context.Context, req *api.DeleteReservationReq, resp *api.DeleteReservationResp) error {
+	user, ok := service.users[req.UserID]
+	if !ok {
+		return errors.NotFound("usr_not_found", "User not found")
+	}
+	exists := remove(user.reservations, req.ReservationID)
+	if !exists {
+		return errors.NotFound("rsv_not_found", "Reservation not found")
+	}
+	return nil
+}
+
 func contains(s []int32, e int32) bool {
 	for _, a := range s {
 		if a == e {
+			return true
+		}
+	}
+	return false
+}
+
+//true on success false if not present
+func remove(s []int32, e int32) bool {
+	for i, a := range s {
+		if a == e {
+			// Remove the element at index i from a.
+			s[i] = s[len(s)-1] // Copy last element to index i.
+			s[len(s)-1] = 0    // Erase last element (write zero value).
+			s = s[:len(s)-1]   // Truncate slice.
 			return true
 		}
 	}

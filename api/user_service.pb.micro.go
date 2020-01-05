@@ -39,6 +39,7 @@ type User_Service interface {
 	GetUser(ctx context.Context, in *GetUserReq, opts ...client.CallOption) (*GetUserResp, error)
 	GetUsers(ctx context.Context, in *GetUsersReq, opts ...client.CallOption) (*GetUsersResp, error)
 	AddReservation(ctx context.Context, in *AddReservationReq, opts ...client.CallOption) (*AddReservationResp, error)
+	DeleteReservation(ctx context.Context, in *DeleteReservationReq, opts ...client.CallOption) (*DeleteReservationResp, error)
 }
 
 type user_Service struct {
@@ -109,6 +110,16 @@ func (c *user_Service) AddReservation(ctx context.Context, in *AddReservationReq
 	return out, nil
 }
 
+func (c *user_Service) DeleteReservation(ctx context.Context, in *DeleteReservationReq, opts ...client.CallOption) (*DeleteReservationResp, error) {
+	req := c.c.NewRequest(c.name, "User_Service.DeleteReservation", in)
+	out := new(DeleteReservationResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for User_Service service
 
 type User_ServiceHandler interface {
@@ -117,6 +128,7 @@ type User_ServiceHandler interface {
 	GetUser(context.Context, *GetUserReq, *GetUserResp) error
 	GetUsers(context.Context, *GetUsersReq, *GetUsersResp) error
 	AddReservation(context.Context, *AddReservationReq, *AddReservationResp) error
+	DeleteReservation(context.Context, *DeleteReservationReq, *DeleteReservationResp) error
 }
 
 func RegisterUser_ServiceHandler(s server.Server, hdlr User_ServiceHandler, opts ...server.HandlerOption) error {
@@ -126,6 +138,7 @@ func RegisterUser_ServiceHandler(s server.Server, hdlr User_ServiceHandler, opts
 		GetUser(ctx context.Context, in *GetUserReq, out *GetUserResp) error
 		GetUsers(ctx context.Context, in *GetUsersReq, out *GetUsersResp) error
 		AddReservation(ctx context.Context, in *AddReservationReq, out *AddReservationResp) error
+		DeleteReservation(ctx context.Context, in *DeleteReservationReq, out *DeleteReservationResp) error
 	}
 	type User_Service struct {
 		user_Service
@@ -156,4 +169,8 @@ func (h *user_ServiceHandler) GetUsers(ctx context.Context, in *GetUsersReq, out
 
 func (h *user_ServiceHandler) AddReservation(ctx context.Context, in *AddReservationReq, out *AddReservationResp) error {
 	return h.User_ServiceHandler.AddReservation(ctx, in, out)
+}
+
+func (h *user_ServiceHandler) DeleteReservation(ctx context.Context, in *DeleteReservationReq, out *DeleteReservationResp) error {
+	return h.User_ServiceHandler.DeleteReservation(ctx, in, out)
 }

@@ -21,6 +21,14 @@ type Service struct {
 func (service *Service) CreateScreening(ctx context.Context, req *api.CreateScreeningReq, resp *api.CreateScreeningResp) error {
 	screeningID := service.nextID()
 	// TODO: Check if Movie and Romm ID are valid
+	_, err := service.movieService.GetMovie(ctx, &api.GetMovieMsg{Id: req.MovieID})
+	if err != nil {
+		//TODO error handling
+	}
+	_, err = service.roomService.GetRoom(ctx, &api.GetRoomMsg{Id: req.RoomID})
+	if err != nil {
+		//TODO error handling
+	}
 	service.screenings[screeningID] = Screening{
 		movieID:   req.GetMovieID(),
 		roomID:    req.GetRoomID(),

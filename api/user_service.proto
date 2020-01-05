@@ -12,6 +12,8 @@ service User_Service {
     }
     rpc AddReservation (AddReservationReq) returns (AddReservationResp) {
         }
+    rpc DeleteReservation (DeleteReservationReq) returns (DeleteReservationResp) {
+                }
 
 }
 
@@ -58,3 +60,12 @@ message AddReservationReq{
 
 message AddReservationResp {
 }
+
+message DeleteReservationReq{
+    int32 userID = 1;
+    int32 reservationID = 2;
+}
+
+message DeleteReservationResp {
+}
+

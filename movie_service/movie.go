@@ -2,6 +2,7 @@ package movie_service
 
 import (
 	"context"
+	"github.com/micro/go-micro/errors"
 	"github.com/ob-vss-ws19/blatt-4-myteam/api"
 )
 
@@ -31,7 +32,7 @@ func (m *movieService) GetMovie(ctx context.Context, req *api.GetMovieMsg, rsp *
 	if ok {
 		rsp.Title = res
 	} else {
-		rsp.Title = ""
+		return errors.NotFound("movie_not_found", "Movie  with id %v not found  not found", req.Id)
 	}
 	return nil
 }
