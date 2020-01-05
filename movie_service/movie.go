@@ -22,7 +22,9 @@ func (m *movieService) DeleteMovie(ctx context.Context, req *api.DeleteMovieMsg,
 	id := req.Id
 	delete(m.movies, id)
 	_, ok := m.movies[id]
-	rsp.Success = !ok
+	if !ok {
+		return errors.NotFound("movie_not_found", "Movie  with id %v not found  not found", req.Id)
+	}
 	return nil
 }
 

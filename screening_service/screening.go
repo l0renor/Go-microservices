@@ -23,11 +23,11 @@ func (service *Service) CreateScreening(ctx context.Context, req *api.CreateScre
 	screeningID := service.nextID()
 	_, err := service.movieService.GetMovie(ctx, &api.GetMovieMsg{Id: req.MovieID})
 	if err != nil {
-		//TODO error handling
+		return errors.NotFound("movie_not_found", "movie(ID: %v not found", req.MovieID)
 	}
 	_, err = service.roomService.GetRoom(ctx, &api.GetRoomMsg{Id: req.RoomID})
 	if err != nil {
-		//TODO error handling
+		return errors.NotFound("room_not_found", "room(ID: %v not found", req.RoomID)
 	}
 	service.screenings[screeningID] = Screening{
 		movieID:   req.GetMovieID(),
