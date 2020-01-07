@@ -8,6 +8,10 @@ service Screening_Service {
     }
     rpc DeleteScreening (DeleteScreeningReq) returns (DeleteScreeningResp) {
     }
+    rpc DeleteRoom (DeleteRoomReq) returns (DeleteRoomResp) {
+    }
+    rpc DeleteMovie (DeleteMovieReq) returns (DeleteMovieResp) {
+    }
     rpc GetScreening (GetScreeningReq) returns (GetScreeningResp) {
     }
     rpc GetScreenings (GetScreeningsReq) returns (GetScreeningsResp) {
@@ -36,6 +40,20 @@ message DeleteScreeningReq {
 }
 
 message DeleteScreeningResp {
+}
+
+message DeleteRoomReq {
+    int32 roomID = 1;
+}
+
+message DeleteRoomResp {
+}
+
+message DeleteMovieReq {
+    int32 movieID = 1;
+}
+
+message DeleteMovieResp {
 }
 
 message GetScreeningReq {

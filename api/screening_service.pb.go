@@ -282,6 +282,162 @@ func (m *DeleteScreeningResp) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_DeleteScreeningResp proto.InternalMessageInfo
 
+type DeleteRoomReq struct {
+	RoomID int32 `protobuf:"varint,1,opt,name=roomID,proto3" json:"roomID,omitempty"`
+}
+
+func (m *DeleteRoomReq) Reset()      { *m = DeleteRoomReq{} }
+func (*DeleteRoomReq) ProtoMessage() {}
+func (*DeleteRoomReq) Descriptor() ([]byte, []int) {
+	return fileDescriptor_00551891490cfeb7, []int{6}
+}
+func (m *DeleteRoomReq) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *DeleteRoomReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_DeleteRoomReq.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *DeleteRoomReq) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DeleteRoomReq.Merge(m, src)
+}
+func (m *DeleteRoomReq) XXX_Size() int {
+	return m.Size()
+}
+func (m *DeleteRoomReq) XXX_DiscardUnknown() {
+	xxx_messageInfo_DeleteRoomReq.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_DeleteRoomReq proto.InternalMessageInfo
+
+func (m *DeleteRoomReq) GetRoomID() int32 {
+	if m != nil {
+		return m.RoomID
+	}
+	return 0
+}
+
+type DeleteRoomResp struct {
+}
+
+func (m *DeleteRoomResp) Reset()      { *m = DeleteRoomResp{} }
+func (*DeleteRoomResp) ProtoMessage() {}
+func (*DeleteRoomResp) Descriptor() ([]byte, []int) {
+	return fileDescriptor_00551891490cfeb7, []int{7}
+}
+func (m *DeleteRoomResp) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *DeleteRoomResp) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_DeleteRoomResp.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *DeleteRoomResp) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DeleteRoomResp.Merge(m, src)
+}
+func (m *DeleteRoomResp) XXX_Size() int {
+	return m.Size()
+}
+func (m *DeleteRoomResp) XXX_DiscardUnknown() {
+	xxx_messageInfo_DeleteRoomResp.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_DeleteRoomResp proto.InternalMessageInfo
+
+type DeleteMovieReq struct {
+	MovieID int32 `protobuf:"varint,1,opt,name=movieID,proto3" json:"movieID,omitempty"`
+}
+
+func (m *DeleteMovieReq) Reset()      { *m = DeleteMovieReq{} }
+func (*DeleteMovieReq) ProtoMessage() {}
+func (*DeleteMovieReq) Descriptor() ([]byte, []int) {
+	return fileDescriptor_00551891490cfeb7, []int{8}
+}
+func (m *DeleteMovieReq) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *DeleteMovieReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_DeleteMovieReq.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *DeleteMovieReq) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DeleteMovieReq.Merge(m, src)
+}
+func (m *DeleteMovieReq) XXX_Size() int {
+	return m.Size()
+}
+func (m *DeleteMovieReq) XXX_DiscardUnknown() {
+	xxx_messageInfo_DeleteMovieReq.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_DeleteMovieReq proto.InternalMessageInfo
+
+func (m *DeleteMovieReq) GetMovieID() int32 {
+	if m != nil {
+		return m.MovieID
+	}
+	return 0
+}
+
+type DeleteMovieResp struct {
+}
+
+func (m *DeleteMovieResp) Reset()      { *m = DeleteMovieResp{} }
+func (*DeleteMovieResp) ProtoMessage() {}
+func (*DeleteMovieResp) Descriptor() ([]byte, []int) {
+	return fileDescriptor_00551891490cfeb7, []int{9}
+}
+func (m *DeleteMovieResp) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *DeleteMovieResp) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_DeleteMovieResp.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *DeleteMovieResp) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DeleteMovieResp.Merge(m, src)
+}
+func (m *DeleteMovieResp) XXX_Size() int {
+	return m.Size()
+}
+func (m *DeleteMovieResp) XXX_DiscardUnknown() {
+	xxx_messageInfo_DeleteMovieResp.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_DeleteMovieResp proto.InternalMessageInfo
+
 type GetScreeningReq struct {
 	ScreeningID int32 `protobuf:"varint,1,opt,name=screeningID,proto3" json:"screeningID,omitempty"`
 }
@@ -289,7 +445,7 @@ type GetScreeningReq struct {
 func (m *GetScreeningReq) Reset()      { *m = GetScreeningReq{} }
 func (*GetScreeningReq) ProtoMessage() {}
 func (*GetScreeningReq) Descriptor() ([]byte, []int) {
-	return fileDescriptor_00551891490cfeb7, []int{6}
+	return fileDescriptor_00551891490cfeb7, []int{10}
 }
 func (m *GetScreeningReq) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -334,7 +490,7 @@ type GetScreeningResp struct {
 func (m *GetScreeningResp) Reset()      { *m = GetScreeningResp{} }
 func (*GetScreeningResp) ProtoMessage() {}
 func (*GetScreeningResp) Descriptor() ([]byte, []int) {
-	return fileDescriptor_00551891490cfeb7, []int{7}
+	return fileDescriptor_00551891490cfeb7, []int{11}
 }
 func (m *GetScreeningResp) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -390,7 +546,7 @@ type GetScreeningsReq struct {
 func (m *GetScreeningsReq) Reset()      { *m = GetScreeningsReq{} }
 func (*GetScreeningsReq) ProtoMessage() {}
 func (*GetScreeningsReq) Descriptor() ([]byte, []int) {
-	return fileDescriptor_00551891490cfeb7, []int{8}
+	return fileDescriptor_00551891490cfeb7, []int{12}
 }
 func (m *GetScreeningsReq) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -426,7 +582,7 @@ type GetScreeningsResp struct {
 func (m *GetScreeningsResp) Reset()      { *m = GetScreeningsResp{} }
 func (*GetScreeningsResp) ProtoMessage() {}
 func (*GetScreeningsResp) Descriptor() ([]byte, []int) {
-	return fileDescriptor_00551891490cfeb7, []int{9}
+	return fileDescriptor_00551891490cfeb7, []int{13}
 }
 func (m *GetScreeningsResp) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -469,6 +625,10 @@ func init() {
 	proto.RegisterType((*ChangeFreeSeatsResp)(nil), "ChangeFreeSeatsResp")
 	proto.RegisterType((*DeleteScreeningReq)(nil), "DeleteScreeningReq")
 	proto.RegisterType((*DeleteScreeningResp)(nil), "DeleteScreeningResp")
+	proto.RegisterType((*DeleteRoomReq)(nil), "DeleteRoomReq")
+	proto.RegisterType((*DeleteRoomResp)(nil), "DeleteRoomResp")
+	proto.RegisterType((*DeleteMovieReq)(nil), "DeleteMovieReq")
+	proto.RegisterType((*DeleteMovieResp)(nil), "DeleteMovieResp")
 	proto.RegisterType((*GetScreeningReq)(nil), "GetScreeningReq")
 	proto.RegisterType((*GetScreeningResp)(nil), "GetScreeningResp")
 	proto.RegisterType((*GetScreeningsReq)(nil), "GetScreeningsReq")
@@ -478,33 +638,37 @@ func init() {
 func init() { proto.RegisterFile("api/screening_service.proto", fileDescriptor_00551891490cfeb7) }
 
 var fileDescriptor_00551891490cfeb7 = []byte{
-	// 410 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x94, 0x53, 0x3d, 0x8f, 0xda, 0x40,
-	0x10, 0xdd, 0x05, 0x85, 0x48, 0x43, 0x10, 0x30, 0x86, 0xc8, 0x22, 0xd2, 0x0a, 0xad, 0x52, 0x50,
-	0x39, 0x0a, 0x28, 0x5f, 0x4d, 0x8a, 0x80, 0x88, 0x68, 0x12, 0x09, 0xba, 0x34, 0xc8, 0x41, 0x7b,
-	0x9c, 0x4f, 0x87, 0xbd, 0x78, 0x2d, 0xea, 0xfb, 0x09, 0xf7, 0x33, 0xee, 0x87, 0x5c, 0x71, 0x25,
-	0x25, 0xe5, 0x61, 0x9a, 0x2b, 0xf9, 0x09, 0x27, 0x9b, 0xc3, 0x87, 0xbd, 0x48, 0x88, 0x72, 0xc6,
-	0xf3, 0x66, 0xdf, 0xbc, 0xf7, 0x0c, 0x1f, 0x6c, 0xe9, 0x7c, 0x52, 0x13, 0x5f, 0x08, 0xd7, 0x71,
-	0xa7, 0x63, 0x25, 0xfc, 0x85, 0x33, 0x11, 0x96, 0xf4, 0xbd, 0xc0, 0xe3, 0x7d, 0xc0, 0xae, 0x2f,
-	0xec, 0x40, 0x8c, 0xf6, 0x03, 0x43, 0x31, 0x47, 0x13, 0xde, 0xce, 0xbc, 0x85, 0x23, 0x06, 0x3d,
-	0x93, 0x36, 0x69, 0xeb, 0xcd, 0x70, 0x5f, 0xe2, 0x7b, 0x28, 0xf8, 0x9e, 0x37, 0x1b, 0xf4, 0xcc,
-	0x5c, 0xfc, 0xe1, 0xa5, 0xe2, 0xdf, 0xc0, 0xd0, 0xf6, 0x28, 0x89, 0x4d, 0x28, 0x26, 0x2f, 0x27,
-	0xcb, 0x0e, 0x5b, 0xfc, 0x0f, 0x60, 0xf7, 0xd2, 0x76, 0xa7, 0xa2, 0xef, 0x0b, 0x31, 0x12, 0x76,
-	0xa0, 0x22, 0x02, 0x27, 0x71, 0x11, 0x91, 0x49, 0x8c, 0xdb, 0x13, 0xd9, 0x55, 0xbc, 0x0e, 0x86,
-	0xb6, 0x4f, 0x49, 0xfe, 0x15, 0xb0, 0x27, 0xae, 0x45, 0xe6, 0xce, 0xd3, 0xf4, 0xea, 0x60, 0x68,
-	0x38, 0x25, 0x79, 0x07, 0xca, 0xbf, 0x45, 0x70, 0xe6, 0xae, 0x2b, 0xa8, 0xa4, 0x41, 0x4a, 0x9e,
-	0xaf, 0x34, 0x7e, 0x84, 0x92, 0xeb, 0xff, 0xbd, 0x48, 0xce, 0x33, 0xf3, 0xf1, 0xe7, 0x74, 0x93,
-	0x63, 0xfa, 0xad, 0x48, 0x54, 0xde, 0x87, 0x6a, 0xa6, 0xa7, 0x24, 0x7e, 0x06, 0x78, 0xed, 0x98,
-	0xb4, 0x99, 0x6f, 0x15, 0xdb, 0x55, 0x2b, 0xcb, 0x73, 0x78, 0x30, 0xd4, 0xbe, 0xcf, 0x41, 0x35,
-	0x29, 0xc7, 0xa3, 0x5d, 0x9e, 0xf0, 0x27, 0x94, 0x33, 0x09, 0x40, 0xc3, 0xd2, 0xb3, 0xd5, 0xa8,
-	0x59, 0x47, 0x82, 0xc2, 0x49, 0x8c, 0x4f, 0x1b, 0x17, 0xe1, 0xb5, 0x68, 0x44, 0xf8, 0x23, 0xfe,
-	0xc6, 0xf8, 0x8c, 0x53, 0x68, 0x58, 0xba, 0xe7, 0x8d, 0x9a, 0x75, 0xcc, 0x50, 0x82, 0x5f, 0xe0,
-	0xdd, 0xe1, 0xd5, 0x58, 0xc9, 0x88, 0x30, 0x6f, 0xe8, 0xb2, 0x70, 0x82, 0xdf, 0xa1, 0x94, 0x12,
-	0x15, 0xd3, 0x53, 0x31, 0x65, 0xb4, 0x34, 0xdd, 0x39, 0xf9, 0xf5, 0x63, 0xb9, 0x66, 0x64, 0xb5,
-	0x66, 0x64, 0xbb, 0x66, 0xf4, 0x26, 0x64, 0xf4, 0x2e, 0x64, 0xf4, 0x21, 0x64, 0x74, 0x19, 0x32,
-	0xfa, 0x18, 0x32, 0xfa, 0x14, 0x32, 0xb2, 0x0d, 0x19, 0xbd, 0xdd, 0x30, 0xb2, 0xdc, 0x30, 0xb2,
-	0xda, 0x30, 0xf2, 0x2f, 0x6f, 0x4b, 0xe7, 0x7f, 0x21, 0xfe, 0x79, 0x3b, 0xcf, 0x01, 0x00, 0x00,
-	0xff, 0xff, 0x74, 0xc4, 0x8d, 0x4f, 0xdb, 0x03, 0x00, 0x00,
+	// 478 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x94, 0x94, 0xcf, 0x6e, 0xd3, 0x40,
+	0x10, 0xc6, 0x77, 0x89, 0x28, 0xd2, 0x84, 0x34, 0xc9, 0xb8, 0x45, 0x96, 0x91, 0x56, 0xd1, 0x0a,
+	0x89, 0x8a, 0xc3, 0x56, 0xa4, 0xe2, 0xdf, 0x85, 0x03, 0x8d, 0x82, 0x7a, 0x00, 0xa4, 0xe4, 0xc6,
+	0xa5, 0x32, 0xd1, 0x52, 0x8c, 0x88, 0xbd, 0xf5, 0x5a, 0x3d, 0xf3, 0x08, 0x3c, 0x06, 0xbc, 0x09,
+	0xc7, 0x1c, 0x7b, 0x24, 0xce, 0x85, 0x63, 0x1f, 0x01, 0xd9, 0xc1, 0x8e, 0x77, 0x37, 0x6a, 0xd5,
+	0xe3, 0xcc, 0xce, 0x37, 0x3b, 0xfb, 0xcd, 0x4f, 0x0b, 0x0f, 0x43, 0x15, 0x1d, 0xea, 0x59, 0x2a,
+	0x65, 0x1c, 0xc5, 0x67, 0xa7, 0x5a, 0xa6, 0x17, 0xd1, 0x4c, 0x0a, 0x95, 0x26, 0x59, 0xc2, 0xc7,
+	0x80, 0xc7, 0xa9, 0x0c, 0x33, 0x39, 0xad, 0x0a, 0x26, 0xf2, 0x1c, 0x7d, 0xb8, 0x37, 0x4f, 0x2e,
+	0x22, 0x79, 0x32, 0xf2, 0xe9, 0x80, 0x1e, 0xdc, 0x9d, 0x54, 0x21, 0x3e, 0x80, 0x9d, 0x34, 0x49,
+	0xe6, 0x27, 0x23, 0xff, 0x4e, 0x79, 0xf0, 0x3f, 0xe2, 0x2f, 0xc0, 0x73, 0xfa, 0x68, 0x85, 0x03,
+	0x68, 0xd7, 0x37, 0xd7, 0xcd, 0x9a, 0x29, 0xfe, 0x1e, 0xf0, 0xf8, 0x4b, 0x18, 0x9f, 0xc9, 0x71,
+	0x2a, 0xe5, 0x54, 0x86, 0x99, 0x2e, 0x06, 0xb8, 0x51, 0x57, 0x0c, 0x32, 0x2b, 0x75, 0xd5, 0x20,
+	0xeb, 0x88, 0xef, 0x83, 0xe7, 0xf4, 0xd3, 0x8a, 0x3f, 0x07, 0x1c, 0xc9, 0x6f, 0xd2, 0x7a, 0xe7,
+	0xcd, 0xe3, 0xed, 0x83, 0xe7, 0xe8, 0xb4, 0xe2, 0x8f, 0xa1, 0xb3, 0x4e, 0x4f, 0x92, 0x64, 0x5e,
+	0x74, 0xda, 0xf8, 0x42, 0x0d, 0x5f, 0x7a, 0xb0, 0xdb, 0x2c, 0xd4, 0x8a, 0x3f, 0xa9, 0x32, 0xef,
+	0x0a, 0x4b, 0xaf, 0x75, 0x9b, 0xf7, 0xa1, 0x6b, 0xd4, 0x6a, 0xc5, 0x8f, 0xa0, 0xfb, 0x56, 0x66,
+	0xb7, 0x7c, 0xc5, 0x57, 0xe8, 0x99, 0x22, 0xad, 0x6e, 0xbf, 0x63, 0x7c, 0x04, 0x9d, 0x38, 0xfd,
+	0xf0, 0xb9, 0x36, 0xd6, 0x6f, 0x95, 0xc7, 0x66, 0x92, 0xa3, 0x79, 0x57, 0xb1, 0x4e, 0x3e, 0x86,
+	0xbe, 0x95, 0xd3, 0x0a, 0x9f, 0x02, 0x6c, 0x32, 0x3e, 0x1d, 0xb4, 0x0e, 0xda, 0xc3, 0xbe, 0xb0,
+	0xe7, 0x9c, 0x34, 0x8a, 0x86, 0xbf, 0x5a, 0xd0, 0xaf, 0xc3, 0xd3, 0xe9, 0x9a, 0x64, 0x7c, 0x0d,
+	0x5d, 0x8b, 0x3d, 0xf4, 0x84, 0x4b, 0x75, 0xb0, 0x27, 0xb6, 0x20, 0xca, 0x49, 0xa9, 0x37, 0x91,
+	0x29, 0xf4, 0x0e, 0x94, 0x85, 0x7e, 0x0b, 0x59, 0xa5, 0xde, 0x62, 0x04, 0x3d, 0xe1, 0xd2, 0x16,
+	0xec, 0x89, 0x6d, 0x28, 0x11, 0x3c, 0x04, 0xd8, 0x30, 0x82, 0xbb, 0xc2, 0x20, 0x2b, 0xe8, 0x0a,
+	0x0b, 0x20, 0x82, 0x43, 0x68, 0x37, 0xb0, 0xc0, 0xaa, 0xa2, 0x02, 0x2a, 0xe8, 0x09, 0x9b, 0x1a,
+	0x82, 0xcf, 0xe0, 0x7e, 0xd3, 0x5a, 0xec, 0x59, 0x4e, 0x9f, 0x07, 0xae, 0xf7, 0x9c, 0xe0, 0x4b,
+	0xe8, 0x18, 0x9b, 0x43, 0xb3, 0xaa, 0xf4, 0x05, 0x85, 0xb3, 0x5c, 0x4e, 0xde, 0xbc, 0x5a, 0x2c,
+	0x19, 0xb9, 0x5c, 0x32, 0x72, 0xb5, 0x64, 0xf4, 0x7b, 0xce, 0xe8, 0xcf, 0x9c, 0xd1, 0xdf, 0x39,
+	0xa3, 0x8b, 0x9c, 0xd1, 0x3f, 0x39, 0xa3, 0x7f, 0x73, 0x46, 0xae, 0x72, 0x46, 0x7f, 0xac, 0x18,
+	0x59, 0xac, 0x18, 0xb9, 0x5c, 0x31, 0xf2, 0xb1, 0x15, 0xaa, 0xe8, 0xd3, 0x4e, 0xf9, 0x37, 0x1d,
+	0xfd, 0x0b, 0x00, 0x00, 0xff, 0xff, 0x56, 0x10, 0x65, 0x5b, 0xba, 0x04, 0x00, 0x00,
 }
 
 func (this *CreateScreeningReq) Equal(that interface{}) bool {
@@ -638,6 +802,96 @@ func (this *DeleteScreeningResp) Equal(that interface{}) bool {
 	that1, ok := that.(*DeleteScreeningResp)
 	if !ok {
 		that2, ok := that.(DeleteScreeningResp)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	return true
+}
+func (this *DeleteRoomReq) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*DeleteRoomReq)
+	if !ok {
+		that2, ok := that.(DeleteRoomReq)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if this.RoomID != that1.RoomID {
+		return false
+	}
+	return true
+}
+func (this *DeleteRoomResp) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*DeleteRoomResp)
+	if !ok {
+		that2, ok := that.(DeleteRoomResp)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	return true
+}
+func (this *DeleteMovieReq) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*DeleteMovieReq)
+	if !ok {
+		that2, ok := that.(DeleteMovieReq)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if this.MovieID != that1.MovieID {
+		return false
+	}
+	return true
+}
+func (this *DeleteMovieResp) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*DeleteMovieResp)
+	if !ok {
+		that2, ok := that.(DeleteMovieResp)
 		if ok {
 			that1 = &that2
 		} else {
@@ -812,6 +1066,44 @@ func (this *DeleteScreeningResp) GoString() string {
 	}
 	s := make([]string, 0, 4)
 	s = append(s, "&api.DeleteScreeningResp{")
+	s = append(s, "}")
+	return strings.Join(s, "")
+}
+func (this *DeleteRoomReq) GoString() string {
+	if this == nil {
+		return "nil"
+	}
+	s := make([]string, 0, 5)
+	s = append(s, "&api.DeleteRoomReq{")
+	s = append(s, "RoomID: "+fmt.Sprintf("%#v", this.RoomID)+",\n")
+	s = append(s, "}")
+	return strings.Join(s, "")
+}
+func (this *DeleteRoomResp) GoString() string {
+	if this == nil {
+		return "nil"
+	}
+	s := make([]string, 0, 4)
+	s = append(s, "&api.DeleteRoomResp{")
+	s = append(s, "}")
+	return strings.Join(s, "")
+}
+func (this *DeleteMovieReq) GoString() string {
+	if this == nil {
+		return "nil"
+	}
+	s := make([]string, 0, 5)
+	s = append(s, "&api.DeleteMovieReq{")
+	s = append(s, "MovieID: "+fmt.Sprintf("%#v", this.MovieID)+",\n")
+	s = append(s, "}")
+	return strings.Join(s, "")
+}
+func (this *DeleteMovieResp) GoString() string {
+	if this == nil {
+		return "nil"
+	}
+	s := make([]string, 0, 4)
+	s = append(s, "&api.DeleteMovieResp{")
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
@@ -1034,6 +1326,108 @@ func (m *DeleteScreeningResp) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
+func (m *DeleteRoomReq) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *DeleteRoomReq) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *DeleteRoomReq) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.RoomID != 0 {
+		i = encodeVarintScreeningService(dAtA, i, uint64(m.RoomID))
+		i--
+		dAtA[i] = 0x8
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *DeleteRoomResp) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *DeleteRoomResp) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *DeleteRoomResp) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	return len(dAtA) - i, nil
+}
+
+func (m *DeleteMovieReq) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *DeleteMovieReq) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *DeleteMovieReq) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.MovieID != 0 {
+		i = encodeVarintScreeningService(dAtA, i, uint64(m.MovieID))
+		i--
+		dAtA[i] = 0x8
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *DeleteMovieResp) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *DeleteMovieResp) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *DeleteMovieResp) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	return len(dAtA) - i, nil
+}
+
 func (m *GetScreeningReq) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
@@ -1243,6 +1637,48 @@ func (m *DeleteScreeningResp) Size() (n int) {
 	return n
 }
 
+func (m *DeleteRoomReq) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.RoomID != 0 {
+		n += 1 + sovScreeningService(uint64(m.RoomID))
+	}
+	return n
+}
+
+func (m *DeleteRoomResp) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	return n
+}
+
+func (m *DeleteMovieReq) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.MovieID != 0 {
+		n += 1 + sovScreeningService(uint64(m.MovieID))
+	}
+	return n
+}
+
+func (m *DeleteMovieResp) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	return n
+}
+
 func (m *GetScreeningReq) Size() (n int) {
 	if m == nil {
 		return 0
@@ -1359,6 +1795,44 @@ func (this *DeleteScreeningResp) String() string {
 		return "nil"
 	}
 	s := strings.Join([]string{`&DeleteScreeningResp{`,
+		`}`,
+	}, "")
+	return s
+}
+func (this *DeleteRoomReq) String() string {
+	if this == nil {
+		return "nil"
+	}
+	s := strings.Join([]string{`&DeleteRoomReq{`,
+		`RoomID:` + fmt.Sprintf("%v", this.RoomID) + `,`,
+		`}`,
+	}, "")
+	return s
+}
+func (this *DeleteRoomResp) String() string {
+	if this == nil {
+		return "nil"
+	}
+	s := strings.Join([]string{`&DeleteRoomResp{`,
+		`}`,
+	}, "")
+	return s
+}
+func (this *DeleteMovieReq) String() string {
+	if this == nil {
+		return "nil"
+	}
+	s := strings.Join([]string{`&DeleteMovieReq{`,
+		`MovieID:` + fmt.Sprintf("%v", this.MovieID) + `,`,
+		`}`,
+	}, "")
+	return s
+}
+func (this *DeleteMovieResp) String() string {
+	if this == nil {
+		return "nil"
+	}
+	s := strings.Join([]string{`&DeleteMovieResp{`,
 		`}`,
 	}, "")
 	return s
@@ -1823,6 +2297,256 @@ func (m *DeleteScreeningResp) Unmarshal(dAtA []byte) error {
 		}
 		if fieldNum <= 0 {
 			return fmt.Errorf("proto: DeleteScreeningResp: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		default:
+			iNdEx = preIndex
+			skippy, err := skipScreeningService(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthScreeningService
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthScreeningService
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *DeleteRoomReq) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowScreeningService
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: DeleteRoomReq: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: DeleteRoomReq: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field RoomID", wireType)
+			}
+			m.RoomID = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowScreeningService
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.RoomID |= int32(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		default:
+			iNdEx = preIndex
+			skippy, err := skipScreeningService(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthScreeningService
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthScreeningService
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *DeleteRoomResp) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowScreeningService
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: DeleteRoomResp: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: DeleteRoomResp: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		default:
+			iNdEx = preIndex
+			skippy, err := skipScreeningService(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthScreeningService
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthScreeningService
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *DeleteMovieReq) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowScreeningService
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: DeleteMovieReq: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: DeleteMovieReq: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field MovieID", wireType)
+			}
+			m.MovieID = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowScreeningService
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.MovieID |= int32(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		default:
+			iNdEx = preIndex
+			skippy, err := skipScreeningService(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthScreeningService
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthScreeningService
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *DeleteMovieResp) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowScreeningService
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: DeleteMovieResp: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: DeleteMovieResp: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		default:

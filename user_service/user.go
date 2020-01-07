@@ -15,9 +15,8 @@ type User struct {
 }
 
 type Service struct {
-	users              map[int32]User
-	nextID             func() int32
-	reservationService api.Reservation_Service
+	users  map[int32]User
+	nextID func() int32
 }
 
 func (service *Service) CreateUser(ctx context.Context, req *api.CreateUserReq, resp *api.CreateUserResp) error {
@@ -68,12 +67,12 @@ func (service *Service) AddReservation(ctx context.Context, req *api.AddReservat
 	// check user exists
 	user, ok := service.users[req.UserID]
 	if !ok {
-		return errors.NotFound("usr_not_found", "User not found")
+		return errors.NotFound("user_not_found", "User not found")
 	}
 	// check reservation not exists
 	existsAlready := contains(user.reservations, req.ReservationID)
 	if existsAlready {
-		return errors.Conflict("Reservation exists", "This reservation already exists")
+		return errors.Conflict("reservation_exists", "This reservation already exists")
 	}
 	user.reservations = append(user.reservations, req.ReservationID)
 	return nil
@@ -82,11 +81,11 @@ func (service *Service) AddReservation(ctx context.Context, req *api.AddReservat
 func (service *Service) DeleteReservation(ctx context.Context, req *api.DeleteReservationReq, resp *api.DeleteReservationResp) error {
 	user, ok := service.users[req.UserID]
 	if !ok {
-		return errors.NotFound("usr_not_found", "User not found")
+		return errors.NotFound("user_not_found", "User not found")
 	}
 	exists := remove(user.reservations, req.ReservationID)
 	if !exists {
-		return errors.NotFound("rsv_not_found", "Reservation not found")
+		return errors.NotFound("reservation_not_found", "Reservation not found")
 	}
 	return nil
 }
@@ -97,15 +96,11 @@ func main() {
 		micro.Version("latest"),
 	)
 
-	reservation := micro.NewService()
-	reservation.Init()
-
 	service.Init()
 
 	if err := api.RegisterUser_ServiceHandler(service.Server(), &Service{
-		users:              make(map[int32]User),
-		nextID:             helpers.IDGenerator(),
-		reservationService: api.NewReservation_Service("reservation", reservation.Client()),
+		users:  make(map[int32]User),
+		nextID: helpers.IDGenerator(),
 	}); err != nil {
 		log.Fatal(err)
 	}

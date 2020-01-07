@@ -15,8 +15,9 @@ type Room struct {
 }
 
 type Service struct {
-	rooms  map[int32]Room
-	nextID func() int32
+	rooms     map[int32]Room
+	nextID    func() int32
+	screening api.Screening_Service
 }
 
 func (m *Service) CreateRoom(ctx context.Context, req *api.CreateRoomMsg, rsp *api.CreateRoomResponseMsg) error {
@@ -31,11 +32,12 @@ func (m *Service) CreateRoom(ctx context.Context, req *api.CreateRoomMsg, rsp *a
 
 func (m *Service) DeleteRoom(ctx context.Context, req *api.DeleteRoomMsg, rsp *api.DeleteRoomResponseMsg) error {
 	id := req.Id
-	delete(m.rooms, id)
 	_, ok := m.rooms[id]
 	if !ok {
 		return errors.NotFound("room_not_found", "room(ID: %v not found", req.Id)
 	}
+
+	delete(m.rooms, id)
 	return nil
 }
 
@@ -73,11 +75,15 @@ func main() {
 		micro.Version("latest"),
 	)
 
+	screening := micro.NewService()
+	screening.Init()
+
 	service.Init()
 
 	if err := api.RegisterRoom_ServiceHandler(service.Server(), &Service{
-		rooms:  make(map[int32]Room),
-		nextID: helpers.IDGenerator(),
+		rooms:     make(map[int32]Room),
+		nextID:    helpers.IDGenerator(),
+		screening: api.NewScreening_Service("screening", screening.Client()),
 	}); err != nil {
 		log.Fatal(err)
 	}

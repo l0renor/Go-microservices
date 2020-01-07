@@ -59,6 +59,32 @@ func (service *Service) DeleteScreening(ctx context.Context, req *api.DeleteScre
 	return nil
 }
 
+func (service *Service) DeleteRoom(ctx context.Context, req *api.DeleteRoomReq, resp *api.DeleteRoomResp) error {
+	ids := make([]int32, 0)
+	for id, screening := range service.screenings {
+		if screening.roomID == req.GetRoomID() {
+			ids = append(ids, id)
+		}
+	}
+	for _, id := range ids {
+		delete(service.screenings, id)
+	}
+	return nil
+}
+
+func (service *Service) DeleteMovie(ctx context.Context, req *api.DeleteMovieReq, resp *api.DeleteMovieResp) error {
+	ids := make([]int32, 0)
+	for id, screening := range service.screenings {
+		if screening.movieID == req.GetMovieID() {
+			ids = append(ids, id)
+		}
+	}
+	for _, id := range ids {
+		delete(service.screenings, id)
+	}
+	return nil
+}
+
 func (service *Service) GetScreening(ctx context.Context, req *api.GetScreeningReq, resp *api.GetScreeningResp) error {
 	screening, ok := service.screenings[req.ScreeningID]
 	if ok {
