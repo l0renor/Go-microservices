@@ -16,19 +16,20 @@ type Screening struct {
 }
 
 type Service struct {
-	screenings   map[int32]Screening
-	nextID       func() int32
-	roomService  api.Room_Service
-	movieService api.Movie_Service
+	screenings  map[int32]Screening
+	nextID      func() int32
+	room        api.Room_Service
+	movie       api.Movie_Service
+	reservation api.Reservation_Service
 }
 
 func (service *Service) CreateScreening(ctx context.Context, req *api.CreateScreeningReq, resp *api.CreateScreeningResp) error {
 	screeningID := service.nextID()
-	_, err := service.movieService.GetMovie(ctx, &api.GetMovieMsg{Id: req.GetMovieID()})
+	_, err := service.movie.GetMovie(ctx, &api.GetMovieMsg{Id: req.GetMovieID()})
 	if err != nil {
 		return err
 	}
-	roomResp, err := service.roomService.GetRoom(ctx, &api.GetRoomMsg{Id: req.GetRoomID()})
+	roomResp, err := service.room.GetRoom(ctx, &api.GetRoomMsg{Id: req.GetRoomID()})
 	if err != nil {
 		return err
 	}
@@ -54,8 +55,15 @@ func (service *Service) ChangeFreeSeats(ctx context.Context, req *api.ChangeFree
 }
 
 func (service *Service) DeleteScreening(ctx context.Context, req *api.DeleteScreeningReq, resp *api.DeleteScreeningResp) error {
-	delete(service.screenings, req.ScreeningID)
-	// TODO: Notify reservations
+	_, ok := service.screenings[req.GetScreeningID()]
+	if !ok {
+		return errors.NotFound("ERR-NO-SCREENING", "Screening (ID: %d) not found!", req.GetScreeningID())
+	}
+	_, err := service.reservation.DeleteScreening(context.TODO(), &api.DeleteScreeningReq{ScreeningID: req.GetScreeningID()})
+	if err != nil {
+		return err
+	}
+	delete(service.screenings, req.GetScreeningID())
 	return nil
 }
 
@@ -119,13 +127,17 @@ func main() {
 	movie := micro.NewService()
 	movie.Init()
 
+	reservation := micro.NewService()
+	reservation.Init()
+
 	service.Init()
 
 	if err := api.RegisterScreening_ServiceHandler(service.Server(), &Service{
-		screenings:   make(map[int32]Screening),
-		nextID:       helpers.IDGenerator(),
-		roomService:  api.NewRoom_Service("room", room.Client()),
-		movieService: api.NewMovie_Service("movie", movie.Client()),
+		screenings:  make(map[int32]Screening),
+		nextID:      helpers.IDGenerator(),
+		room:        api.NewRoom_Service("room", room.Client()),
+		movie:       api.NewMovie_Service("movie", movie.Client()),
+		reservation: api.NewReservation_Service("reservation", reservation.Client()),
 	}); err != nil {
 		log.Fatal(err)
 	}
