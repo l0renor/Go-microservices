@@ -45,42 +45,44 @@ func (service *Service) CreateReservation(ctx context.Context, req *api.CreateRe
 }
 
 func (service *Service) ActivateReservation(ctx context.Context, req *api.ActivateReservationReq, resp *api.ActivateReservationResp) error {
-	reservation, ok := service.reservations[req.ReservationID]
-	if ok {
-		// TODO: Refactor and change nr of free seats
-		screeningRsp, err := service.screeningService.GetScreening(ctx, &api.GetScreeningReq{ScreeningID: reservation.screeningID})
-		if err != nil {
-			return errors.NotFound("screening_not_found", "screening(ID: %v not found", reservation.screeningID)
-		}
-		if screeningRsp.NrOfFreeSeats < reservation.seats {
-			return errors.Conflict("Not_enough_Seats", "Not enough Seats needed %v; free %v", screeningRsp.NrOfFreeSeats, reservation.seats)
-		}
-		reservation.isActive = true
-		service.reservations[req.ReservationID] = reservation
-		_, err = service.userService.AddReservation(ctx, &api.AddReservationReq{
-			UserID: reservation.userID,
-		})
-		if err != nil {
-			return errors.NotFound("Error reserving in user profile", "error reserving in user profile")
-		}
-	} else {
-		return errors.InternalServerError("Reservation activation failed", "Reservation activation failed id %v", req.ReservationID)
+	reservation, ok := service.reservations[req.GetReservationID()]
+	if !ok {
+		return errors.NotFound("ERR-NO-RESERVATION", "Reservation (ID: %d) not found!", req.GetReservationID())
 	}
+	_, err := service.screeningService.ChangeFreeSeats(context.TODO(), &api.ChangeFreeSeatsReq{
+		ScreeningID: reservation.screeningID,
+		Change:      -reservation.seats,
+	})
+	if err != nil {
+		return err
+	}
+	_, err = service.userService.AddReservation(ctx, &api.AddReservationReq{UserID: reservation.userID})
+	if err != nil {
+		_, changeErr := service.screeningService.ChangeFreeSeats(context.TODO(), &api.ChangeFreeSeatsReq{
+			ScreeningID: reservation.screeningID,
+			Change:      reservation.seats,
+		})
+		if changeErr != nil {
+			return errors.InternalServerError("ERR-ROLLBACK", "Error rolling back screening after user service failure, data is now inconsistent!\nPlease contact admin.")
+		}
+		return err
+	}
+	reservation.isActive = true
+	service.reservations[req.GetReservationID()] = reservation
 	return nil
 }
 
 func (service *Service) DeleteReservation(ctx context.Context, req *api.DeleteReservationReq, resp *api.DeleteReservationResp) error {
 	reservation, ok := service.reservations[req.GetReservationID()]
-	if ok {
-		_, err := service.userService.DeleteReservation(context.TODO(), &api.DeleteReservationReq{ReservationID: req.GetReservationID(), UserID: reservation.userID})
-		if err != nil {
-			return err
-		}
-		delete(service.reservations, req.GetReservationID())
-		return nil
-	} else {
+	if !ok {
 		return errors.NotFound("Reservation_not_found", "Reservation(%v)not_found", req.ReservationID)
 	}
+	_, err := service.userService.DeleteReservation(context.TODO(), &api.DeleteReservationReq{ReservationID: req.GetReservationID(), UserID: reservation.userID})
+	if err != nil {
+		return err
+	}
+	delete(service.reservations, req.GetReservationID())
+	return nil
 }
 
 func (service *Service) DeleteScreening(ctx context.Context, req *api.DeleteScreeningReq, resp *api.DeleteScreeningResp) error {
@@ -98,13 +100,13 @@ func (service *Service) DeleteScreening(ctx context.Context, req *api.DeleteScre
 
 func (service *Service) GetReservation(ctx context.Context, req *api.GetReservationReq, resp *api.GetReservationResp) error {
 	reservation, ok := service.reservations[req.ReservationID]
-	if ok {
-		resp.ScreeningID = reservation.screeningID
-		resp.UserID = reservation.userID
-		resp.Active = reservation.isActive
-		resp.NrOfSeats = reservation.seats
+	if !ok {
 		return errors.NotFound("Reservation_not_found", "Reservation(%v)not_found", req.ReservationID)
 	}
+	resp.ScreeningID = reservation.screeningID
+	resp.UserID = reservation.userID
+	resp.Active = reservation.isActive
+	resp.NrOfSeats = reservation.seats
 	return nil
 }
 
