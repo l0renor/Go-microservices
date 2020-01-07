@@ -25,7 +25,7 @@ func (m *movieService) CreateMovie(ctx context.Context, req *api.CreateMovieMsg,
 func (m *movieService) DeleteMovie(ctx context.Context, req *api.DeleteMovieMsg, rsp *api.DeleteMovieResponseMsg) error {
 	_, ok := m.movies[req.GetId()]
 	if !ok {
-		return errors.NotFound("movie_not_found", "Movie  with id %v not found  not found", req.Id)
+		return errors.NotFound("ERR-NO-MOVIE", "Movie (ID: %d) not found!", req.GetId())
 	}
 	_, err := m.screening.DeleteMovie(context.TODO(), &api.DeleteMovieReq{MovieID: req.GetId()})
 	if err != nil {
@@ -37,20 +37,19 @@ func (m *movieService) DeleteMovie(ctx context.Context, req *api.DeleteMovieMsg,
 
 func (m *movieService) GetMovie(ctx context.Context, req *api.GetMovieMsg, rsp *api.GetMovieResponseMsg) error {
 	title, ok := m.movies[req.GetId()]
-	if ok {
-		rsp.Title = title
-	} else {
-		return errors.NotFound("movie_not_found", "Movie  with id %v not found  not found", req.Id)
+	if !ok {
+		return errors.NotFound("ERR-NO-MOVIE", "Movie (ID: %d) not found!", req.GetId())
 	}
+	rsp.Title = title
 	return nil
 }
 
 func (m *movieService) GetMovies(ctx context.Context, req *api.GetMoviesMsg, rsp *api.GetMoviesResponseMsg) error {
 	var movies []*api.Tuple
-	for k, v := range m.movies {
+	for id, title := range m.movies {
 		movies = append(movies, &api.Tuple{
-			Title: v,
-			Id:    k,
+			Title: title,
+			Id:    id,
 		})
 	}
 	rsp.Movies = movies

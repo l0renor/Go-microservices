@@ -25,15 +25,13 @@ type Service struct {
 
 func (service *Service) CreateReservation(ctx context.Context, req *api.CreateReservationReq, resp *api.CreateReservationResp) error {
 	reservationID := service.nextID()
-	_, err := service.screeningService.GetScreening(ctx, &api.GetScreeningReq{ScreeningID: req.ScreeningID})
+	_, err := service.screeningService.GetScreening(ctx, &api.GetScreeningReq{ScreeningID: req.GetScreeningID()})
 	if err != nil {
-		return errors.NotFound("screening_not_found", "screening(ID: %v not found", req.ScreeningID)
+		return err
 	}
-	_, err = service.userService.GetUser(ctx, &api.GetUserReq{
-		UserID: req.UserID,
-	})
+	_, err = service.userService.GetUser(ctx, &api.GetUserReq{UserID: req.GetUserID()})
 	if err != nil {
-		return errors.NotFound("user_not_found", "user(ID: %v not found", req.UserID)
+		return err
 	}
 	service.reservations[reservationID] = Reservation{
 		screeningID: req.GetScreeningID(),
@@ -75,7 +73,7 @@ func (service *Service) ActivateReservation(ctx context.Context, req *api.Activa
 func (service *Service) DeleteReservation(ctx context.Context, req *api.DeleteReservationReq, resp *api.DeleteReservationResp) error {
 	reservation, ok := service.reservations[req.GetReservationID()]
 	if !ok {
-		return errors.NotFound("Reservation_not_found", "Reservation(%v)not_found", req.ReservationID)
+		return errors.NotFound("ERR-NO-RESERVATION", "Reservation (ID: %d) not found!", req.GetReservationID())
 	}
 	_, err := service.userService.DeleteReservation(context.TODO(), &api.DeleteReservationReq{ReservationID: req.GetReservationID(), UserID: reservation.userID})
 	if err != nil {
@@ -101,7 +99,7 @@ func (service *Service) DeleteScreening(ctx context.Context, req *api.DeleteScre
 func (service *Service) GetReservation(ctx context.Context, req *api.GetReservationReq, resp *api.GetReservationResp) error {
 	reservation, ok := service.reservations[req.ReservationID]
 	if !ok {
-		return errors.NotFound("Reservation_not_found", "Reservation(%v)not_found", req.ReservationID)
+		return errors.NotFound("ERR-NO-RESERVATION", "Reservation (ID: %d) not found!", req.GetReservationID())
 	}
 	resp.ScreeningID = reservation.screeningID
 	resp.UserID = reservation.userID

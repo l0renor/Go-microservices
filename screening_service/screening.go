@@ -24,18 +24,18 @@ type Service struct {
 
 func (service *Service) CreateScreening(ctx context.Context, req *api.CreateScreeningReq, resp *api.CreateScreeningResp) error {
 	screeningID := service.nextID()
-	_, err := service.movieService.GetMovie(ctx, &api.GetMovieMsg{Id: req.MovieID})
+	_, err := service.movieService.GetMovie(ctx, &api.GetMovieMsg{Id: req.GetMovieID()})
 	if err != nil {
-		return errors.NotFound("movie_not_found", "movie(ID: %v not found", req.MovieID)
+		return err
 	}
-	_, err = service.roomService.GetRoom(ctx, &api.GetRoomMsg{Id: req.RoomID})
+	roomResp, err := service.roomService.GetRoom(ctx, &api.GetRoomMsg{Id: req.GetRoomID()})
 	if err != nil {
-		return errors.NotFound("room_not_found", "room(ID: %v not found", req.RoomID)
+		return err
 	}
 	service.screenings[screeningID] = Screening{
 		movieID:   req.GetMovieID(),
 		roomID:    req.GetRoomID(),
-		freeSeats: 0, // TODO: Get nr of Seats in Room
+		freeSeats: roomResp.Room.GetNrOfSeats(),
 	}
 	resp.ScreeningID = screeningID
 	return nil
@@ -44,9 +44,9 @@ func (service *Service) CreateScreening(ctx context.Context, req *api.CreateScre
 func (service *Service) ChangeFreeSeats(ctx context.Context, req *api.ChangeFreeSeatsReq, resp *api.ChangeFreeSeatsResp) error {
 	screening, ok := service.screenings[req.GetScreeningID()]
 	if !ok {
-		return errors.NotFound("screening_not_found", "screening (ID: %v) not found", req.GetScreeningID())
+		return errors.NotFound("ERR-NO-SCREENING", "Screening (ID: %d) not found!", req.GetScreeningID())
 	} else if screening.freeSeats+req.GetChange() < 0 {
-		return errors.Conflict("already_reserved", "Screening (ID: %v) has already too much reservations", req.GetScreeningID())
+		return errors.Conflict("ERR-FULL", "Screening (ID: %v) already has too many reservations!", req.GetScreeningID())
 	} else {
 		screening.freeSeats += req.GetChange()
 		return nil
@@ -87,12 +87,11 @@ func (service *Service) DeleteMovie(ctx context.Context, req *api.DeleteMovieReq
 
 func (service *Service) GetScreening(ctx context.Context, req *api.GetScreeningReq, resp *api.GetScreeningResp) error {
 	screening, ok := service.screenings[req.ScreeningID]
-	if ok {
-		resp.MovieID = screening.movieID
-		resp.RoomID = screening.roomID
-	} else {
-		return errors.NotFound("screening_not_found", "screening(ID: %v not found", req.ScreeningID)
+	if !ok {
+		return errors.NotFound("ERR-NO-SCREENING", "Screening (ID: %d) not found!", req.GetScreeningID())
 	}
+	resp.MovieID = screening.movieID
+	resp.RoomID = screening.roomID
 	return nil
 }
 
