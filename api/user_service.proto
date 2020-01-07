@@ -30,7 +30,6 @@ message DeleteUserReq {
 }
 
 message DeleteUserResp {
-    bool success = 1;
 }
 
 message GetUserReq {
