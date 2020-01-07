@@ -47,12 +47,13 @@ func (service *Service) CreateReservation(ctx context.Context, req *api.CreateRe
 func (service *Service) ActivateReservation(ctx context.Context, req *api.ActivateReservationReq, resp *api.ActivateReservationResp) error {
 	reservation, ok := service.reservations[req.ReservationID]
 	if ok {
+		// TODO: Refactor and change nr of free seats
 		screeningRsp, err := service.screeningService.GetScreening(ctx, &api.GetScreeningReq{ScreeningID: reservation.screeningID})
 		if err != nil {
 			return errors.NotFound("screening_not_found", "screening(ID: %v not found", reservation.screeningID)
 		}
 		if screeningRsp.NrOfFreeSeats < reservation.seats {
-			return errors.Conflict("Not_enough_Seats", "Not_enough_Seats needed %v; free %v", screeningRsp.NrOfFreeSeats, reservation.seats)
+			return errors.Conflict("Not_enough_Seats", "Not enough Seats needed %v; free %v", screeningRsp.NrOfFreeSeats, reservation.seats)
 		}
 		reservation.isActive = true
 		service.reservations[req.ReservationID] = reservation
@@ -69,11 +70,28 @@ func (service *Service) ActivateReservation(ctx context.Context, req *api.Activa
 }
 
 func (service *Service) DeleteReservation(ctx context.Context, req *api.DeleteReservationReq, resp *api.DeleteReservationResp) error {
-	_, ok := service.reservations[req.ReservationID]
+	reservation, ok := service.reservations[req.GetReservationID()]
 	if ok {
-		delete(service.reservations, req.ReservationID)
+		_, err := service.userService.DeleteReservation(context.TODO(), &api.DeleteReservationReq{ReservationID: req.GetReservationID(), UserID: reservation.userID})
+		if err != nil {
+			return err
+		}
+		delete(service.reservations, req.GetReservationID())
+		return nil
 	} else {
 		return errors.NotFound("Reservation_not_found", "Reservation(%v)not_found", req.ReservationID)
+	}
+}
+
+func (service *Service) DeleteScreening(ctx context.Context, req *api.DeleteScreeningReq, resp *api.DeleteScreeningResp) error {
+	ids := make([]int32, 0)
+	for id, reservation := range service.reservations {
+		if reservation.screeningID == req.GetScreeningID() {
+			ids = append(ids, id)
+		}
+	}
+	for _, id := range ids {
+		delete(service.reservations, id)
 	}
 	return nil
 }
