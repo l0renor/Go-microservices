@@ -2,45 +2,113 @@ package user_service
 
 import (
 	"context"
+	"github.com/micro/go-micro/errors"
 	"github.com/ob-vss-ws19/blatt-4-myteam/api"
 )
 
+type User struct {
+	name         string
+	reservations []int32
+}
+
 type Service struct {
-	users  map[int32]string
-	nextID func() int32
+	users              map[int32]User
+	nextID             func() int32
+	reservationService api.Reservation_Service
 }
 
-func (service *Service) CreateUser(ctx context.Context, req *api.CreateUserReq, resp *api.CreateUserResp) {
+func (service *Service) CreateUser(ctx context.Context, req *api.CreateUserReq, resp *api.CreateUserResp) error {
 	userID := service.nextID()
-	service.users[userID] = req.GetName()
+	service.users[userID] = User{
+		name: req.GetName(),
+	}
 	resp.UserID = userID
+	return nil
 }
 
-func (service *Service) DeleteUser(ctx context.Context, req *api.DeleteUserReq, resp *api.DeleteUserResp) {
-	_, ok := service.users[req.GetUserID()]
+func (service *Service) DeleteUser(ctx context.Context, req *api.DeleteUserReq, resp *api.DeleteUserResp) error {
+	user, ok := service.users[req.GetUserID()]
 	if ok {
-		// TODO: Check reservations
+		if len(user.reservations) > 0 {
+			return errors.Conflict("usr_has_res", "The user still has reservations;can't be deleted")
+		}
 		delete(service.users, req.GetUserID())
 		resp.Success = true
 	} else {
 		resp.Success = false
+		return errors.NotFound("usr_not_found", "User can't be deleted not found")
 	}
+	return nil
 }
 
-func (service *Service) GetUser(ctx context.Context, req *api.GetUserReq, resp *api.GetUserResp) {
-	name, ok := service.users[req.GetUserID()]
+func (service *Service) GetUser(ctx context.Context, req *api.GetUserReq, resp *api.GetUserResp) error {
+	user, ok := service.users[req.GetUserID()]
 	if ok {
-		resp.Name = name
+		resp.Name = user.name
+	} else {
+		return errors.NotFound("usr_not_found", "User not found")
 	}
+	return nil
 }
 
-func (service *Service) GetUsers(ctx context.Context, req *api.GetUsersReq, resp *api.GetUsersResp) {
+func (service *Service) GetUsers(ctx context.Context, req *api.GetUsersReq, resp *api.GetUsersResp) error {
 	users := make([]*api.GetUsersResp_User, 0)
-	for userID, name := range service.users {
+	for userID, user := range service.users {
 		users = append(users, &api.GetUsersResp_User{
 			UserID: userID,
-			Name:   name,
+			Name:   user.name,
 		})
 	}
 	resp.Users = users
+	return nil
+}
+
+func (service *Service) AddReservation(ctx context.Context, req *api.AddReservationReq, resp *api.AddReservationResp) error {
+	// check user exists
+	user, ok := service.users[req.UserID]
+	if !ok {
+		return errors.NotFound("usr_not_found", "User not found")
+	}
+	// check reservation not exists
+	existsAlready := contains(user.reservations, req.ReservationID)
+	if existsAlready {
+		return errors.Conflict("Reservation exists", "This reservation already exists")
+	}
+	user.reservations = append(user.reservations, req.ReservationID)
+	return nil
+}
+
+func (service *Service) DeleteReservation(ctx context.Context, req *api.DeleteReservationReq, resp *api.DeleteReservationResp) error {
+	user, ok := service.users[req.UserID]
+	if !ok {
+		return errors.NotFound("usr_not_found", "User not found")
+	}
+	exists := remove(user.reservations, req.ReservationID)
+	if !exists {
+		return errors.NotFound("rsv_not_found", "Reservation not found")
+	}
+	return nil
+}
+
+func contains(s []int32, e int32) bool {
+	for _, a := range s {
+		if a == e {
+			return true
+		}
+	}
+	return false
+}
+
+//true on success false if not present
+func remove(s []int32, e int32) bool {
+	for i, a := range s {
+		if a == e {
+			// Remove the element at index i from a.
+			s[i] = s[len(s)-1] // Copy last element to index i.
+			s[len(s)-1] = 0    // Erase last element (write zero value).
+			s = s[:len(s)-1]   // Truncate slice.
+			return true
+		}
+	}
+	return false
 }

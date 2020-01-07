@@ -2,13 +2,10 @@ package movie_service
 
 import (
 	"context"
+	"github.com/micro/go-micro/errors"
 	"github.com/ob-vss-ws19/blatt-4-myteam/api"
 )
 
-//depricated
-type movie struct {
-	title string
-}
 type movieService struct {
 	movies map[int32]string
 	nextID func() int32
@@ -25,7 +22,9 @@ func (m *movieService) DeleteMovie(ctx context.Context, req *api.DeleteMovieMsg,
 	id := req.Id
 	delete(m.movies, id)
 	_, ok := m.movies[id]
-	rsp.Success = !ok
+	if !ok {
+		return errors.NotFound("movie_not_found", "Movie  with id %v not found  not found", req.Id)
+	}
 	return nil
 }
 
@@ -35,7 +34,7 @@ func (m *movieService) GetMovie(ctx context.Context, req *api.GetMovieMsg, rsp *
 	if ok {
 		rsp.Title = res
 	} else {
-		rsp.Title = ""
+		return errors.NotFound("movie_not_found", "Movie  with id %v not found  not found", req.Id)
 	}
 	return nil
 }
@@ -50,12 +49,4 @@ func (m *movieService) GetMovies(ctx context.Context, req *api.GetMoviesMsg, rsp
 	}
 	rsp.Movies = res
 	return nil
-}
-
-func idGenerator() func() int32 {
-	i := 0
-	return func() int32 {
-		i++
-		return int32(i)
-	}
 }

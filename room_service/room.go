@@ -2,8 +2,8 @@ package room_service
 
 import (
 	"context"
+	"github.com/micro/go-micro/errors"
 	"github.com/ob-vss-ws19/blatt-4-myteam/api"
-
 )
 
 type Room struct {
@@ -30,7 +30,9 @@ func (m *Service) DeleteRoom(ctx context.Context, req *api.DeleteRoomMsg, rsp *a
 	id := req.Id
 	delete(m.rooms, id)
 	_, ok := m.rooms[id]
-	rsp.Success = !ok
+	if !ok {
+		return errors.NotFound("room_not_found", "room(ID: %v not found", req.Id)
+	}
 	return nil
 }
 
@@ -44,7 +46,7 @@ func (m *Service) GetRoom(ctx context.Context, req *api.GetRoomMsg, rsp *api.Get
 			NrOfSeats: res.nrOfSeats,
 		}
 	} else {
-		rsp.Room = &api.RoomData{}
+		return errors.NotFound("room_not_found", "room(ID: %v not found", req.Id)
 	}
 	return nil
 }

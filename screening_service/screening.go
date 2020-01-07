@@ -2,6 +2,7 @@ package screening_service
 
 import (
 	"context"
+	"github.com/micro/go-micro/errors"
 	"github.com/ob-vss-ws19/blatt-4-myteam/api"
 )
 
@@ -12,22 +13,32 @@ type Screening struct {
 }
 
 type Service struct {
-	screenings map[int32]Screening
-	nextID     func() int32
+	screenings   map[int32]Screening
+	nextID       func() int32
+	roomService  api.Room_Service
+	movieService api.Movie_Service
 }
 
-func (service *Service) CreateScreening(ctx context.Context, req *api.CreateScreeningReq, resp *api.CreateScreeningResp) {
+func (service *Service) CreateScreening(ctx context.Context, req *api.CreateScreeningReq, resp *api.CreateScreeningResp) error {
 	screeningID := service.nextID()
-	// TODO: Check if Movie and Romm ID are valid
+	_, err := service.movieService.GetMovie(ctx, &api.GetMovieMsg{Id: req.MovieID})
+	if err != nil {
+		return errors.NotFound("movie_not_found", "movie(ID: %v not found", req.MovieID)
+	}
+	_, err = service.roomService.GetRoom(ctx, &api.GetRoomMsg{Id: req.RoomID})
+	if err != nil {
+		return errors.NotFound("room_not_found", "room(ID: %v not found", req.RoomID)
+	}
 	service.screenings[screeningID] = Screening{
 		movieID:   req.GetMovieID(),
 		roomID:    req.GetRoomID(),
 		freeSeats: 0, // TODO: Get nr of Seats in Room
 	}
 	resp.ScreeningID = screeningID
+	return nil
 }
 
-func (service *Service) DeleteScreening(ctx context.Context, req *api.DeleteScreeningReq, resp *api.DeleteScreeningResp) {
+func (service *Service) DeleteScreening(ctx context.Context, req *api.DeleteScreeningReq, resp *api.DeleteScreeningResp) error {
 	// TODO: Check reservations
 	if true {
 		delete(service.screenings, req.ScreeningID)
@@ -35,17 +46,21 @@ func (service *Service) DeleteScreening(ctx context.Context, req *api.DeleteScre
 	} else {
 		resp.Success = false
 	}
+	return nil
 }
 
-func (service *Service) GetScreening(ctx context.Context, req *api.GetScreeningReq, resp *api.GetScreeningResp) {
+func (service *Service) GetScreening(ctx context.Context, req *api.GetScreeningReq, resp *api.GetScreeningResp) error {
 	screening, ok := service.screenings[req.ScreeningID]
 	if ok {
 		resp.MovieID = screening.movieID
 		resp.RoomID = screening.roomID
+	} else {
+		return errors.NotFound("screening_not_found", "screening(ID: %v not found", req.ScreeningID)
 	}
+	return nil
 }
 
-func (service *Service) GetScreenings(ctx context.Context, req *api.GetScreeningsReq, resp *api.GetScreeningsResp) {
+func (service *Service) GetScreenings(ctx context.Context, req *api.GetScreeningsReq, resp *api.GetScreeningsResp) error {
 	screenings := make([]*api.GetScreeningResp, 0)
 	for _, screening := range service.screenings {
 		screenings = append(screenings, &api.GetScreeningResp{
@@ -54,4 +69,5 @@ func (service *Service) GetScreenings(ctx context.Context, req *api.GetScreening
 		})
 	}
 	resp.Screenings = screenings
+	return nil
 }

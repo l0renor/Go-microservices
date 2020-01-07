@@ -10,6 +10,11 @@ service User_Service {
     }
     rpc GetUsers (GetUsersReq) returns (GetUsersResp) {
     }
+    rpc AddReservation (AddReservationReq) returns (AddReservationResp) {
+        }
+    rpc DeleteReservation (DeleteReservationReq) returns (DeleteReservationResp) {
+                }
+
 }
 
 message CreateUserReq {
@@ -47,3 +52,20 @@ message GetUsersResp {
         string name = 2;
     }
 }
+
+message AddReservationReq{
+    int32 userID = 1;
+    int32 reservationID = 2;
+}
+
+message AddReservationResp {
+}
+
+message DeleteReservationReq{
+    int32 userID = 1;
+    int32 reservationID = 2;
+}
+
+message DeleteReservationResp {
+}
+
