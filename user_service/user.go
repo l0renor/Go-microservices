@@ -1,9 +1,12 @@
-package user_service
+package main
 
 import (
 	"context"
+	"github.com/micro/go-micro"
 	"github.com/micro/go-micro/errors"
 	"github.com/ob-vss-ws19/blatt-4-myteam/api"
+	"github.com/ob-vss-ws19/blatt-4-myteam/helpers"
+	"log"
 )
 
 type User struct {
@@ -88,6 +91,30 @@ func (service *Service) DeleteReservation(ctx context.Context, req *api.DeleteRe
 		return errors.NotFound("rsv_not_found", "Reservation not found")
 	}
 	return nil
+}
+
+func main() {
+	service := micro.NewService(
+		micro.Name("user"),
+		micro.Version("latest"),
+	)
+
+	reservation := micro.NewService()
+	reservation.Init()
+
+	service.Init()
+
+	if err := api.RegisterUser_ServiceHandler(service.Server(), &Service{
+		users:              make(map[int32]User),
+		nextID:             helpers.IDGenerator(),
+		reservationService: api.NewReservation_Service("reservation", reservation.Client()),
+	}); err != nil {
+		log.Fatal(err)
+	}
+
+	if err := service.Run(); err != nil {
+		log.Fatal(err)
+	}
 }
 
 func contains(s []int32, e int32) bool {

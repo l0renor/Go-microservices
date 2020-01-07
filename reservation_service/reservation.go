@@ -1,9 +1,12 @@
-package reservation_service
+package main
 
 import (
 	"context"
+	"github.com/micro/go-micro"
 	"github.com/micro/go-micro/errors"
 	"github.com/ob-vss-ws19/blatt-4-myteam/api"
+	"github.com/ob-vss-ws19/blatt-4-myteam/helpers"
+	"log"
 )
 
 type Reservation struct {
@@ -99,4 +102,32 @@ func (service *Service) GetReservations(ctx context.Context, req *api.GetReserva
 	}
 	resp.Reservations = reservations
 	return nil
+}
+
+func main() {
+	service := micro.NewService(
+		micro.Name("reservation"),
+		micro.Version("latest"),
+	)
+
+	screening := micro.NewService()
+	screening.Init()
+
+	user := micro.NewService()
+	user.Init()
+
+	service.Init()
+
+	if err := api.RegisterReservation_ServiceHandler(service.Server(), &Service{
+		reservations:     make(map[int32]Reservation),
+		nextID:           helpers.IDGenerator(),
+		screeningService: api.NewScreening_Service("screening", screening.Client()),
+		userService:      api.NewUser_Service("user", user.Client()),
+	}); err != nil {
+		log.Fatal(err)
+	}
+
+	if err := service.Run(); err != nil {
+		log.Fatal(err)
+	}
 }

@@ -1,9 +1,12 @@
-package room_service
+package main
 
 import (
 	"context"
+	"github.com/micro/go-micro"
 	"github.com/micro/go-micro/errors"
 	"github.com/ob-vss-ws19/blatt-4-myteam/api"
+	"github.com/ob-vss-ws19/blatt-4-myteam/helpers"
+	"log"
 )
 
 type Room struct {
@@ -64,10 +67,22 @@ func (m *Service) GetRooms(ctx context.Context, req *api.GetRoomsMsg, rsp *api.G
 	return nil
 }
 
-func idGenerator() func() int32 {
-	i := 0
-	return func() int32 {
-		i++
-		return int32(i)
+func main() {
+	service := micro.NewService(
+		micro.Name("room"),
+		micro.Version("latest"),
+	)
+
+	service.Init()
+
+	if err := api.RegisterRoom_ServiceHandler(service.Server(), &Service{
+		rooms:  make(map[int32]Room),
+		nextID: helpers.IDGenerator(),
+	}); err != nil {
+		log.Fatal(err)
+	}
+
+	if err := service.Run(); err != nil {
+		log.Fatal(err)
 	}
 }

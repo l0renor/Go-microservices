@@ -1,9 +1,12 @@
-package movie_service
+package main
 
 import (
 	"context"
+	"github.com/micro/go-micro"
 	"github.com/micro/go-micro/errors"
 	"github.com/ob-vss-ws19/blatt-4-myteam/api"
+	"github.com/ob-vss-ws19/blatt-4-myteam/helpers"
+	"log"
 )
 
 type movieService struct {
@@ -49,4 +52,24 @@ func (m *movieService) GetMovies(ctx context.Context, req *api.GetMoviesMsg, rsp
 	}
 	rsp.Movies = res
 	return nil
+}
+
+func main() {
+	service := micro.NewService(
+		micro.Name("movie"),
+		micro.Version("latest"),
+	)
+
+	service.Init()
+
+	if err := api.RegisterMovie_ServiceHandler(service.Server(), &movieService{
+		movies: make(map[int32]string),
+		nextID: helpers.IDGenerator(),
+	}); err != nil {
+		log.Fatal(err)
+	}
+
+	if err := service.Run(); err != nil {
+		log.Fatal(err)
+	}
 }

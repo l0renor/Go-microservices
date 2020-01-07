@@ -1,9 +1,12 @@
-package screening_service
+package main
 
 import (
 	"context"
+	"github.com/micro/go-micro"
 	"github.com/micro/go-micro/errors"
 	"github.com/ob-vss-ws19/blatt-4-myteam/api"
+	"github.com/ob-vss-ws19/blatt-4-myteam/helpers"
+	"log"
 )
 
 type Screening struct {
@@ -70,4 +73,32 @@ func (service *Service) GetScreenings(ctx context.Context, req *api.GetScreening
 	}
 	resp.Screenings = screenings
 	return nil
+}
+
+func main() {
+	service := micro.NewService(
+		micro.Name("screening"),
+		micro.Version("latest"),
+	)
+
+	room := micro.NewService()
+	room.Init()
+
+	movie := micro.NewService()
+	movie.Init()
+
+	service.Init()
+
+	if err := api.RegisterScreening_ServiceHandler(service.Server(), &Service{
+		screenings:   make(map[int32]Screening),
+		nextID:       helpers.IDGenerator(),
+		roomService:  api.NewScreening_Service("room", room.Client()),
+		movieService: api.NewUser_Service("movie", movie.Client()),
+	}); err != nil {
+		log.Fatal(err)
+	}
+
+	if err := service.Run(); err != nil {
+		log.Fatal(err)
+	}
 }
