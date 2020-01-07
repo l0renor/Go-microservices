@@ -14,34 +14,33 @@ message CreateRoomReq {
 }
 
 message CreateRoomResp {
-    int32 id = 1;
+    int32 roomID = 1;
 }
 
 message DeleteRoomReq {
-    int32 id = 1;
+    int32 roomID = 1;
 }
 
 message DeleteRoomResp {
 }
 
 message GetRoomReq {
-    int32 id = 1;
+    int32 roomID = 1;
 }
 
 message GetRoomResp {
-    RoomData room = 1;
+    Room room = 1;
 }
 
 message GetRoomsReq {
 }
 
 message GetRoomsResp {
-    repeated RoomData Rooms = 1;
+    repeated Room Rooms = 1;
 }
 
-
-message RoomData {
+message Room {
     string name = 1;
-    int32 id = 2;
+    int32 roomID = 2;
     int32 nrOfSeats = 3;
 }

@@ -25,11 +25,11 @@ type Service struct {
 
 func (service *Service) CreateScreening(ctx context.Context, req *api.CreateScreeningReq, resp *api.CreateScreeningResp) error {
 	screeningID := service.nextID()
-	_, err := service.movie.GetMovie(ctx, &api.GetMovieMsg{Id: req.GetMovieID()})
+	_, err := service.movie.GetMovie(ctx, &api.GetMovieReq{MovieID: req.GetMovieID()})
 	if err != nil {
 		return err
 	}
-	roomResp, err := service.room.GetRoom(ctx, &api.GetRoomMsg{Id: req.GetRoomID()})
+	roomResp, err := service.room.GetRoom(ctx, &api.GetRoomReq{RoomID: req.GetRoomID()})
 	if err != nil {
 		return err
 	}

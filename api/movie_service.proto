@@ -13,22 +13,22 @@ message CreateMovieReq {
 }
 
 message CreateMovieResp {
-    int32 id = 1;
+    int32 movieID = 1;
 }
 
 message DeleteMovieReq {
-    int32 id = 1;
+    int32 movieID = 1;
 }
 
 message DeleteMovieResp {
 }
 
 message GetMovieReq {
-    int32 id = 1;
+    int32 movieID = 1;
 }
 
 message GetMovieResp {
-    string title = 6;
+    string title = 1;
 }
 
 message GetMoviesReq {
@@ -40,5 +40,5 @@ message GetMoviesResp {
 
 message Tuple {
     string title = 1;
-    int32 id = 2;
+    int32 movieID = 2;
 }

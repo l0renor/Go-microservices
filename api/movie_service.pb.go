@@ -68,7 +68,7 @@ func (m *CreateMovieReq) GetName() string {
 }
 
 type CreateMovieResp struct {
-	Id int32 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	MovieID int32 `protobuf:"varint,1,opt,name=movieID,proto3" json:"movieID,omitempty"`
 }
 
 func (m *CreateMovieResp) Reset()      { *m = CreateMovieResp{} }
@@ -103,15 +103,15 @@ func (m *CreateMovieResp) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_CreateMovieResp proto.InternalMessageInfo
 
-func (m *CreateMovieResp) GetId() int32 {
+func (m *CreateMovieResp) GetMovieID() int32 {
 	if m != nil {
-		return m.Id
+		return m.MovieID
 	}
 	return 0
 }
 
 type DeleteMovieReq struct {
-	Id int32 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	MovieID int32 `protobuf:"varint,1,opt,name=movieID,proto3" json:"movieID,omitempty"`
 }
 
 func (m *DeleteMovieReq) Reset()      { *m = DeleteMovieReq{} }
@@ -146,9 +146,9 @@ func (m *DeleteMovieReq) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_DeleteMovieReq proto.InternalMessageInfo
 
-func (m *DeleteMovieReq) GetId() int32 {
+func (m *DeleteMovieReq) GetMovieID() int32 {
 	if m != nil {
-		return m.Id
+		return m.MovieID
 	}
 	return 0
 }
@@ -189,7 +189,7 @@ func (m *DeleteMovieResp) XXX_DiscardUnknown() {
 var xxx_messageInfo_DeleteMovieResp proto.InternalMessageInfo
 
 type GetMovieReq struct {
-	Id int32 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	MovieID int32 `protobuf:"varint,1,opt,name=movieID,proto3" json:"movieID,omitempty"`
 }
 
 func (m *GetMovieReq) Reset()      { *m = GetMovieReq{} }
@@ -224,15 +224,15 @@ func (m *GetMovieReq) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_GetMovieReq proto.InternalMessageInfo
 
-func (m *GetMovieReq) GetId() int32 {
+func (m *GetMovieReq) GetMovieID() int32 {
 	if m != nil {
-		return m.Id
+		return m.MovieID
 	}
 	return 0
 }
 
 type GetMovieResp struct {
-	Title string `protobuf:"bytes,6,opt,name=title,proto3" json:"title,omitempty"`
+	Title string `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
 }
 
 func (m *GetMovieResp) Reset()      { *m = GetMovieResp{} }
@@ -353,8 +353,8 @@ func (m *GetMoviesResp) GetMovies() []*Tuple {
 }
 
 type Tuple struct {
-	Title string `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
-	Id    int32  `protobuf:"varint,2,opt,name=id,proto3" json:"id,omitempty"`
+	Title   string `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
+	MovieID int32  `protobuf:"varint,2,opt,name=movieID,proto3" json:"movieID,omitempty"`
 }
 
 func (m *Tuple) Reset()      { *m = Tuple{} }
@@ -396,9 +396,9 @@ func (m *Tuple) GetTitle() string {
 	return ""
 }
 
-func (m *Tuple) GetId() int32 {
+func (m *Tuple) GetMovieID() int32 {
 	if m != nil {
-		return m.Id
+		return m.MovieID
 	}
 	return 0
 }
@@ -418,29 +418,29 @@ func init() {
 func init() { proto.RegisterFile("api/movie_service.proto", fileDescriptor_937daf6a4ffecea5) }
 
 var fileDescriptor_937daf6a4ffecea5 = []byte{
-	// 352 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x74, 0x92, 0xb1, 0x4e, 0x2a, 0x41,
-	0x14, 0x86, 0x67, 0xe0, 0xb2, 0xb9, 0x1c, 0x60, 0x97, 0x3b, 0xb9, 0xc9, 0x25, 0x9b, 0xdc, 0x13,
-	0x9c, 0x50, 0x60, 0xa2, 0x43, 0x82, 0x95, 0xad, 0x9a, 0x58, 0xd9, 0xac, 0x56, 0x36, 0x64, 0x95,
-	0x29, 0x36, 0x01, 0x19, 0x98, 0x95, 0xda, 0x47, 0xf0, 0x31, 0x7c, 0x14, 0xcb, 0x2d, 0x29, 0x65,
-	0x68, 0x2c, 0x79, 0x04, 0xc3, 0x00, 0xee, 0x2c, 0x89, 0xdd, 0x9c, 0x73, 0xfe, 0xf3, 0xe7, 0x3f,
-	0x5f, 0x06, 0xfe, 0xc5, 0x2a, 0xe9, 0x8d, 0x27, 0xf3, 0x44, 0x0e, 0xb4, 0x9c, 0xcd, 0x93, 0x47,
-	0x29, 0xd4, 0x6c, 0x92, 0x4e, 0x78, 0x07, 0xfc, 0xcb, 0x99, 0x8c, 0x53, 0x79, 0xb3, 0x19, 0x46,
-	0x72, 0xca, 0x18, 0xfc, 0x7a, 0x8a, 0xc7, 0xb2, 0x45, 0xdb, 0xb4, 0x5b, 0x8d, 0xec, 0x9b, 0x1f,
-	0x41, 0x50, 0x50, 0x69, 0xc5, 0x7c, 0x28, 0x25, 0x43, 0x2b, 0xaa, 0x44, 0xa5, 0x64, 0xc8, 0xdb,
-	0xe0, 0x5f, 0xc9, 0x91, 0x74, 0x8c, 0x0e, 0x15, 0x7f, 0x20, 0x28, 0x28, 0xb4, 0xe2, 0xff, 0xa1,
-	0x76, 0x2d, 0xd3, 0x1f, 0x37, 0x3a, 0x50, 0xcf, 0xc7, 0x5a, 0xb1, 0xbf, 0x50, 0x49, 0x93, 0x74,
-	0x24, 0x5b, 0x9e, 0xcd, 0xb6, 0x2d, 0xb8, 0x9f, 0xab, 0x74, 0x24, 0xa7, 0xbc, 0x07, 0x0d, 0xa7,
-	0xd6, 0x8a, 0x21, 0x78, 0xf6, 0x74, 0xdd, 0xa2, 0xed, 0x72, 0xb7, 0xd6, 0xf7, 0xc4, 0xdd, 0xb3,
-	0x1a, 0xc9, 0x68, 0xd7, 0xe5, 0xa7, 0x50, 0xb1, 0x8d, 0xdc, 0x9f, 0x3a, 0xfe, 0xbb, 0x54, 0xa5,
-	0x7d, 0xaa, 0x7e, 0x46, 0xa1, 0x61, 0xdd, 0x07, 0xb7, 0x5b, 0x94, 0xac, 0x0f, 0x35, 0x07, 0x0f,
-	0x0b, 0x44, 0x11, 0x69, 0xd8, 0x14, 0x07, 0xf4, 0x38, 0xd9, 0xec, 0x38, 0x34, 0x58, 0x20, 0x8a,
-	0xf4, 0xc2, 0xa6, 0x38, 0x84, 0x45, 0xd8, 0x31, 0xfc, 0xde, 0x5f, 0xc6, 0xea, 0xc2, 0x21, 0x17,
-	0x36, 0x84, 0x0b, 0x8a, 0x13, 0x76, 0x02, 0xd5, 0x6f, 0x08, 0x2c, 0x9f, 0x6e, 0x00, 0x85, 0xbe,
-	0x28, 0xf0, 0xe1, 0xe4, 0xe2, 0x3c, 0x5b, 0x22, 0x59, 0x2c, 0x91, 0xac, 0x97, 0x48, 0x5f, 0x0c,
-	0xd2, 0x37, 0x83, 0xf4, 0xdd, 0x20, 0xcd, 0x0c, 0xd2, 0x0f, 0x83, 0xf4, 0xd3, 0x20, 0x59, 0x1b,
-	0xa4, 0xaf, 0x2b, 0x24, 0xd9, 0x0a, 0xc9, 0x62, 0x85, 0xe4, 0xbe, 0x1c, 0xab, 0xe4, 0xc1, 0xb3,
-	0xff, 0xe8, 0xec, 0x2b, 0x00, 0x00, 0xff, 0xff, 0xc3, 0xbc, 0x7a, 0xe7, 0x62, 0x02, 0x00, 0x00,
+	// 351 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x92, 0xbf, 0x4e, 0x32, 0x41,
+	0x14, 0xc5, 0x67, 0x3e, 0x3e, 0x50, 0x2e, 0xb0, 0x8b, 0x13, 0x13, 0xc9, 0x16, 0x37, 0x64, 0x42,
+	0x22, 0xfe, 0xc9, 0x90, 0x60, 0x61, 0x6c, 0x95, 0xc4, 0x58, 0xd8, 0xac, 0x56, 0x36, 0x64, 0x35,
+	0x53, 0x6c, 0x02, 0x32, 0x30, 0x2b, 0xb5, 0x8f, 0xe0, 0x63, 0xf8, 0x28, 0x96, 0x5b, 0x52, 0xca,
+	0xd0, 0x58, 0xf2, 0x08, 0x86, 0x41, 0x64, 0x96, 0x68, 0x62, 0x37, 0xf7, 0xde, 0x73, 0xcf, 0x9c,
+	0xf9, 0x65, 0x60, 0x2f, 0x52, 0x71, 0xab, 0x3f, 0x18, 0xc7, 0xb2, 0xab, 0xe5, 0x68, 0x1c, 0x3f,
+	0x48, 0xa1, 0x46, 0x83, 0x64, 0xc0, 0x1b, 0xe0, 0x5d, 0x8c, 0x64, 0x94, 0xc8, 0xeb, 0xc5, 0x30,
+	0x94, 0x43, 0xc6, 0xe0, 0xff, 0x63, 0xd4, 0x97, 0x35, 0x5a, 0xa7, 0xcd, 0x62, 0x68, 0xcf, 0xfc,
+	0x08, 0xfc, 0x8c, 0x4a, 0x2b, 0x56, 0x83, 0x2d, 0xeb, 0x77, 0xd5, 0xb1, 0xca, 0x7c, 0xb8, 0x2a,
+	0xf9, 0x21, 0x78, 0x1d, 0xd9, 0x93, 0x8e, 0xe5, 0xef, 0xda, 0x1d, 0xf0, 0x33, 0x5a, 0xad, 0xf8,
+	0x3e, 0x94, 0x2e, 0x65, 0xf2, 0x87, 0xdd, 0x06, 0x94, 0xd7, 0x42, 0xad, 0xd8, 0x2e, 0xe4, 0x93,
+	0x38, 0xe9, 0xad, 0x92, 0x2f, 0x0b, 0xee, 0xad, 0x55, 0x3a, 0x94, 0x43, 0xde, 0x82, 0x8a, 0x53,
+	0x6b, 0xc5, 0x10, 0x0a, 0xd6, 0x51, 0xd7, 0x68, 0x3d, 0xd7, 0x2c, 0xb5, 0x0b, 0xe2, 0xf6, 0x49,
+	0xf5, 0x64, 0xf8, 0xd5, 0xe5, 0xa7, 0x90, 0xb7, 0x8d, 0x9f, 0xfd, 0xdd, 0x7c, 0xff, 0x32, 0xf9,
+	0xda, 0x29, 0x85, 0x8a, 0xbd, 0xa7, 0x7b, 0xb3, 0x44, 0xce, 0xda, 0x50, 0x72, 0x30, 0x32, 0x5f,
+	0x64, 0xd1, 0x07, 0x55, 0xb1, 0x41, 0x99, 0x93, 0xc5, 0x8e, 0x43, 0x88, 0xf9, 0x22, 0xcb, 0x36,
+	0xa8, 0x8a, 0x4d, 0x80, 0x84, 0x1d, 0xc0, 0xf6, 0xea, 0x8d, 0xac, 0x2c, 0x1c, 0x9a, 0x41, 0x45,
+	0xb8, 0xc8, 0x38, 0x61, 0xc7, 0x50, 0xfc, 0xc6, 0xc1, 0xd6, 0xd3, 0x05, 0xaa, 0xc0, 0x13, 0x19,
+	0x52, 0x9c, 0x9c, 0x9f, 0xa5, 0x53, 0x24, 0x93, 0x29, 0x92, 0xf9, 0x14, 0xe9, 0xb3, 0x41, 0xfa,
+	0x6a, 0x90, 0xbe, 0x19, 0xa4, 0xa9, 0x41, 0xfa, 0x6e, 0x90, 0x7e, 0x18, 0x24, 0x73, 0x83, 0xf4,
+	0x65, 0x86, 0x24, 0x9d, 0x21, 0x99, 0xcc, 0x90, 0xdc, 0xe5, 0x22, 0x15, 0xdf, 0x17, 0xec, 0x7f,
+	0x3b, 0xf9, 0x0c, 0x00, 0x00, 0xff, 0xff, 0x06, 0x28, 0xaf, 0x38, 0x8a, 0x02, 0x00, 0x00,
 }
 
 func (this *CreateMovieReq) Equal(that interface{}) bool {
@@ -486,7 +486,7 @@ func (this *CreateMovieResp) Equal(that interface{}) bool {
 	} else if this == nil {
 		return false
 	}
-	if this.Id != that1.Id {
+	if this.MovieID != that1.MovieID {
 		return false
 	}
 	return true
@@ -510,7 +510,7 @@ func (this *DeleteMovieReq) Equal(that interface{}) bool {
 	} else if this == nil {
 		return false
 	}
-	if this.Id != that1.Id {
+	if this.MovieID != that1.MovieID {
 		return false
 	}
 	return true
@@ -555,7 +555,7 @@ func (this *GetMovieReq) Equal(that interface{}) bool {
 	} else if this == nil {
 		return false
 	}
-	if this.Id != that1.Id {
+	if this.MovieID != that1.MovieID {
 		return false
 	}
 	return true
@@ -656,7 +656,7 @@ func (this *Tuple) Equal(that interface{}) bool {
 	if this.Title != that1.Title {
 		return false
 	}
-	if this.Id != that1.Id {
+	if this.MovieID != that1.MovieID {
 		return false
 	}
 	return true
@@ -677,7 +677,7 @@ func (this *CreateMovieResp) GoString() string {
 	}
 	s := make([]string, 0, 5)
 	s = append(s, "&api.CreateMovieResp{")
-	s = append(s, "Id: "+fmt.Sprintf("%#v", this.Id)+",\n")
+	s = append(s, "MovieID: "+fmt.Sprintf("%#v", this.MovieID)+",\n")
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
@@ -687,7 +687,7 @@ func (this *DeleteMovieReq) GoString() string {
 	}
 	s := make([]string, 0, 5)
 	s = append(s, "&api.DeleteMovieReq{")
-	s = append(s, "Id: "+fmt.Sprintf("%#v", this.Id)+",\n")
+	s = append(s, "MovieID: "+fmt.Sprintf("%#v", this.MovieID)+",\n")
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
@@ -706,7 +706,7 @@ func (this *GetMovieReq) GoString() string {
 	}
 	s := make([]string, 0, 5)
 	s = append(s, "&api.GetMovieReq{")
-	s = append(s, "Id: "+fmt.Sprintf("%#v", this.Id)+",\n")
+	s = append(s, "MovieID: "+fmt.Sprintf("%#v", this.MovieID)+",\n")
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
@@ -748,7 +748,7 @@ func (this *Tuple) GoString() string {
 	s := make([]string, 0, 6)
 	s = append(s, "&api.Tuple{")
 	s = append(s, "Title: "+fmt.Sprintf("%#v", this.Title)+",\n")
-	s = append(s, "Id: "+fmt.Sprintf("%#v", this.Id)+",\n")
+	s = append(s, "MovieID: "+fmt.Sprintf("%#v", this.MovieID)+",\n")
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
@@ -810,8 +810,8 @@ func (m *CreateMovieResp) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if m.Id != 0 {
-		i = encodeVarintMovieService(dAtA, i, uint64(m.Id))
+	if m.MovieID != 0 {
+		i = encodeVarintMovieService(dAtA, i, uint64(m.MovieID))
 		i--
 		dAtA[i] = 0x8
 	}
@@ -838,8 +838,8 @@ func (m *DeleteMovieReq) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if m.Id != 0 {
-		i = encodeVarintMovieService(dAtA, i, uint64(m.Id))
+	if m.MovieID != 0 {
+		i = encodeVarintMovieService(dAtA, i, uint64(m.MovieID))
 		i--
 		dAtA[i] = 0x8
 	}
@@ -889,8 +889,8 @@ func (m *GetMovieReq) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if m.Id != 0 {
-		i = encodeVarintMovieService(dAtA, i, uint64(m.Id))
+	if m.MovieID != 0 {
+		i = encodeVarintMovieService(dAtA, i, uint64(m.MovieID))
 		i--
 		dAtA[i] = 0x8
 	}
@@ -922,7 +922,7 @@ func (m *GetMovieResp) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		copy(dAtA[i:], m.Title)
 		i = encodeVarintMovieService(dAtA, i, uint64(len(m.Title)))
 		i--
-		dAtA[i] = 0x32
+		dAtA[i] = 0xa
 	}
 	return len(dAtA) - i, nil
 }
@@ -1007,8 +1007,8 @@ func (m *Tuple) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if m.Id != 0 {
-		i = encodeVarintMovieService(dAtA, i, uint64(m.Id))
+	if m.MovieID != 0 {
+		i = encodeVarintMovieService(dAtA, i, uint64(m.MovieID))
 		i--
 		dAtA[i] = 0x10
 	}
@@ -1052,8 +1052,8 @@ func (m *CreateMovieResp) Size() (n int) {
 	}
 	var l int
 	_ = l
-	if m.Id != 0 {
-		n += 1 + sovMovieService(uint64(m.Id))
+	if m.MovieID != 0 {
+		n += 1 + sovMovieService(uint64(m.MovieID))
 	}
 	return n
 }
@@ -1064,8 +1064,8 @@ func (m *DeleteMovieReq) Size() (n int) {
 	}
 	var l int
 	_ = l
-	if m.Id != 0 {
-		n += 1 + sovMovieService(uint64(m.Id))
+	if m.MovieID != 0 {
+		n += 1 + sovMovieService(uint64(m.MovieID))
 	}
 	return n
 }
@@ -1085,8 +1085,8 @@ func (m *GetMovieReq) Size() (n int) {
 	}
 	var l int
 	_ = l
-	if m.Id != 0 {
-		n += 1 + sovMovieService(uint64(m.Id))
+	if m.MovieID != 0 {
+		n += 1 + sovMovieService(uint64(m.MovieID))
 	}
 	return n
 }
@@ -1138,8 +1138,8 @@ func (m *Tuple) Size() (n int) {
 	if l > 0 {
 		n += 1 + l + sovMovieService(uint64(l))
 	}
-	if m.Id != 0 {
-		n += 1 + sovMovieService(uint64(m.Id))
+	if m.MovieID != 0 {
+		n += 1 + sovMovieService(uint64(m.MovieID))
 	}
 	return n
 }
@@ -1165,7 +1165,7 @@ func (this *CreateMovieResp) String() string {
 		return "nil"
 	}
 	s := strings.Join([]string{`&CreateMovieResp{`,
-		`Id:` + fmt.Sprintf("%v", this.Id) + `,`,
+		`MovieID:` + fmt.Sprintf("%v", this.MovieID) + `,`,
 		`}`,
 	}, "")
 	return s
@@ -1175,7 +1175,7 @@ func (this *DeleteMovieReq) String() string {
 		return "nil"
 	}
 	s := strings.Join([]string{`&DeleteMovieReq{`,
-		`Id:` + fmt.Sprintf("%v", this.Id) + `,`,
+		`MovieID:` + fmt.Sprintf("%v", this.MovieID) + `,`,
 		`}`,
 	}, "")
 	return s
@@ -1194,7 +1194,7 @@ func (this *GetMovieReq) String() string {
 		return "nil"
 	}
 	s := strings.Join([]string{`&GetMovieReq{`,
-		`Id:` + fmt.Sprintf("%v", this.Id) + `,`,
+		`MovieID:` + fmt.Sprintf("%v", this.MovieID) + `,`,
 		`}`,
 	}, "")
 	return s
@@ -1239,7 +1239,7 @@ func (this *Tuple) String() string {
 	}
 	s := strings.Join([]string{`&Tuple{`,
 		`Title:` + fmt.Sprintf("%v", this.Title) + `,`,
-		`Id:` + fmt.Sprintf("%v", this.Id) + `,`,
+		`MovieID:` + fmt.Sprintf("%v", this.MovieID) + `,`,
 		`}`,
 	}, "")
 	return s
@@ -1368,9 +1368,9 @@ func (m *CreateMovieResp) Unmarshal(dAtA []byte) error {
 		switch fieldNum {
 		case 1:
 			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field MovieID", wireType)
 			}
-			m.Id = 0
+			m.MovieID = 0
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowMovieService
@@ -1380,7 +1380,7 @@ func (m *CreateMovieResp) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Id |= int32(b&0x7F) << shift
+				m.MovieID |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -1440,9 +1440,9 @@ func (m *DeleteMovieReq) Unmarshal(dAtA []byte) error {
 		switch fieldNum {
 		case 1:
 			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field MovieID", wireType)
 			}
-			m.Id = 0
+			m.MovieID = 0
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowMovieService
@@ -1452,7 +1452,7 @@ func (m *DeleteMovieReq) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Id |= int32(b&0x7F) << shift
+				m.MovieID |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -1565,9 +1565,9 @@ func (m *GetMovieReq) Unmarshal(dAtA []byte) error {
 		switch fieldNum {
 		case 1:
 			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field MovieID", wireType)
 			}
-			m.Id = 0
+			m.MovieID = 0
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowMovieService
@@ -1577,7 +1577,7 @@ func (m *GetMovieReq) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Id |= int32(b&0x7F) << shift
+				m.MovieID |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -1635,7 +1635,7 @@ func (m *GetMovieResp) Unmarshal(dAtA []byte) error {
 			return fmt.Errorf("proto: GetMovieResp: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
-		case 6:
+		case 1:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Title", wireType)
 			}
@@ -1894,9 +1894,9 @@ func (m *Tuple) Unmarshal(dAtA []byte) error {
 			iNdEx = postIndex
 		case 2:
 			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field MovieID", wireType)
 			}
-			m.Id = 0
+			m.MovieID = 0
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowMovieService
@@ -1906,7 +1906,7 @@ func (m *Tuple) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Id |= int32(b&0x7F) << shift
+				m.MovieID |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}

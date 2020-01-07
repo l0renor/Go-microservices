@@ -15,44 +15,44 @@ type movieService struct {
 	screening api.Screening_Service
 }
 
-func (m *movieService) CreateMovie(ctx context.Context, req *api.CreateMovieReq, rsp *api.CreateMovieResp) error {
+func (m *movieService) CreateMovie(ctx context.Context, req *api.CreateMovieReq, resp *api.CreateMovieResp) error {
 	id := m.nextID()
 	m.movies[id] = req.Name
-	rsp.Id = id
+	resp.MovieID = id
 	return nil
 }
 
-func (m *movieService) DeleteMovie(ctx context.Context, req *api.DeleteMovieReq, rsp *api.DeleteMovieResp) error {
-	_, ok := m.movies[req.GetId()]
+func (m *movieService) DeleteMovie(ctx context.Context, req *api.DeleteMovieReq, resp *api.DeleteMovieResp) error {
+	_, ok := m.movies[req.GetMovieID()]
 	if !ok {
-		return errors.NotFound("ERR-NO-MOVIE", "Movie (ID: %d) not found!", req.GetId())
+		return errors.NotFound("ERR-NO-MOVIE", "Movie (ID: %d) not found!", req.GetMovieID())
 	}
-	_, err := m.screening.DeleteScreeningsWithMovie(context.TODO(), &api.DeleteScreeningsWithMovieReq{MovieID: req.GetId()})
+	_, err := m.screening.DeleteScreeningsWithMovie(context.TODO(), &api.DeleteScreeningsWithMovieReq{MovieID: req.GetMovieID()})
 	if err != nil {
 		return err
 	}
-	delete(m.movies, req.GetId())
+	delete(m.movies, req.GetMovieID())
 	return nil
 }
 
-func (m *movieService) GetMovie(ctx context.Context, req *api.GetMovieReq, rsp *api.GetMovieResp) error {
-	title, ok := m.movies[req.GetId()]
+func (m *movieService) GetMovie(ctx context.Context, req *api.GetMovieReq, resp *api.GetMovieResp) error {
+	title, ok := m.movies[req.GetMovieID()]
 	if !ok {
-		return errors.NotFound("ERR-NO-MOVIE", "Movie (ID: %d) not found!", req.GetId())
+		return errors.NotFound("ERR-NO-MOVIE", "Movie (ID: %d) not found!", req.GetMovieID())
 	}
-	rsp.Title = title
+	resp.Title = title
 	return nil
 }
 
-func (m *movieService) GetMovies(ctx context.Context, req *api.GetMoviesReq, rsp *api.GetMoviesResp) error {
+func (m *movieService) GetMovies(ctx context.Context, req *api.GetMoviesReq, resp *api.GetMoviesResp) error {
 	var movies []*api.Tuple
 	for id, title := range m.movies {
 		movies = append(movies, &api.Tuple{
-			Title: title,
-			Id:    id,
+			Title:   title,
+			MovieID: id,
 		})
 	}
-	rsp.Movies = movies
+	resp.Movies = movies
 	return nil
 }
 

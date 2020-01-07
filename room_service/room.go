@@ -20,52 +20,52 @@ type Service struct {
 	screening api.Screening_Service
 }
 
-func (m *Service) CreateRoom(ctx context.Context, req *api.CreateRoomReq, rsp *api.CreateRoomResp) error {
+func (m *Service) CreateRoom(ctx context.Context, req *api.CreateRoomReq, resp *api.CreateRoomResp) error {
 	id := m.nextID()
 	m.rooms[id] = Room{
 		nrOfSeats: req.NrOfSeats,
 		name:      req.Name,
 	}
-	rsp.Id = id
+	resp.RoomID = id
 	return nil
 }
 
-func (m *Service) DeleteRoom(ctx context.Context, req *api.DeleteRoomReq, rsp *api.DeleteRoomResp) error {
-	_, ok := m.rooms[req.GetId()]
+func (m *Service) DeleteRoom(ctx context.Context, req *api.DeleteRoomReq, resp *api.DeleteRoomResp) error {
+	_, ok := m.rooms[req.GetRoomID()]
 	if !ok {
-		return errors.NotFound("ERR-NO-ROOM", "Room (ID: %d) not found!", req.GetId())
+		return errors.NotFound("ERR-NO-ROOM", "Room (ID: %d) not found!", req.GetRoomID())
 	}
-	_, err := m.screening.DeleteScreeningsWithRoom(context.TODO(), &api.DeleteScreeningsWithRoomReq{RoomID: req.GetId()})
+	_, err := m.screening.DeleteScreeningsWithRoom(context.TODO(), &api.DeleteScreeningsWithRoomReq{RoomID: req.GetRoomID()})
 	if err != nil {
 		return err
 	}
-	delete(m.rooms, req.GetId())
+	delete(m.rooms, req.GetRoomID())
 	return nil
 }
 
-func (m *Service) GetRoom(ctx context.Context, req *api.GetRoomReq, rsp *api.GetRoomResp) error {
-	room, ok := m.rooms[req.GetId()]
+func (m *Service) GetRoom(ctx context.Context, req *api.GetRoomReq, resp *api.GetRoomResp) error {
+	room, ok := m.rooms[req.GetRoomID()]
 	if !ok {
-		return errors.NotFound("ERR-NO-ROOM", "Room (ID: %d) not found!", req.GetId())
+		return errors.NotFound("ERR-NO-ROOM", "Room (ID: %d) not found!", req.GetRoomID())
 	}
-	rsp.Room = &api.RoomData{
+	resp.Room = &api.Room{
 		Name:      room.name,
-		Id:        req.GetId(),
+		RoomID:    req.GetRoomID(),
 		NrOfSeats: room.nrOfSeats,
 	}
 	return nil
 }
 
-func (m *Service) GetRooms(ctx context.Context, req *api.GetRoomsReq, rsp *api.GetRoomsResp) error {
-	var rooms []*api.RoomData
+func (m *Service) GetRooms(ctx context.Context, req *api.GetRoomsReq, resp *api.GetRoomsResp) error {
+	var rooms []*api.Room
 	for id, room := range m.rooms {
-		rooms = append(rooms, &api.RoomData{
+		rooms = append(rooms, &api.Room{
 			Name:      room.name,
-			Id:        id,
+			RoomID:    id,
 			NrOfSeats: room.nrOfSeats,
 		})
 	}
-	rsp.Rooms = rooms
+	resp.Rooms = rooms
 	return nil
 }
 

@@ -76,7 +76,7 @@ func (m *CreateRoomReq) GetNrOfSeats() int32 {
 }
 
 type CreateRoomResp struct {
-	Id int32 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	RoomID int32 `protobuf:"varint,1,opt,name=roomID,proto3" json:"roomID,omitempty"`
 }
 
 func (m *CreateRoomResp) Reset()      { *m = CreateRoomResp{} }
@@ -111,15 +111,15 @@ func (m *CreateRoomResp) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_CreateRoomResp proto.InternalMessageInfo
 
-func (m *CreateRoomResp) GetId() int32 {
+func (m *CreateRoomResp) GetRoomID() int32 {
 	if m != nil {
-		return m.Id
+		return m.RoomID
 	}
 	return 0
 }
 
 type DeleteRoomReq struct {
-	Id int32 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	RoomID int32 `protobuf:"varint,1,opt,name=roomID,proto3" json:"roomID,omitempty"`
 }
 
 func (m *DeleteRoomReq) Reset()      { *m = DeleteRoomReq{} }
@@ -154,9 +154,9 @@ func (m *DeleteRoomReq) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_DeleteRoomReq proto.InternalMessageInfo
 
-func (m *DeleteRoomReq) GetId() int32 {
+func (m *DeleteRoomReq) GetRoomID() int32 {
 	if m != nil {
-		return m.Id
+		return m.RoomID
 	}
 	return 0
 }
@@ -197,7 +197,7 @@ func (m *DeleteRoomResp) XXX_DiscardUnknown() {
 var xxx_messageInfo_DeleteRoomResp proto.InternalMessageInfo
 
 type GetRoomReq struct {
-	Id int32 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	RoomID int32 `protobuf:"varint,1,opt,name=roomID,proto3" json:"roomID,omitempty"`
 }
 
 func (m *GetRoomReq) Reset()      { *m = GetRoomReq{} }
@@ -232,15 +232,15 @@ func (m *GetRoomReq) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_GetRoomReq proto.InternalMessageInfo
 
-func (m *GetRoomReq) GetId() int32 {
+func (m *GetRoomReq) GetRoomID() int32 {
 	if m != nil {
-		return m.Id
+		return m.RoomID
 	}
 	return 0
 }
 
 type GetRoomResp struct {
-	Room *RoomData `protobuf:"bytes,1,opt,name=room,proto3" json:"room,omitempty"`
+	Room *Room `protobuf:"bytes,1,opt,name=room,proto3" json:"room,omitempty"`
 }
 
 func (m *GetRoomResp) Reset()      { *m = GetRoomResp{} }
@@ -275,7 +275,7 @@ func (m *GetRoomResp) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_GetRoomResp proto.InternalMessageInfo
 
-func (m *GetRoomResp) GetRoom() *RoomData {
+func (m *GetRoomResp) GetRoom() *Room {
 	if m != nil {
 		return m.Room
 	}
@@ -318,7 +318,7 @@ func (m *GetRoomsReq) XXX_DiscardUnknown() {
 var xxx_messageInfo_GetRoomsReq proto.InternalMessageInfo
 
 type GetRoomsResp struct {
-	Rooms []*RoomData `protobuf:"bytes,1,rep,name=Rooms,proto3" json:"Rooms,omitempty"`
+	Rooms []*Room `protobuf:"bytes,1,rep,name=Rooms,proto3" json:"Rooms,omitempty"`
 }
 
 func (m *GetRoomsResp) Reset()      { *m = GetRoomsResp{} }
@@ -353,30 +353,30 @@ func (m *GetRoomsResp) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_GetRoomsResp proto.InternalMessageInfo
 
-func (m *GetRoomsResp) GetRooms() []*RoomData {
+func (m *GetRoomsResp) GetRooms() []*Room {
 	if m != nil {
 		return m.Rooms
 	}
 	return nil
 }
 
-type RoomData struct {
+type Room struct {
 	Name      string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	Id        int32  `protobuf:"varint,2,opt,name=id,proto3" json:"id,omitempty"`
+	RoomID    int32  `protobuf:"varint,2,opt,name=roomID,proto3" json:"roomID,omitempty"`
 	NrOfSeats int32  `protobuf:"varint,3,opt,name=nrOfSeats,proto3" json:"nrOfSeats,omitempty"`
 }
 
-func (m *RoomData) Reset()      { *m = RoomData{} }
-func (*RoomData) ProtoMessage() {}
-func (*RoomData) Descriptor() ([]byte, []int) {
+func (m *Room) Reset()      { *m = Room{} }
+func (*Room) ProtoMessage() {}
+func (*Room) Descriptor() ([]byte, []int) {
 	return fileDescriptor_42bf95a61402c3ee, []int{8}
 }
-func (m *RoomData) XXX_Unmarshal(b []byte) error {
+func (m *Room) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *RoomData) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *Room) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_RoomData.Marshal(b, m, deterministic)
+		return xxx_messageInfo_Room.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -386,33 +386,33 @@ func (m *RoomData) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 		return b[:n], nil
 	}
 }
-func (m *RoomData) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_RoomData.Merge(m, src)
+func (m *Room) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Room.Merge(m, src)
 }
-func (m *RoomData) XXX_Size() int {
+func (m *Room) XXX_Size() int {
 	return m.Size()
 }
-func (m *RoomData) XXX_DiscardUnknown() {
-	xxx_messageInfo_RoomData.DiscardUnknown(m)
+func (m *Room) XXX_DiscardUnknown() {
+	xxx_messageInfo_Room.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_RoomData proto.InternalMessageInfo
+var xxx_messageInfo_Room proto.InternalMessageInfo
 
-func (m *RoomData) GetName() string {
+func (m *Room) GetName() string {
 	if m != nil {
 		return m.Name
 	}
 	return ""
 }
 
-func (m *RoomData) GetId() int32 {
+func (m *Room) GetRoomID() int32 {
 	if m != nil {
-		return m.Id
+		return m.RoomID
 	}
 	return 0
 }
 
-func (m *RoomData) GetNrOfSeats() int32 {
+func (m *Room) GetNrOfSeats() int32 {
 	if m != nil {
 		return m.NrOfSeats
 	}
@@ -428,37 +428,36 @@ func init() {
 	proto.RegisterType((*GetRoomResp)(nil), "GetRoomResp")
 	proto.RegisterType((*GetRoomsReq)(nil), "GetRoomsReq")
 	proto.RegisterType((*GetRoomsResp)(nil), "GetRoomsResp")
-	proto.RegisterType((*RoomData)(nil), "RoomData")
+	proto.RegisterType((*Room)(nil), "Room")
 }
 
 func init() { proto.RegisterFile("api/room_service.proto", fileDescriptor_42bf95a61402c3ee) }
 
 var fileDescriptor_42bf95a61402c3ee = []byte{
-	// 372 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x74, 0x92, 0xc1, 0x4e, 0xf2, 0x40,
-	0x10, 0xc7, 0x77, 0x0b, 0x7c, 0x1f, 0x0c, 0xb4, 0x98, 0x3d, 0x18, 0xd2, 0xe0, 0xd2, 0xec, 0xc1,
-	0x60, 0x62, 0x96, 0x04, 0x4f, 0x1e, 0x55, 0x12, 0x2f, 0x26, 0x26, 0xe5, 0xe6, 0x85, 0xac, 0xb2,
-	0x26, 0x4d, 0x84, 0x2e, 0xdd, 0xc6, 0xb3, 0x8f, 0xe0, 0x63, 0xf8, 0x1e, 0x5e, 0x3c, 0x72, 0xe4,
-	0x28, 0xcb, 0xc5, 0x23, 0x8f, 0x60, 0x5a, 0x84, 0xb6, 0x44, 0x6f, 0x9d, 0xff, 0xfc, 0x67, 0x3a,
-	0xf3, 0x9b, 0x85, 0x43, 0xa1, 0x82, 0x5e, 0x14, 0x86, 0x93, 0x91, 0x96, 0xd1, 0x73, 0xf0, 0x20,
-	0xb9, 0x8a, 0xc2, 0x38, 0x64, 0x17, 0x60, 0x5f, 0x45, 0x52, 0xc4, 0xd2, 0x0f, 0xc3, 0x89, 0x2f,
-	0x67, 0x84, 0x40, 0x79, 0x2a, 0x26, 0xb2, 0x85, 0x3d, 0xdc, 0xad, 0xf9, 0xe9, 0x37, 0x69, 0x43,
-	0x6d, 0x1a, 0xdd, 0x3e, 0x0e, 0xa5, 0x88, 0x75, 0xcb, 0xf2, 0x70, 0xb7, 0xe2, 0x67, 0x02, 0xf3,
-	0xc0, 0xc9, 0xb7, 0xd0, 0x8a, 0x38, 0x60, 0x05, 0xe3, 0xb4, 0x43, 0xc5, 0xb7, 0x82, 0x31, 0xeb,
-	0x80, 0x3d, 0x90, 0x4f, 0x32, 0xfb, 0xc9, 0xbe, 0xe1, 0x00, 0x9c, 0xbc, 0x41, 0x2b, 0xd6, 0x06,
-	0xb8, 0x96, 0xf1, 0x5f, 0xfe, 0x53, 0xa8, 0xef, 0xb2, 0x5a, 0x91, 0x23, 0x28, 0x27, 0xab, 0xa5,
-	0x86, 0x7a, 0xbf, 0xc6, 0x93, 0xc4, 0x40, 0xc4, 0xc2, 0x4f, 0x65, 0x66, 0xef, 0xdc, 0xda, 0x97,
-	0x33, 0xd6, 0x83, 0x46, 0x16, 0x6a, 0x45, 0x3a, 0x50, 0x49, 0x83, 0x16, 0xf6, 0x4a, 0xc5, 0xf2,
-	0x8d, 0xce, 0x6e, 0xa0, 0xba, 0x95, 0x7e, 0xc5, 0xb3, 0x99, 0xce, 0xda, 0x4e, 0x57, 0xc4, 0x55,
-	0xda, 0xc3, 0xd5, 0x7f, 0xc7, 0xd0, 0x48, 0xda, 0x8d, 0x86, 0x9b, 0x43, 0x90, 0x1e, 0x40, 0xc6,
-	0x8f, 0x38, 0xbc, 0x70, 0x0f, 0xb7, 0xc9, 0x8b, 0x70, 0x19, 0x4a, 0x0a, 0x32, 0x5a, 0xc4, 0xe1,
-	0x05, 0xb6, 0x6e, 0x93, 0xef, 0xa1, 0x44, 0xe4, 0x18, 0xfe, 0xff, 0x6c, 0x4c, 0xea, 0x3c, 0xc3,
-	0xea, 0x36, 0x78, 0x8e, 0x22, 0x43, 0xe4, 0x04, 0xaa, 0x5b, 0x32, 0x64, 0x97, 0x4b, 0x98, 0xb9,
-	0x36, 0xcf, 0x23, 0x63, 0xe8, 0xf2, 0x7c, 0xbe, 0xa4, 0x68, 0xb1, 0xa4, 0x68, 0xbd, 0xa4, 0xf8,
-	0xc5, 0x50, 0xfc, 0x66, 0x28, 0xfe, 0x30, 0x14, 0xcf, 0x0d, 0xc5, 0x9f, 0x86, 0xe2, 0x2f, 0x43,
-	0xd1, 0xda, 0x50, 0xfc, 0xba, 0xa2, 0x68, 0xbe, 0xa2, 0x68, 0xb1, 0xa2, 0xe8, 0xae, 0x24, 0x54,
-	0x70, 0xff, 0x2f, 0x7d, 0x79, 0x67, 0xdf, 0x01, 0x00, 0x00, 0xff, 0xff, 0x59, 0x6a, 0xbb, 0x11,
-	0x93, 0x02, 0x00, 0x00,
+	// 367 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x84, 0x92, 0x3d, 0x4f, 0xc2, 0x40,
+	0x18, 0xc7, 0xef, 0x80, 0xa2, 0x3c, 0xd0, 0x62, 0x6e, 0x20, 0x58, 0xcd, 0x85, 0x5c, 0x8c, 0xd6,
+	0x98, 0x1c, 0x09, 0x4e, 0x8e, 0x2a, 0x89, 0x71, 0xd2, 0x94, 0xcd, 0x85, 0x54, 0x73, 0x26, 0x24,
+	0x42, 0x4b, 0xaf, 0x71, 0xf6, 0x23, 0xf8, 0x31, 0xfc, 0x1e, 0x2e, 0x8e, 0x8c, 0x8c, 0x72, 0x2c,
+	0x8e, 0x7c, 0x04, 0xd3, 0x03, 0xb9, 0x96, 0x68, 0xdc, 0x9e, 0x97, 0xff, 0xf3, 0x72, 0xbf, 0xe7,
+	0xa0, 0x11, 0x44, 0x83, 0x76, 0x1c, 0x86, 0xc3, 0xbe, 0x14, 0xf1, 0xf3, 0xe0, 0x41, 0xf0, 0x28,
+	0x0e, 0x93, 0x90, 0x9d, 0x83, 0x7d, 0x19, 0x8b, 0x20, 0x11, 0x7e, 0x18, 0x0e, 0x7d, 0x31, 0x26,
+	0x04, 0x4a, 0xa3, 0x60, 0x28, 0x9a, 0xb8, 0x85, 0xbd, 0x8a, 0xaf, 0x6d, 0xb2, 0x0f, 0x95, 0x51,
+	0x7c, 0xf3, 0xd8, 0x13, 0x41, 0x22, 0x9b, 0x85, 0x16, 0xf6, 0x2c, 0xdf, 0x04, 0x98, 0x07, 0x4e,
+	0xb6, 0x85, 0x8c, 0x48, 0x03, 0xca, 0xe9, 0xa8, 0xeb, 0xae, 0xee, 0x62, 0xf9, 0x2b, 0x8f, 0x1d,
+	0x81, 0xdd, 0x15, 0x4f, 0xc2, 0x0c, 0xfb, 0x4b, 0xb8, 0x03, 0x4e, 0x56, 0x28, 0x23, 0x76, 0x00,
+	0x70, 0x25, 0x92, 0xff, 0xea, 0x3c, 0xa8, 0xae, 0x55, 0x32, 0x22, 0xbb, 0x50, 0x4a, 0x13, 0x5a,
+	0x54, 0xed, 0x58, 0x5c, 0x27, 0x74, 0x88, 0xd9, 0x6b, 0xa5, 0xf4, 0xc5, 0x98, 0x9d, 0x40, 0xcd,
+	0xb8, 0x32, 0x22, 0x7b, 0x60, 0x69, 0xa7, 0x89, 0x5b, 0x45, 0x53, 0xba, 0x8c, 0xb1, 0x5b, 0x28,
+	0xa5, 0xc6, 0xaf, 0xa8, 0xcc, 0x66, 0x85, 0xec, 0x66, 0x79, 0x84, 0xc5, 0x0d, 0x84, 0x9d, 0x77,
+	0x0c, 0xb5, 0xb4, 0x65, 0xbf, 0xb7, 0x3c, 0x0e, 0x69, 0x03, 0x18, 0xa6, 0xc4, 0xe1, 0xb9, 0x1b,
+	0xb9, 0x75, 0x9e, 0x07, 0xce, 0x50, 0x5a, 0x60, 0x88, 0x11, 0x87, 0xe7, 0x38, 0xbb, 0x75, 0xbe,
+	0x81, 0x13, 0x91, 0x43, 0xd8, 0x5a, 0xbd, 0x98, 0x54, 0xb9, 0x41, 0xeb, 0xd6, 0x78, 0x86, 0x20,
+	0x43, 0xe4, 0x18, 0xb6, 0x7f, 0xc8, 0x90, 0x75, 0x2e, 0x65, 0xe6, 0xda, 0x3c, 0x8b, 0x8c, 0xa1,
+	0x8b, 0xb3, 0xc9, 0x8c, 0xa2, 0xe9, 0x8c, 0xa2, 0xc5, 0x8c, 0xe2, 0x17, 0x45, 0xf1, 0x9b, 0xa2,
+	0xf8, 0x43, 0x51, 0x3c, 0x51, 0x14, 0x7f, 0x2a, 0x8a, 0xbf, 0x14, 0x45, 0x0b, 0x45, 0xf1, 0xeb,
+	0x9c, 0xa2, 0xc9, 0x9c, 0xa2, 0xe9, 0x9c, 0xa2, 0xbb, 0x62, 0x10, 0x0d, 0xee, 0xcb, 0xfa, 0x37,
+	0x9e, 0x7e, 0x07, 0x00, 0x00, 0xff, 0xff, 0x16, 0x82, 0x4d, 0x42, 0xa7, 0x02, 0x00, 0x00,
 }
 
 func (this *CreateRoomReq) Equal(that interface{}) bool {
@@ -507,7 +506,7 @@ func (this *CreateRoomResp) Equal(that interface{}) bool {
 	} else if this == nil {
 		return false
 	}
-	if this.Id != that1.Id {
+	if this.RoomID != that1.RoomID {
 		return false
 	}
 	return true
@@ -531,7 +530,7 @@ func (this *DeleteRoomReq) Equal(that interface{}) bool {
 	} else if this == nil {
 		return false
 	}
-	if this.Id != that1.Id {
+	if this.RoomID != that1.RoomID {
 		return false
 	}
 	return true
@@ -576,7 +575,7 @@ func (this *GetRoomReq) Equal(that interface{}) bool {
 	} else if this == nil {
 		return false
 	}
-	if this.Id != that1.Id {
+	if this.RoomID != that1.RoomID {
 		return false
 	}
 	return true
@@ -655,14 +654,14 @@ func (this *GetRoomsResp) Equal(that interface{}) bool {
 	}
 	return true
 }
-func (this *RoomData) Equal(that interface{}) bool {
+func (this *Room) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
 	}
 
-	that1, ok := that.(*RoomData)
+	that1, ok := that.(*Room)
 	if !ok {
-		that2, ok := that.(RoomData)
+		that2, ok := that.(Room)
 		if ok {
 			that1 = &that2
 		} else {
@@ -677,7 +676,7 @@ func (this *RoomData) Equal(that interface{}) bool {
 	if this.Name != that1.Name {
 		return false
 	}
-	if this.Id != that1.Id {
+	if this.RoomID != that1.RoomID {
 		return false
 	}
 	if this.NrOfSeats != that1.NrOfSeats {
@@ -702,7 +701,7 @@ func (this *CreateRoomResp) GoString() string {
 	}
 	s := make([]string, 0, 5)
 	s = append(s, "&api.CreateRoomResp{")
-	s = append(s, "Id: "+fmt.Sprintf("%#v", this.Id)+",\n")
+	s = append(s, "RoomID: "+fmt.Sprintf("%#v", this.RoomID)+",\n")
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
@@ -712,7 +711,7 @@ func (this *DeleteRoomReq) GoString() string {
 	}
 	s := make([]string, 0, 5)
 	s = append(s, "&api.DeleteRoomReq{")
-	s = append(s, "Id: "+fmt.Sprintf("%#v", this.Id)+",\n")
+	s = append(s, "RoomID: "+fmt.Sprintf("%#v", this.RoomID)+",\n")
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
@@ -731,7 +730,7 @@ func (this *GetRoomReq) GoString() string {
 	}
 	s := make([]string, 0, 5)
 	s = append(s, "&api.GetRoomReq{")
-	s = append(s, "Id: "+fmt.Sprintf("%#v", this.Id)+",\n")
+	s = append(s, "RoomID: "+fmt.Sprintf("%#v", this.RoomID)+",\n")
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
@@ -768,14 +767,14 @@ func (this *GetRoomsResp) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
-func (this *RoomData) GoString() string {
+func (this *Room) GoString() string {
 	if this == nil {
 		return "nil"
 	}
 	s := make([]string, 0, 7)
-	s = append(s, "&api.RoomData{")
+	s = append(s, "&api.Room{")
 	s = append(s, "Name: "+fmt.Sprintf("%#v", this.Name)+",\n")
-	s = append(s, "Id: "+fmt.Sprintf("%#v", this.Id)+",\n")
+	s = append(s, "RoomID: "+fmt.Sprintf("%#v", this.RoomID)+",\n")
 	s = append(s, "NrOfSeats: "+fmt.Sprintf("%#v", this.NrOfSeats)+",\n")
 	s = append(s, "}")
 	return strings.Join(s, "")
@@ -843,8 +842,8 @@ func (m *CreateRoomResp) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if m.Id != 0 {
-		i = encodeVarintRoomService(dAtA, i, uint64(m.Id))
+	if m.RoomID != 0 {
+		i = encodeVarintRoomService(dAtA, i, uint64(m.RoomID))
 		i--
 		dAtA[i] = 0x8
 	}
@@ -871,8 +870,8 @@ func (m *DeleteRoomReq) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if m.Id != 0 {
-		i = encodeVarintRoomService(dAtA, i, uint64(m.Id))
+	if m.RoomID != 0 {
+		i = encodeVarintRoomService(dAtA, i, uint64(m.RoomID))
 		i--
 		dAtA[i] = 0x8
 	}
@@ -922,8 +921,8 @@ func (m *GetRoomReq) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if m.Id != 0 {
-		i = encodeVarintRoomService(dAtA, i, uint64(m.Id))
+	if m.RoomID != 0 {
+		i = encodeVarintRoomService(dAtA, i, uint64(m.RoomID))
 		i--
 		dAtA[i] = 0x8
 	}
@@ -1025,7 +1024,7 @@ func (m *GetRoomsResp) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *RoomData) Marshal() (dAtA []byte, err error) {
+func (m *Room) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -1035,12 +1034,12 @@ func (m *RoomData) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *RoomData) MarshalTo(dAtA []byte) (int, error) {
+func (m *Room) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *RoomData) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *Room) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -1050,8 +1049,8 @@ func (m *RoomData) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i--
 		dAtA[i] = 0x18
 	}
-	if m.Id != 0 {
-		i = encodeVarintRoomService(dAtA, i, uint64(m.Id))
+	if m.RoomID != 0 {
+		i = encodeVarintRoomService(dAtA, i, uint64(m.RoomID))
 		i--
 		dAtA[i] = 0x10
 	}
@@ -1098,8 +1097,8 @@ func (m *CreateRoomResp) Size() (n int) {
 	}
 	var l int
 	_ = l
-	if m.Id != 0 {
-		n += 1 + sovRoomService(uint64(m.Id))
+	if m.RoomID != 0 {
+		n += 1 + sovRoomService(uint64(m.RoomID))
 	}
 	return n
 }
@@ -1110,8 +1109,8 @@ func (m *DeleteRoomReq) Size() (n int) {
 	}
 	var l int
 	_ = l
-	if m.Id != 0 {
-		n += 1 + sovRoomService(uint64(m.Id))
+	if m.RoomID != 0 {
+		n += 1 + sovRoomService(uint64(m.RoomID))
 	}
 	return n
 }
@@ -1131,8 +1130,8 @@ func (m *GetRoomReq) Size() (n int) {
 	}
 	var l int
 	_ = l
-	if m.Id != 0 {
-		n += 1 + sovRoomService(uint64(m.Id))
+	if m.RoomID != 0 {
+		n += 1 + sovRoomService(uint64(m.RoomID))
 	}
 	return n
 }
@@ -1174,7 +1173,7 @@ func (m *GetRoomsResp) Size() (n int) {
 	return n
 }
 
-func (m *RoomData) Size() (n int) {
+func (m *Room) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -1184,8 +1183,8 @@ func (m *RoomData) Size() (n int) {
 	if l > 0 {
 		n += 1 + l + sovRoomService(uint64(l))
 	}
-	if m.Id != 0 {
-		n += 1 + sovRoomService(uint64(m.Id))
+	if m.RoomID != 0 {
+		n += 1 + sovRoomService(uint64(m.RoomID))
 	}
 	if m.NrOfSeats != 0 {
 		n += 1 + sovRoomService(uint64(m.NrOfSeats))
@@ -1215,7 +1214,7 @@ func (this *CreateRoomResp) String() string {
 		return "nil"
 	}
 	s := strings.Join([]string{`&CreateRoomResp{`,
-		`Id:` + fmt.Sprintf("%v", this.Id) + `,`,
+		`RoomID:` + fmt.Sprintf("%v", this.RoomID) + `,`,
 		`}`,
 	}, "")
 	return s
@@ -1225,7 +1224,7 @@ func (this *DeleteRoomReq) String() string {
 		return "nil"
 	}
 	s := strings.Join([]string{`&DeleteRoomReq{`,
-		`Id:` + fmt.Sprintf("%v", this.Id) + `,`,
+		`RoomID:` + fmt.Sprintf("%v", this.RoomID) + `,`,
 		`}`,
 	}, "")
 	return s
@@ -1244,7 +1243,7 @@ func (this *GetRoomReq) String() string {
 		return "nil"
 	}
 	s := strings.Join([]string{`&GetRoomReq{`,
-		`Id:` + fmt.Sprintf("%v", this.Id) + `,`,
+		`RoomID:` + fmt.Sprintf("%v", this.RoomID) + `,`,
 		`}`,
 	}, "")
 	return s
@@ -1254,7 +1253,7 @@ func (this *GetRoomResp) String() string {
 		return "nil"
 	}
 	s := strings.Join([]string{`&GetRoomResp{`,
-		`Room:` + strings.Replace(this.Room.String(), "RoomData", "RoomData", 1) + `,`,
+		`Room:` + strings.Replace(this.Room.String(), "Room", "Room", 1) + `,`,
 		`}`,
 	}, "")
 	return s
@@ -1272,9 +1271,9 @@ func (this *GetRoomsResp) String() string {
 	if this == nil {
 		return "nil"
 	}
-	repeatedStringForRooms := "[]*RoomData{"
+	repeatedStringForRooms := "[]*Room{"
 	for _, f := range this.Rooms {
-		repeatedStringForRooms += strings.Replace(f.String(), "RoomData", "RoomData", 1) + ","
+		repeatedStringForRooms += strings.Replace(f.String(), "Room", "Room", 1) + ","
 	}
 	repeatedStringForRooms += "}"
 	s := strings.Join([]string{`&GetRoomsResp{`,
@@ -1283,13 +1282,13 @@ func (this *GetRoomsResp) String() string {
 	}, "")
 	return s
 }
-func (this *RoomData) String() string {
+func (this *Room) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&RoomData{`,
+	s := strings.Join([]string{`&Room{`,
 		`Name:` + fmt.Sprintf("%v", this.Name) + `,`,
-		`Id:` + fmt.Sprintf("%v", this.Id) + `,`,
+		`RoomID:` + fmt.Sprintf("%v", this.RoomID) + `,`,
 		`NrOfSeats:` + fmt.Sprintf("%v", this.NrOfSeats) + `,`,
 		`}`,
 	}, "")
@@ -1438,9 +1437,9 @@ func (m *CreateRoomResp) Unmarshal(dAtA []byte) error {
 		switch fieldNum {
 		case 1:
 			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field RoomID", wireType)
 			}
-			m.Id = 0
+			m.RoomID = 0
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowRoomService
@@ -1450,7 +1449,7 @@ func (m *CreateRoomResp) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Id |= int32(b&0x7F) << shift
+				m.RoomID |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -1510,9 +1509,9 @@ func (m *DeleteRoomReq) Unmarshal(dAtA []byte) error {
 		switch fieldNum {
 		case 1:
 			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field RoomID", wireType)
 			}
-			m.Id = 0
+			m.RoomID = 0
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowRoomService
@@ -1522,7 +1521,7 @@ func (m *DeleteRoomReq) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Id |= int32(b&0x7F) << shift
+				m.RoomID |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -1635,9 +1634,9 @@ func (m *GetRoomReq) Unmarshal(dAtA []byte) error {
 		switch fieldNum {
 		case 1:
 			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field RoomID", wireType)
 			}
-			m.Id = 0
+			m.RoomID = 0
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowRoomService
@@ -1647,7 +1646,7 @@ func (m *GetRoomReq) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Id |= int32(b&0x7F) << shift
+				m.RoomID |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -1735,7 +1734,7 @@ func (m *GetRoomResp) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			if m.Room == nil {
-				m.Room = &RoomData{}
+				m.Room = &Room{}
 			}
 			if err := m.Room.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
@@ -1876,7 +1875,7 @@ func (m *GetRoomsResp) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Rooms = append(m.Rooms, &RoomData{})
+			m.Rooms = append(m.Rooms, &Room{})
 			if err := m.Rooms[len(m.Rooms)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
@@ -1905,7 +1904,7 @@ func (m *GetRoomsResp) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *RoomData) Unmarshal(dAtA []byte) error {
+func (m *Room) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1928,10 +1927,10 @@ func (m *RoomData) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: RoomData: wiretype end group for non-group")
+			return fmt.Errorf("proto: Room: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: RoomData: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: Room: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
@@ -1968,9 +1967,9 @@ func (m *RoomData) Unmarshal(dAtA []byte) error {
 			iNdEx = postIndex
 		case 2:
 			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field RoomID", wireType)
 			}
-			m.Id = 0
+			m.RoomID = 0
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowRoomService
@@ -1980,7 +1979,7 @@ func (m *RoomData) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Id |= int32(b&0x7F) << shift
+				m.RoomID |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
