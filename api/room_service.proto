@@ -2,40 +2,40 @@ syntax = "proto3";
 option go_package = "api";
 
 service Room_Service {
-    rpc CreateRoom(CreateRoomMsg) returns (CreateRoomResponseMsg) {}
-    rpc DeleteRoom(DeleteRoomMsg) returns (DeleteRoomResponseMsg) {}
-    rpc GetRoom(GetRoomMsg) returns (GetRoomResponseMsg) {}
-    rpc GetRooms(GetRoomsMsg) returns (GetRoomsResponseMsg) {}
+    rpc CreateRoom(CreateRoomReq) returns (CreateRoomResp) {}
+    rpc DeleteRoom(DeleteRoomReq) returns (DeleteRoomResp) {}
+    rpc GetRoom(GetRoomReq) returns (GetRoomResp) {}
+    rpc GetRooms(GetRoomsReq) returns (GetRoomsResp) {}
 }
 
-message CreateRoomMsg {
+message CreateRoomReq {
     string name = 1;
     int32 nrOfSeats = 2;
 }
 
-message CreateRoomResponseMsg {
+message CreateRoomResp {
     int32 id = 1;
 }
 
-message DeleteRoomMsg {
+message DeleteRoomReq {
     int32 id = 1;
 }
 
-message DeleteRoomResponseMsg {
+message DeleteRoomResp {
 }
 
-message GetRoomMsg {
+message GetRoomReq {
     int32 id = 1;
 }
 
-message GetRoomResponseMsg {
+message GetRoomResp {
     RoomData room = 1;
 }
 
-message GetRoomsMsg {
+message GetRoomsReq {
 }
 
-message GetRoomsResponseMsg {
+message GetRoomsResp {
     repeated RoomData Rooms = 1;
 }
 

@@ -34,10 +34,10 @@ var _ server.Option
 // Client API for Movie_Service service
 
 type Movie_Service interface {
-	CreateMovie(ctx context.Context, in *CreateMovieMsg, opts ...client.CallOption) (*CreateMovieResponseMsg, error)
-	DeleteMovie(ctx context.Context, in *DeleteMovieMsg, opts ...client.CallOption) (*DeleteMovieResponseMsg, error)
-	GetMovie(ctx context.Context, in *GetMovieMsg, opts ...client.CallOption) (*GetMovieResponseMsg, error)
-	GetMovies(ctx context.Context, in *GetMoviesMsg, opts ...client.CallOption) (*GetMoviesResponseMsg, error)
+	CreateMovie(ctx context.Context, in *CreateMovieReq, opts ...client.CallOption) (*CreateMovieResp, error)
+	DeleteMovie(ctx context.Context, in *DeleteMovieReq, opts ...client.CallOption) (*DeleteMovieResp, error)
+	GetMovie(ctx context.Context, in *GetMovieReq, opts ...client.CallOption) (*GetMovieResp, error)
+	GetMovies(ctx context.Context, in *GetMoviesReq, opts ...client.CallOption) (*GetMoviesResp, error)
 }
 
 type movie_Service struct {
@@ -58,9 +58,9 @@ func NewMovie_Service(name string, c client.Client) Movie_Service {
 	}
 }
 
-func (c *movie_Service) CreateMovie(ctx context.Context, in *CreateMovieMsg, opts ...client.CallOption) (*CreateMovieResponseMsg, error) {
+func (c *movie_Service) CreateMovie(ctx context.Context, in *CreateMovieReq, opts ...client.CallOption) (*CreateMovieResp, error) {
 	req := c.c.NewRequest(c.name, "Movie_Service.CreateMovie", in)
-	out := new(CreateMovieResponseMsg)
+	out := new(CreateMovieResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -68,9 +68,9 @@ func (c *movie_Service) CreateMovie(ctx context.Context, in *CreateMovieMsg, opt
 	return out, nil
 }
 
-func (c *movie_Service) DeleteMovie(ctx context.Context, in *DeleteMovieMsg, opts ...client.CallOption) (*DeleteMovieResponseMsg, error) {
+func (c *movie_Service) DeleteMovie(ctx context.Context, in *DeleteMovieReq, opts ...client.CallOption) (*DeleteMovieResp, error) {
 	req := c.c.NewRequest(c.name, "Movie_Service.DeleteMovie", in)
-	out := new(DeleteMovieResponseMsg)
+	out := new(DeleteMovieResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -78,9 +78,9 @@ func (c *movie_Service) DeleteMovie(ctx context.Context, in *DeleteMovieMsg, opt
 	return out, nil
 }
 
-func (c *movie_Service) GetMovie(ctx context.Context, in *GetMovieMsg, opts ...client.CallOption) (*GetMovieResponseMsg, error) {
+func (c *movie_Service) GetMovie(ctx context.Context, in *GetMovieReq, opts ...client.CallOption) (*GetMovieResp, error) {
 	req := c.c.NewRequest(c.name, "Movie_Service.GetMovie", in)
-	out := new(GetMovieResponseMsg)
+	out := new(GetMovieResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -88,9 +88,9 @@ func (c *movie_Service) GetMovie(ctx context.Context, in *GetMovieMsg, opts ...c
 	return out, nil
 }
 
-func (c *movie_Service) GetMovies(ctx context.Context, in *GetMoviesMsg, opts ...client.CallOption) (*GetMoviesResponseMsg, error) {
+func (c *movie_Service) GetMovies(ctx context.Context, in *GetMoviesReq, opts ...client.CallOption) (*GetMoviesResp, error) {
 	req := c.c.NewRequest(c.name, "Movie_Service.GetMovies", in)
-	out := new(GetMoviesResponseMsg)
+	out := new(GetMoviesResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -101,18 +101,18 @@ func (c *movie_Service) GetMovies(ctx context.Context, in *GetMoviesMsg, opts ..
 // Server API for Movie_Service service
 
 type Movie_ServiceHandler interface {
-	CreateMovie(context.Context, *CreateMovieMsg, *CreateMovieResponseMsg) error
-	DeleteMovie(context.Context, *DeleteMovieMsg, *DeleteMovieResponseMsg) error
-	GetMovie(context.Context, *GetMovieMsg, *GetMovieResponseMsg) error
-	GetMovies(context.Context, *GetMoviesMsg, *GetMoviesResponseMsg) error
+	CreateMovie(context.Context, *CreateMovieReq, *CreateMovieResp) error
+	DeleteMovie(context.Context, *DeleteMovieReq, *DeleteMovieResp) error
+	GetMovie(context.Context, *GetMovieReq, *GetMovieResp) error
+	GetMovies(context.Context, *GetMoviesReq, *GetMoviesResp) error
 }
 
 func RegisterMovie_ServiceHandler(s server.Server, hdlr Movie_ServiceHandler, opts ...server.HandlerOption) error {
 	type movie_Service interface {
-		CreateMovie(ctx context.Context, in *CreateMovieMsg, out *CreateMovieResponseMsg) error
-		DeleteMovie(ctx context.Context, in *DeleteMovieMsg, out *DeleteMovieResponseMsg) error
-		GetMovie(ctx context.Context, in *GetMovieMsg, out *GetMovieResponseMsg) error
-		GetMovies(ctx context.Context, in *GetMoviesMsg, out *GetMoviesResponseMsg) error
+		CreateMovie(ctx context.Context, in *CreateMovieReq, out *CreateMovieResp) error
+		DeleteMovie(ctx context.Context, in *DeleteMovieReq, out *DeleteMovieResp) error
+		GetMovie(ctx context.Context, in *GetMovieReq, out *GetMovieResp) error
+		GetMovies(ctx context.Context, in *GetMoviesReq, out *GetMoviesResp) error
 	}
 	type Movie_Service struct {
 		movie_Service
@@ -125,18 +125,18 @@ type movie_ServiceHandler struct {
 	Movie_ServiceHandler
 }
 
-func (h *movie_ServiceHandler) CreateMovie(ctx context.Context, in *CreateMovieMsg, out *CreateMovieResponseMsg) error {
+func (h *movie_ServiceHandler) CreateMovie(ctx context.Context, in *CreateMovieReq, out *CreateMovieResp) error {
 	return h.Movie_ServiceHandler.CreateMovie(ctx, in, out)
 }
 
-func (h *movie_ServiceHandler) DeleteMovie(ctx context.Context, in *DeleteMovieMsg, out *DeleteMovieResponseMsg) error {
+func (h *movie_ServiceHandler) DeleteMovie(ctx context.Context, in *DeleteMovieReq, out *DeleteMovieResp) error {
 	return h.Movie_ServiceHandler.DeleteMovie(ctx, in, out)
 }
 
-func (h *movie_ServiceHandler) GetMovie(ctx context.Context, in *GetMovieMsg, out *GetMovieResponseMsg) error {
+func (h *movie_ServiceHandler) GetMovie(ctx context.Context, in *GetMovieReq, out *GetMovieResp) error {
 	return h.Movie_ServiceHandler.GetMovie(ctx, in, out)
 }
 
-func (h *movie_ServiceHandler) GetMovies(ctx context.Context, in *GetMoviesMsg, out *GetMoviesResponseMsg) error {
+func (h *movie_ServiceHandler) GetMovies(ctx context.Context, in *GetMoviesReq, out *GetMoviesResp) error {
 	return h.Movie_ServiceHandler.GetMovies(ctx, in, out)
 }

@@ -24,22 +24,22 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
-type CreateRoomMsg struct {
+type CreateRoomReq struct {
 	Name      string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	NrOfSeats int32  `protobuf:"varint,2,opt,name=nrOfSeats,proto3" json:"nrOfSeats,omitempty"`
 }
 
-func (m *CreateRoomMsg) Reset()      { *m = CreateRoomMsg{} }
-func (*CreateRoomMsg) ProtoMessage() {}
-func (*CreateRoomMsg) Descriptor() ([]byte, []int) {
+func (m *CreateRoomReq) Reset()      { *m = CreateRoomReq{} }
+func (*CreateRoomReq) ProtoMessage() {}
+func (*CreateRoomReq) Descriptor() ([]byte, []int) {
 	return fileDescriptor_42bf95a61402c3ee, []int{0}
 }
-func (m *CreateRoomMsg) XXX_Unmarshal(b []byte) error {
+func (m *CreateRoomReq) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *CreateRoomMsg) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *CreateRoomReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_CreateRoomMsg.Marshal(b, m, deterministic)
+		return xxx_messageInfo_CreateRoomReq.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -49,47 +49,47 @@ func (m *CreateRoomMsg) XXX_Marshal(b []byte, deterministic bool) ([]byte, error
 		return b[:n], nil
 	}
 }
-func (m *CreateRoomMsg) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CreateRoomMsg.Merge(m, src)
+func (m *CreateRoomReq) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateRoomReq.Merge(m, src)
 }
-func (m *CreateRoomMsg) XXX_Size() int {
+func (m *CreateRoomReq) XXX_Size() int {
 	return m.Size()
 }
-func (m *CreateRoomMsg) XXX_DiscardUnknown() {
-	xxx_messageInfo_CreateRoomMsg.DiscardUnknown(m)
+func (m *CreateRoomReq) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreateRoomReq.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_CreateRoomMsg proto.InternalMessageInfo
+var xxx_messageInfo_CreateRoomReq proto.InternalMessageInfo
 
-func (m *CreateRoomMsg) GetName() string {
+func (m *CreateRoomReq) GetName() string {
 	if m != nil {
 		return m.Name
 	}
 	return ""
 }
 
-func (m *CreateRoomMsg) GetNrOfSeats() int32 {
+func (m *CreateRoomReq) GetNrOfSeats() int32 {
 	if m != nil {
 		return m.NrOfSeats
 	}
 	return 0
 }
 
-type CreateRoomResponseMsg struct {
+type CreateRoomResp struct {
 	Id int32 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 }
 
-func (m *CreateRoomResponseMsg) Reset()      { *m = CreateRoomResponseMsg{} }
-func (*CreateRoomResponseMsg) ProtoMessage() {}
-func (*CreateRoomResponseMsg) Descriptor() ([]byte, []int) {
+func (m *CreateRoomResp) Reset()      { *m = CreateRoomResp{} }
+func (*CreateRoomResp) ProtoMessage() {}
+func (*CreateRoomResp) Descriptor() ([]byte, []int) {
 	return fileDescriptor_42bf95a61402c3ee, []int{1}
 }
-func (m *CreateRoomResponseMsg) XXX_Unmarshal(b []byte) error {
+func (m *CreateRoomResp) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *CreateRoomResponseMsg) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *CreateRoomResp) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_CreateRoomResponseMsg.Marshal(b, m, deterministic)
+		return xxx_messageInfo_CreateRoomResp.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -99,40 +99,40 @@ func (m *CreateRoomResponseMsg) XXX_Marshal(b []byte, deterministic bool) ([]byt
 		return b[:n], nil
 	}
 }
-func (m *CreateRoomResponseMsg) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CreateRoomResponseMsg.Merge(m, src)
+func (m *CreateRoomResp) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateRoomResp.Merge(m, src)
 }
-func (m *CreateRoomResponseMsg) XXX_Size() int {
+func (m *CreateRoomResp) XXX_Size() int {
 	return m.Size()
 }
-func (m *CreateRoomResponseMsg) XXX_DiscardUnknown() {
-	xxx_messageInfo_CreateRoomResponseMsg.DiscardUnknown(m)
+func (m *CreateRoomResp) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreateRoomResp.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_CreateRoomResponseMsg proto.InternalMessageInfo
+var xxx_messageInfo_CreateRoomResp proto.InternalMessageInfo
 
-func (m *CreateRoomResponseMsg) GetId() int32 {
+func (m *CreateRoomResp) GetId() int32 {
 	if m != nil {
 		return m.Id
 	}
 	return 0
 }
 
-type DeleteRoomMsg struct {
+type DeleteRoomReq struct {
 	Id int32 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 }
 
-func (m *DeleteRoomMsg) Reset()      { *m = DeleteRoomMsg{} }
-func (*DeleteRoomMsg) ProtoMessage() {}
-func (*DeleteRoomMsg) Descriptor() ([]byte, []int) {
+func (m *DeleteRoomReq) Reset()      { *m = DeleteRoomReq{} }
+func (*DeleteRoomReq) ProtoMessage() {}
+func (*DeleteRoomReq) Descriptor() ([]byte, []int) {
 	return fileDescriptor_42bf95a61402c3ee, []int{2}
 }
-func (m *DeleteRoomMsg) XXX_Unmarshal(b []byte) error {
+func (m *DeleteRoomReq) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *DeleteRoomMsg) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *DeleteRoomReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_DeleteRoomMsg.Marshal(b, m, deterministic)
+		return xxx_messageInfo_DeleteRoomReq.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -142,39 +142,39 @@ func (m *DeleteRoomMsg) XXX_Marshal(b []byte, deterministic bool) ([]byte, error
 		return b[:n], nil
 	}
 }
-func (m *DeleteRoomMsg) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DeleteRoomMsg.Merge(m, src)
+func (m *DeleteRoomReq) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DeleteRoomReq.Merge(m, src)
 }
-func (m *DeleteRoomMsg) XXX_Size() int {
+func (m *DeleteRoomReq) XXX_Size() int {
 	return m.Size()
 }
-func (m *DeleteRoomMsg) XXX_DiscardUnknown() {
-	xxx_messageInfo_DeleteRoomMsg.DiscardUnknown(m)
+func (m *DeleteRoomReq) XXX_DiscardUnknown() {
+	xxx_messageInfo_DeleteRoomReq.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_DeleteRoomMsg proto.InternalMessageInfo
+var xxx_messageInfo_DeleteRoomReq proto.InternalMessageInfo
 
-func (m *DeleteRoomMsg) GetId() int32 {
+func (m *DeleteRoomReq) GetId() int32 {
 	if m != nil {
 		return m.Id
 	}
 	return 0
 }
 
-type DeleteRoomResponseMsg struct {
+type DeleteRoomResp struct {
 }
 
-func (m *DeleteRoomResponseMsg) Reset()      { *m = DeleteRoomResponseMsg{} }
-func (*DeleteRoomResponseMsg) ProtoMessage() {}
-func (*DeleteRoomResponseMsg) Descriptor() ([]byte, []int) {
+func (m *DeleteRoomResp) Reset()      { *m = DeleteRoomResp{} }
+func (*DeleteRoomResp) ProtoMessage() {}
+func (*DeleteRoomResp) Descriptor() ([]byte, []int) {
 	return fileDescriptor_42bf95a61402c3ee, []int{3}
 }
-func (m *DeleteRoomResponseMsg) XXX_Unmarshal(b []byte) error {
+func (m *DeleteRoomResp) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *DeleteRoomResponseMsg) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *DeleteRoomResp) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_DeleteRoomResponseMsg.Marshal(b, m, deterministic)
+		return xxx_messageInfo_DeleteRoomResp.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -184,33 +184,33 @@ func (m *DeleteRoomResponseMsg) XXX_Marshal(b []byte, deterministic bool) ([]byt
 		return b[:n], nil
 	}
 }
-func (m *DeleteRoomResponseMsg) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DeleteRoomResponseMsg.Merge(m, src)
+func (m *DeleteRoomResp) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DeleteRoomResp.Merge(m, src)
 }
-func (m *DeleteRoomResponseMsg) XXX_Size() int {
+func (m *DeleteRoomResp) XXX_Size() int {
 	return m.Size()
 }
-func (m *DeleteRoomResponseMsg) XXX_DiscardUnknown() {
-	xxx_messageInfo_DeleteRoomResponseMsg.DiscardUnknown(m)
+func (m *DeleteRoomResp) XXX_DiscardUnknown() {
+	xxx_messageInfo_DeleteRoomResp.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_DeleteRoomResponseMsg proto.InternalMessageInfo
+var xxx_messageInfo_DeleteRoomResp proto.InternalMessageInfo
 
-type GetRoomMsg struct {
+type GetRoomReq struct {
 	Id int32 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 }
 
-func (m *GetRoomMsg) Reset()      { *m = GetRoomMsg{} }
-func (*GetRoomMsg) ProtoMessage() {}
-func (*GetRoomMsg) Descriptor() ([]byte, []int) {
+func (m *GetRoomReq) Reset()      { *m = GetRoomReq{} }
+func (*GetRoomReq) ProtoMessage() {}
+func (*GetRoomReq) Descriptor() ([]byte, []int) {
 	return fileDescriptor_42bf95a61402c3ee, []int{4}
 }
-func (m *GetRoomMsg) XXX_Unmarshal(b []byte) error {
+func (m *GetRoomReq) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *GetRoomMsg) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *GetRoomReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_GetRoomMsg.Marshal(b, m, deterministic)
+		return xxx_messageInfo_GetRoomReq.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -220,40 +220,40 @@ func (m *GetRoomMsg) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 		return b[:n], nil
 	}
 }
-func (m *GetRoomMsg) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetRoomMsg.Merge(m, src)
+func (m *GetRoomReq) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetRoomReq.Merge(m, src)
 }
-func (m *GetRoomMsg) XXX_Size() int {
+func (m *GetRoomReq) XXX_Size() int {
 	return m.Size()
 }
-func (m *GetRoomMsg) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetRoomMsg.DiscardUnknown(m)
+func (m *GetRoomReq) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetRoomReq.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_GetRoomMsg proto.InternalMessageInfo
+var xxx_messageInfo_GetRoomReq proto.InternalMessageInfo
 
-func (m *GetRoomMsg) GetId() int32 {
+func (m *GetRoomReq) GetId() int32 {
 	if m != nil {
 		return m.Id
 	}
 	return 0
 }
 
-type GetRoomResponseMsg struct {
+type GetRoomResp struct {
 	Room *RoomData `protobuf:"bytes,1,opt,name=room,proto3" json:"room,omitempty"`
 }
 
-func (m *GetRoomResponseMsg) Reset()      { *m = GetRoomResponseMsg{} }
-func (*GetRoomResponseMsg) ProtoMessage() {}
-func (*GetRoomResponseMsg) Descriptor() ([]byte, []int) {
+func (m *GetRoomResp) Reset()      { *m = GetRoomResp{} }
+func (*GetRoomResp) ProtoMessage() {}
+func (*GetRoomResp) Descriptor() ([]byte, []int) {
 	return fileDescriptor_42bf95a61402c3ee, []int{5}
 }
-func (m *GetRoomResponseMsg) XXX_Unmarshal(b []byte) error {
+func (m *GetRoomResp) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *GetRoomResponseMsg) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *GetRoomResp) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_GetRoomResponseMsg.Marshal(b, m, deterministic)
+		return xxx_messageInfo_GetRoomResp.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -263,39 +263,39 @@ func (m *GetRoomResponseMsg) XXX_Marshal(b []byte, deterministic bool) ([]byte, 
 		return b[:n], nil
 	}
 }
-func (m *GetRoomResponseMsg) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetRoomResponseMsg.Merge(m, src)
+func (m *GetRoomResp) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetRoomResp.Merge(m, src)
 }
-func (m *GetRoomResponseMsg) XXX_Size() int {
+func (m *GetRoomResp) XXX_Size() int {
 	return m.Size()
 }
-func (m *GetRoomResponseMsg) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetRoomResponseMsg.DiscardUnknown(m)
+func (m *GetRoomResp) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetRoomResp.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_GetRoomResponseMsg proto.InternalMessageInfo
+var xxx_messageInfo_GetRoomResp proto.InternalMessageInfo
 
-func (m *GetRoomResponseMsg) GetRoom() *RoomData {
+func (m *GetRoomResp) GetRoom() *RoomData {
 	if m != nil {
 		return m.Room
 	}
 	return nil
 }
 
-type GetRoomsMsg struct {
+type GetRoomsReq struct {
 }
 
-func (m *GetRoomsMsg) Reset()      { *m = GetRoomsMsg{} }
-func (*GetRoomsMsg) ProtoMessage() {}
-func (*GetRoomsMsg) Descriptor() ([]byte, []int) {
+func (m *GetRoomsReq) Reset()      { *m = GetRoomsReq{} }
+func (*GetRoomsReq) ProtoMessage() {}
+func (*GetRoomsReq) Descriptor() ([]byte, []int) {
 	return fileDescriptor_42bf95a61402c3ee, []int{6}
 }
-func (m *GetRoomsMsg) XXX_Unmarshal(b []byte) error {
+func (m *GetRoomsReq) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *GetRoomsMsg) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *GetRoomsReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_GetRoomsMsg.Marshal(b, m, deterministic)
+		return xxx_messageInfo_GetRoomsReq.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -305,33 +305,33 @@ func (m *GetRoomsMsg) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) 
 		return b[:n], nil
 	}
 }
-func (m *GetRoomsMsg) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetRoomsMsg.Merge(m, src)
+func (m *GetRoomsReq) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetRoomsReq.Merge(m, src)
 }
-func (m *GetRoomsMsg) XXX_Size() int {
+func (m *GetRoomsReq) XXX_Size() int {
 	return m.Size()
 }
-func (m *GetRoomsMsg) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetRoomsMsg.DiscardUnknown(m)
+func (m *GetRoomsReq) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetRoomsReq.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_GetRoomsMsg proto.InternalMessageInfo
+var xxx_messageInfo_GetRoomsReq proto.InternalMessageInfo
 
-type GetRoomsResponseMsg struct {
+type GetRoomsResp struct {
 	Rooms []*RoomData `protobuf:"bytes,1,rep,name=Rooms,proto3" json:"Rooms,omitempty"`
 }
 
-func (m *GetRoomsResponseMsg) Reset()      { *m = GetRoomsResponseMsg{} }
-func (*GetRoomsResponseMsg) ProtoMessage() {}
-func (*GetRoomsResponseMsg) Descriptor() ([]byte, []int) {
+func (m *GetRoomsResp) Reset()      { *m = GetRoomsResp{} }
+func (*GetRoomsResp) ProtoMessage() {}
+func (*GetRoomsResp) Descriptor() ([]byte, []int) {
 	return fileDescriptor_42bf95a61402c3ee, []int{7}
 }
-func (m *GetRoomsResponseMsg) XXX_Unmarshal(b []byte) error {
+func (m *GetRoomsResp) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *GetRoomsResponseMsg) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *GetRoomsResp) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_GetRoomsResponseMsg.Marshal(b, m, deterministic)
+		return xxx_messageInfo_GetRoomsResp.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -341,19 +341,19 @@ func (m *GetRoomsResponseMsg) XXX_Marshal(b []byte, deterministic bool) ([]byte,
 		return b[:n], nil
 	}
 }
-func (m *GetRoomsResponseMsg) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetRoomsResponseMsg.Merge(m, src)
+func (m *GetRoomsResp) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetRoomsResp.Merge(m, src)
 }
-func (m *GetRoomsResponseMsg) XXX_Size() int {
+func (m *GetRoomsResp) XXX_Size() int {
 	return m.Size()
 }
-func (m *GetRoomsResponseMsg) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetRoomsResponseMsg.DiscardUnknown(m)
+func (m *GetRoomsResp) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetRoomsResp.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_GetRoomsResponseMsg proto.InternalMessageInfo
+var xxx_messageInfo_GetRoomsResp proto.InternalMessageInfo
 
-func (m *GetRoomsResponseMsg) GetRooms() []*RoomData {
+func (m *GetRoomsResp) GetRooms() []*RoomData {
 	if m != nil {
 		return m.Rooms
 	}
@@ -420,55 +420,55 @@ func (m *RoomData) GetNrOfSeats() int32 {
 }
 
 func init() {
-	proto.RegisterType((*CreateRoomMsg)(nil), "CreateRoomMsg")
-	proto.RegisterType((*CreateRoomResponseMsg)(nil), "CreateRoomResponseMsg")
-	proto.RegisterType((*DeleteRoomMsg)(nil), "DeleteRoomMsg")
-	proto.RegisterType((*DeleteRoomResponseMsg)(nil), "DeleteRoomResponseMsg")
-	proto.RegisterType((*GetRoomMsg)(nil), "GetRoomMsg")
-	proto.RegisterType((*GetRoomResponseMsg)(nil), "GetRoomResponseMsg")
-	proto.RegisterType((*GetRoomsMsg)(nil), "GetRoomsMsg")
-	proto.RegisterType((*GetRoomsResponseMsg)(nil), "GetRoomsResponseMsg")
+	proto.RegisterType((*CreateRoomReq)(nil), "CreateRoomReq")
+	proto.RegisterType((*CreateRoomResp)(nil), "CreateRoomResp")
+	proto.RegisterType((*DeleteRoomReq)(nil), "DeleteRoomReq")
+	proto.RegisterType((*DeleteRoomResp)(nil), "DeleteRoomResp")
+	proto.RegisterType((*GetRoomReq)(nil), "GetRoomReq")
+	proto.RegisterType((*GetRoomResp)(nil), "GetRoomResp")
+	proto.RegisterType((*GetRoomsReq)(nil), "GetRoomsReq")
+	proto.RegisterType((*GetRoomsResp)(nil), "GetRoomsResp")
 	proto.RegisterType((*RoomData)(nil), "RoomData")
 }
 
 func init() { proto.RegisterFile("api/room_service.proto", fileDescriptor_42bf95a61402c3ee) }
 
 var fileDescriptor_42bf95a61402c3ee = []byte{
-	// 380 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x74, 0x92, 0xcf, 0x4e, 0xea, 0x40,
-	0x14, 0xc6, 0x67, 0x0a, 0xdc, 0x0b, 0x87, 0x3f, 0x8b, 0xe1, 0xc2, 0x25, 0x0d, 0x0e, 0x64, 0x36,
-	0xb2, 0x71, 0x34, 0x90, 0x90, 0xb8, 0x54, 0x49, 0xdc, 0x68, 0x4c, 0xca, 0xce, 0x0d, 0xa9, 0x32,
-	0x9a, 0x26, 0xc2, 0x34, 0x6d, 0xe3, 0xda, 0x47, 0xf0, 0x31, 0x7c, 0x14, 0x97, 0x2c, 0xd9, 0x29,
-	0xc3, 0xc6, 0x25, 0x8f, 0x60, 0x5a, 0x68, 0xa6, 0xc5, 0xba, 0x9b, 0xf9, 0xce, 0x39, 0xdf, 0x39,
-	0xf3, 0x3b, 0x03, 0x4d, 0xdb, 0x75, 0x8e, 0x3d, 0x29, 0x67, 0x13, 0x5f, 0x78, 0xcf, 0xce, 0xbd,
-	0xe0, 0xae, 0x27, 0x03, 0xc9, 0xce, 0xa0, 0x7a, 0xe1, 0x09, 0x3b, 0x10, 0x96, 0x94, 0xb3, 0x6b,
-	0xff, 0x91, 0x10, 0xc8, 0xcf, 0xed, 0x99, 0x68, 0xe1, 0x2e, 0xee, 0x95, 0xac, 0xe8, 0x4c, 0xda,
-	0x50, 0x9a, 0x7b, 0x37, 0x0f, 0x63, 0x61, 0x07, 0x7e, 0xcb, 0xe8, 0xe2, 0x5e, 0xc1, 0xd2, 0x02,
-	0x3b, 0x84, 0x86, 0xb6, 0xb0, 0x84, 0xef, 0xca, 0xb9, 0x2f, 0x42, 0xab, 0x1a, 0x18, 0xce, 0x34,
-	0x32, 0x2a, 0x58, 0x86, 0x33, 0x65, 0x1d, 0xa8, 0x8e, 0xc4, 0x93, 0xd0, 0xbd, 0xf6, 0x13, 0xfe,
-	0x43, 0x43, 0x27, 0x24, 0x9c, 0x58, 0x1b, 0xe0, 0x52, 0x04, 0xbf, 0x95, 0x0d, 0x80, 0xec, 0xa2,
-	0xc9, 0xee, 0x07, 0x90, 0x0f, 0xdf, 0x1b, 0xe5, 0x95, 0xfb, 0x25, 0x1e, 0xc6, 0x47, 0x76, 0x60,
-	0x5b, 0x91, 0xcc, 0xaa, 0x50, 0xde, 0x15, 0xf9, 0x61, 0x87, 0x21, 0xd4, 0xe3, 0x6b, 0xd2, 0xa4,
-	0x03, 0x85, 0x48, 0x6b, 0xe1, 0x6e, 0x2e, 0xed, 0xb2, 0xd5, 0xd9, 0x15, 0x14, 0x63, 0x29, 0x13,
-	0xdd, 0x76, 0x56, 0x23, 0x9e, 0x35, 0x8d, 0x32, 0xb7, 0x87, 0xb2, 0xff, 0x81, 0xa1, 0x12, 0xda,
-	0x4d, 0xc6, 0xdb, 0x25, 0x91, 0x21, 0x80, 0x66, 0x4b, 0x6a, 0x3c, 0xb5, 0x2b, 0xb3, 0xc9, 0x33,
-	0xc1, 0x33, 0x14, 0xd6, 0x69, 0x92, 0xa4, 0xc6, 0x53, 0xdc, 0xcd, 0x26, 0xcf, 0xc6, 0x8c, 0xc8,
-	0x11, 0xfc, 0xdd, 0x61, 0x20, 0x65, 0xae, 0x91, 0x9b, 0x75, 0xfe, 0x93, 0x30, 0x43, 0xe4, 0x04,
-	0x8a, 0x31, 0x35, 0x52, 0xe1, 0x09, 0x9e, 0xe6, 0x3f, 0x9e, 0x81, 0x93, 0xa1, 0xf3, 0xd3, 0xc5,
-	0x8a, 0xa2, 0xe5, 0x8a, 0xa2, 0xcd, 0x8a, 0xe2, 0x17, 0x45, 0xf1, 0x9b, 0xa2, 0xf8, 0x5d, 0x51,
-	0xbc, 0x50, 0x14, 0x7f, 0x2a, 0x8a, 0xbf, 0x14, 0x45, 0x1b, 0x45, 0xf1, 0xeb, 0x9a, 0xa2, 0xc5,
-	0x9a, 0xa2, 0xe5, 0x9a, 0xa2, 0xdb, 0x9c, 0xed, 0x3a, 0x77, 0x7f, 0xa2, 0x1f, 0x3b, 0xf8, 0x0e,
-	0x00, 0x00, 0xff, 0xff, 0x33, 0x5e, 0xab, 0xaf, 0xcb, 0x02, 0x00, 0x00,
+	// 372 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x74, 0x92, 0xc1, 0x4e, 0xf2, 0x40,
+	0x10, 0xc7, 0x77, 0x0b, 0x7c, 0x1f, 0x0c, 0xb4, 0x98, 0x3d, 0x18, 0xd2, 0xe0, 0xd2, 0xec, 0xc1,
+	0x60, 0x62, 0x96, 0x04, 0x4f, 0x1e, 0x55, 0x12, 0x2f, 0x26, 0x26, 0xe5, 0xe6, 0x85, 0xac, 0xb2,
+	0x26, 0x4d, 0x84, 0x2e, 0xdd, 0xc6, 0xb3, 0x8f, 0xe0, 0x63, 0xf8, 0x1e, 0x5e, 0x3c, 0x72, 0xe4,
+	0x28, 0xcb, 0xc5, 0x23, 0x8f, 0x60, 0x5a, 0x84, 0xb6, 0x44, 0x6f, 0x9d, 0xff, 0xfc, 0x67, 0x3a,
+	0xf3, 0x9b, 0x85, 0x43, 0xa1, 0x82, 0x5e, 0x14, 0x86, 0x93, 0x91, 0x96, 0xd1, 0x73, 0xf0, 0x20,
+	0xb9, 0x8a, 0xc2, 0x38, 0x64, 0x17, 0x60, 0x5f, 0x45, 0x52, 0xc4, 0xd2, 0x0f, 0xc3, 0x89, 0x2f,
+	0x67, 0x84, 0x40, 0x79, 0x2a, 0x26, 0xb2, 0x85, 0x3d, 0xdc, 0xad, 0xf9, 0xe9, 0x37, 0x69, 0x43,
+	0x6d, 0x1a, 0xdd, 0x3e, 0x0e, 0xa5, 0x88, 0x75, 0xcb, 0xf2, 0x70, 0xb7, 0xe2, 0x67, 0x02, 0xf3,
+	0xc0, 0xc9, 0xb7, 0xd0, 0x8a, 0x38, 0x60, 0x05, 0xe3, 0xb4, 0x43, 0xc5, 0xb7, 0x82, 0x31, 0xeb,
+	0x80, 0x3d, 0x90, 0x4f, 0x32, 0xfb, 0xc9, 0xbe, 0xe1, 0x00, 0x9c, 0xbc, 0x41, 0x2b, 0xd6, 0x06,
+	0xb8, 0x96, 0xf1, 0x5f, 0xfe, 0x53, 0xa8, 0xef, 0xb2, 0x5a, 0x91, 0x23, 0x28, 0x27, 0xab, 0xa5,
+	0x86, 0x7a, 0xbf, 0xc6, 0x93, 0xc4, 0x40, 0xc4, 0xc2, 0x4f, 0x65, 0x66, 0xef, 0xdc, 0xda, 0x97,
+	0x33, 0xd6, 0x83, 0x46, 0x16, 0x6a, 0x45, 0x3a, 0x50, 0x49, 0x83, 0x16, 0xf6, 0x4a, 0xc5, 0xf2,
+	0x8d, 0xce, 0x6e, 0xa0, 0xba, 0x95, 0x7e, 0xc5, 0xb3, 0x99, 0xce, 0xda, 0x4e, 0x57, 0xc4, 0x55,
+	0xda, 0xc3, 0xd5, 0x7f, 0xc7, 0xd0, 0x48, 0xda, 0x8d, 0x86, 0x9b, 0x43, 0x90, 0x1e, 0x40, 0xc6,
+	0x8f, 0x38, 0xbc, 0x70, 0x0f, 0xb7, 0xc9, 0x8b, 0x70, 0x19, 0x4a, 0x0a, 0x32, 0x5a, 0xc4, 0xe1,
+	0x05, 0xb6, 0x6e, 0x93, 0xef, 0xa1, 0x44, 0xe4, 0x18, 0xfe, 0xff, 0x6c, 0x4c, 0xea, 0x3c, 0xc3,
+	0xea, 0x36, 0x78, 0x8e, 0x22, 0x43, 0xe4, 0x04, 0xaa, 0x5b, 0x32, 0x64, 0x97, 0x4b, 0x98, 0xb9,
+	0x36, 0xcf, 0x23, 0x63, 0xe8, 0xf2, 0x7c, 0xbe, 0xa4, 0x68, 0xb1, 0xa4, 0x68, 0xbd, 0xa4, 0xf8,
+	0xc5, 0x50, 0xfc, 0x66, 0x28, 0xfe, 0x30, 0x14, 0xcf, 0x0d, 0xc5, 0x9f, 0x86, 0xe2, 0x2f, 0x43,
+	0xd1, 0xda, 0x50, 0xfc, 0xba, 0xa2, 0x68, 0xbe, 0xa2, 0x68, 0xb1, 0xa2, 0xe8, 0xae, 0x24, 0x54,
+	0x70, 0xff, 0x2f, 0x7d, 0x79, 0x67, 0xdf, 0x01, 0x00, 0x00, 0xff, 0xff, 0x59, 0x6a, 0xbb, 0x11,
+	0x93, 0x02, 0x00, 0x00,
 }
 
-func (this *CreateRoomMsg) Equal(that interface{}) bool {
+func (this *CreateRoomReq) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
 	}
 
-	that1, ok := that.(*CreateRoomMsg)
+	that1, ok := that.(*CreateRoomReq)
 	if !ok {
-		that2, ok := that.(CreateRoomMsg)
+		that2, ok := that.(CreateRoomReq)
 		if ok {
 			that1 = &that2
 		} else {
@@ -488,14 +488,14 @@ func (this *CreateRoomMsg) Equal(that interface{}) bool {
 	}
 	return true
 }
-func (this *CreateRoomResponseMsg) Equal(that interface{}) bool {
+func (this *CreateRoomResp) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
 	}
 
-	that1, ok := that.(*CreateRoomResponseMsg)
+	that1, ok := that.(*CreateRoomResp)
 	if !ok {
-		that2, ok := that.(CreateRoomResponseMsg)
+		that2, ok := that.(CreateRoomResp)
 		if ok {
 			that1 = &that2
 		} else {
@@ -512,14 +512,14 @@ func (this *CreateRoomResponseMsg) Equal(that interface{}) bool {
 	}
 	return true
 }
-func (this *DeleteRoomMsg) Equal(that interface{}) bool {
+func (this *DeleteRoomReq) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
 	}
 
-	that1, ok := that.(*DeleteRoomMsg)
+	that1, ok := that.(*DeleteRoomReq)
 	if !ok {
-		that2, ok := that.(DeleteRoomMsg)
+		that2, ok := that.(DeleteRoomReq)
 		if ok {
 			that1 = &that2
 		} else {
@@ -536,14 +536,14 @@ func (this *DeleteRoomMsg) Equal(that interface{}) bool {
 	}
 	return true
 }
-func (this *DeleteRoomResponseMsg) Equal(that interface{}) bool {
+func (this *DeleteRoomResp) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
 	}
 
-	that1, ok := that.(*DeleteRoomResponseMsg)
+	that1, ok := that.(*DeleteRoomResp)
 	if !ok {
-		that2, ok := that.(DeleteRoomResponseMsg)
+		that2, ok := that.(DeleteRoomResp)
 		if ok {
 			that1 = &that2
 		} else {
@@ -557,14 +557,14 @@ func (this *DeleteRoomResponseMsg) Equal(that interface{}) bool {
 	}
 	return true
 }
-func (this *GetRoomMsg) Equal(that interface{}) bool {
+func (this *GetRoomReq) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
 	}
 
-	that1, ok := that.(*GetRoomMsg)
+	that1, ok := that.(*GetRoomReq)
 	if !ok {
-		that2, ok := that.(GetRoomMsg)
+		that2, ok := that.(GetRoomReq)
 		if ok {
 			that1 = &that2
 		} else {
@@ -581,14 +581,14 @@ func (this *GetRoomMsg) Equal(that interface{}) bool {
 	}
 	return true
 }
-func (this *GetRoomResponseMsg) Equal(that interface{}) bool {
+func (this *GetRoomResp) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
 	}
 
-	that1, ok := that.(*GetRoomResponseMsg)
+	that1, ok := that.(*GetRoomResp)
 	if !ok {
-		that2, ok := that.(GetRoomResponseMsg)
+		that2, ok := that.(GetRoomResp)
 		if ok {
 			that1 = &that2
 		} else {
@@ -605,14 +605,14 @@ func (this *GetRoomResponseMsg) Equal(that interface{}) bool {
 	}
 	return true
 }
-func (this *GetRoomsMsg) Equal(that interface{}) bool {
+func (this *GetRoomsReq) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
 	}
 
-	that1, ok := that.(*GetRoomsMsg)
+	that1, ok := that.(*GetRoomsReq)
 	if !ok {
-		that2, ok := that.(GetRoomsMsg)
+		that2, ok := that.(GetRoomsReq)
 		if ok {
 			that1 = &that2
 		} else {
@@ -626,14 +626,14 @@ func (this *GetRoomsMsg) Equal(that interface{}) bool {
 	}
 	return true
 }
-func (this *GetRoomsResponseMsg) Equal(that interface{}) bool {
+func (this *GetRoomsResp) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
 	}
 
-	that1, ok := that.(*GetRoomsResponseMsg)
+	that1, ok := that.(*GetRoomsResp)
 	if !ok {
-		that2, ok := that.(GetRoomsResponseMsg)
+		that2, ok := that.(GetRoomsResp)
 		if ok {
 			that1 = &that2
 		} else {
@@ -685,83 +685,83 @@ func (this *RoomData) Equal(that interface{}) bool {
 	}
 	return true
 }
-func (this *CreateRoomMsg) GoString() string {
+func (this *CreateRoomReq) GoString() string {
 	if this == nil {
 		return "nil"
 	}
 	s := make([]string, 0, 6)
-	s = append(s, "&api.CreateRoomMsg{")
+	s = append(s, "&api.CreateRoomReq{")
 	s = append(s, "Name: "+fmt.Sprintf("%#v", this.Name)+",\n")
 	s = append(s, "NrOfSeats: "+fmt.Sprintf("%#v", this.NrOfSeats)+",\n")
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
-func (this *CreateRoomResponseMsg) GoString() string {
+func (this *CreateRoomResp) GoString() string {
 	if this == nil {
 		return "nil"
 	}
 	s := make([]string, 0, 5)
-	s = append(s, "&api.CreateRoomResponseMsg{")
+	s = append(s, "&api.CreateRoomResp{")
 	s = append(s, "Id: "+fmt.Sprintf("%#v", this.Id)+",\n")
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
-func (this *DeleteRoomMsg) GoString() string {
+func (this *DeleteRoomReq) GoString() string {
 	if this == nil {
 		return "nil"
 	}
 	s := make([]string, 0, 5)
-	s = append(s, "&api.DeleteRoomMsg{")
+	s = append(s, "&api.DeleteRoomReq{")
 	s = append(s, "Id: "+fmt.Sprintf("%#v", this.Id)+",\n")
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
-func (this *DeleteRoomResponseMsg) GoString() string {
+func (this *DeleteRoomResp) GoString() string {
 	if this == nil {
 		return "nil"
 	}
 	s := make([]string, 0, 4)
-	s = append(s, "&api.DeleteRoomResponseMsg{")
+	s = append(s, "&api.DeleteRoomResp{")
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
-func (this *GetRoomMsg) GoString() string {
+func (this *GetRoomReq) GoString() string {
 	if this == nil {
 		return "nil"
 	}
 	s := make([]string, 0, 5)
-	s = append(s, "&api.GetRoomMsg{")
+	s = append(s, "&api.GetRoomReq{")
 	s = append(s, "Id: "+fmt.Sprintf("%#v", this.Id)+",\n")
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
-func (this *GetRoomResponseMsg) GoString() string {
+func (this *GetRoomResp) GoString() string {
 	if this == nil {
 		return "nil"
 	}
 	s := make([]string, 0, 5)
-	s = append(s, "&api.GetRoomResponseMsg{")
+	s = append(s, "&api.GetRoomResp{")
 	if this.Room != nil {
 		s = append(s, "Room: "+fmt.Sprintf("%#v", this.Room)+",\n")
 	}
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
-func (this *GetRoomsMsg) GoString() string {
+func (this *GetRoomsReq) GoString() string {
 	if this == nil {
 		return "nil"
 	}
 	s := make([]string, 0, 4)
-	s = append(s, "&api.GetRoomsMsg{")
+	s = append(s, "&api.GetRoomsReq{")
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
-func (this *GetRoomsResponseMsg) GoString() string {
+func (this *GetRoomsResp) GoString() string {
 	if this == nil {
 		return "nil"
 	}
 	s := make([]string, 0, 5)
-	s = append(s, "&api.GetRoomsResponseMsg{")
+	s = append(s, "&api.GetRoomsResp{")
 	if this.Rooms != nil {
 		s = append(s, "Rooms: "+fmt.Sprintf("%#v", this.Rooms)+",\n")
 	}
@@ -788,7 +788,7 @@ func valueToGoStringRoomService(v interface{}, typ string) string {
 	pv := reflect.Indirect(rv).Interface()
 	return fmt.Sprintf("func(v %v) *%v { return &v } ( %#v )", typ, typ, pv)
 }
-func (m *CreateRoomMsg) Marshal() (dAtA []byte, err error) {
+func (m *CreateRoomReq) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -798,12 +798,12 @@ func (m *CreateRoomMsg) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *CreateRoomMsg) MarshalTo(dAtA []byte) (int, error) {
+func (m *CreateRoomReq) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *CreateRoomMsg) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *CreateRoomReq) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -823,7 +823,7 @@ func (m *CreateRoomMsg) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *CreateRoomResponseMsg) Marshal() (dAtA []byte, err error) {
+func (m *CreateRoomResp) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -833,12 +833,12 @@ func (m *CreateRoomResponseMsg) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *CreateRoomResponseMsg) MarshalTo(dAtA []byte) (int, error) {
+func (m *CreateRoomResp) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *CreateRoomResponseMsg) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *CreateRoomResp) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -851,7 +851,7 @@ func (m *CreateRoomResponseMsg) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *DeleteRoomMsg) Marshal() (dAtA []byte, err error) {
+func (m *DeleteRoomReq) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -861,12 +861,12 @@ func (m *DeleteRoomMsg) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *DeleteRoomMsg) MarshalTo(dAtA []byte) (int, error) {
+func (m *DeleteRoomReq) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *DeleteRoomMsg) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *DeleteRoomReq) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -879,7 +879,7 @@ func (m *DeleteRoomMsg) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *DeleteRoomResponseMsg) Marshal() (dAtA []byte, err error) {
+func (m *DeleteRoomResp) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -889,12 +889,12 @@ func (m *DeleteRoomResponseMsg) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *DeleteRoomResponseMsg) MarshalTo(dAtA []byte) (int, error) {
+func (m *DeleteRoomResp) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *DeleteRoomResponseMsg) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *DeleteRoomResp) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -902,7 +902,7 @@ func (m *DeleteRoomResponseMsg) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *GetRoomMsg) Marshal() (dAtA []byte, err error) {
+func (m *GetRoomReq) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -912,12 +912,12 @@ func (m *GetRoomMsg) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *GetRoomMsg) MarshalTo(dAtA []byte) (int, error) {
+func (m *GetRoomReq) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *GetRoomMsg) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *GetRoomReq) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -930,7 +930,7 @@ func (m *GetRoomMsg) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *GetRoomResponseMsg) Marshal() (dAtA []byte, err error) {
+func (m *GetRoomResp) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -940,12 +940,12 @@ func (m *GetRoomResponseMsg) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *GetRoomResponseMsg) MarshalTo(dAtA []byte) (int, error) {
+func (m *GetRoomResp) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *GetRoomResponseMsg) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *GetRoomResp) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -965,7 +965,7 @@ func (m *GetRoomResponseMsg) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *GetRoomsMsg) Marshal() (dAtA []byte, err error) {
+func (m *GetRoomsReq) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -975,12 +975,12 @@ func (m *GetRoomsMsg) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *GetRoomsMsg) MarshalTo(dAtA []byte) (int, error) {
+func (m *GetRoomsReq) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *GetRoomsMsg) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *GetRoomsReq) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -988,7 +988,7 @@ func (m *GetRoomsMsg) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *GetRoomsResponseMsg) Marshal() (dAtA []byte, err error) {
+func (m *GetRoomsResp) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -998,12 +998,12 @@ func (m *GetRoomsResponseMsg) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *GetRoomsResponseMsg) MarshalTo(dAtA []byte) (int, error) {
+func (m *GetRoomsResp) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *GetRoomsResponseMsg) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *GetRoomsResp) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -1076,7 +1076,7 @@ func encodeVarintRoomService(dAtA []byte, offset int, v uint64) int {
 	dAtA[offset] = uint8(v)
 	return base
 }
-func (m *CreateRoomMsg) Size() (n int) {
+func (m *CreateRoomReq) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -1092,7 +1092,7 @@ func (m *CreateRoomMsg) Size() (n int) {
 	return n
 }
 
-func (m *CreateRoomResponseMsg) Size() (n int) {
+func (m *CreateRoomResp) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -1104,7 +1104,7 @@ func (m *CreateRoomResponseMsg) Size() (n int) {
 	return n
 }
 
-func (m *DeleteRoomMsg) Size() (n int) {
+func (m *DeleteRoomReq) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -1116,7 +1116,7 @@ func (m *DeleteRoomMsg) Size() (n int) {
 	return n
 }
 
-func (m *DeleteRoomResponseMsg) Size() (n int) {
+func (m *DeleteRoomResp) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -1125,7 +1125,7 @@ func (m *DeleteRoomResponseMsg) Size() (n int) {
 	return n
 }
 
-func (m *GetRoomMsg) Size() (n int) {
+func (m *GetRoomReq) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -1137,7 +1137,7 @@ func (m *GetRoomMsg) Size() (n int) {
 	return n
 }
 
-func (m *GetRoomResponseMsg) Size() (n int) {
+func (m *GetRoomResp) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -1150,7 +1150,7 @@ func (m *GetRoomResponseMsg) Size() (n int) {
 	return n
 }
 
-func (m *GetRoomsMsg) Size() (n int) {
+func (m *GetRoomsReq) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -1159,7 +1159,7 @@ func (m *GetRoomsMsg) Size() (n int) {
 	return n
 }
 
-func (m *GetRoomsResponseMsg) Size() (n int) {
+func (m *GetRoomsResp) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -1199,76 +1199,76 @@ func sovRoomService(x uint64) (n int) {
 func sozRoomService(x uint64) (n int) {
 	return sovRoomService(uint64((x << 1) ^ uint64((int64(x) >> 63))))
 }
-func (this *CreateRoomMsg) String() string {
+func (this *CreateRoomReq) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&CreateRoomMsg{`,
+	s := strings.Join([]string{`&CreateRoomReq{`,
 		`Name:` + fmt.Sprintf("%v", this.Name) + `,`,
 		`NrOfSeats:` + fmt.Sprintf("%v", this.NrOfSeats) + `,`,
 		`}`,
 	}, "")
 	return s
 }
-func (this *CreateRoomResponseMsg) String() string {
+func (this *CreateRoomResp) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&CreateRoomResponseMsg{`,
+	s := strings.Join([]string{`&CreateRoomResp{`,
 		`Id:` + fmt.Sprintf("%v", this.Id) + `,`,
 		`}`,
 	}, "")
 	return s
 }
-func (this *DeleteRoomMsg) String() string {
+func (this *DeleteRoomReq) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&DeleteRoomMsg{`,
+	s := strings.Join([]string{`&DeleteRoomReq{`,
 		`Id:` + fmt.Sprintf("%v", this.Id) + `,`,
 		`}`,
 	}, "")
 	return s
 }
-func (this *DeleteRoomResponseMsg) String() string {
+func (this *DeleteRoomResp) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&DeleteRoomResponseMsg{`,
+	s := strings.Join([]string{`&DeleteRoomResp{`,
 		`}`,
 	}, "")
 	return s
 }
-func (this *GetRoomMsg) String() string {
+func (this *GetRoomReq) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&GetRoomMsg{`,
+	s := strings.Join([]string{`&GetRoomReq{`,
 		`Id:` + fmt.Sprintf("%v", this.Id) + `,`,
 		`}`,
 	}, "")
 	return s
 }
-func (this *GetRoomResponseMsg) String() string {
+func (this *GetRoomResp) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&GetRoomResponseMsg{`,
+	s := strings.Join([]string{`&GetRoomResp{`,
 		`Room:` + strings.Replace(this.Room.String(), "RoomData", "RoomData", 1) + `,`,
 		`}`,
 	}, "")
 	return s
 }
-func (this *GetRoomsMsg) String() string {
+func (this *GetRoomsReq) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&GetRoomsMsg{`,
+	s := strings.Join([]string{`&GetRoomsReq{`,
 		`}`,
 	}, "")
 	return s
 }
-func (this *GetRoomsResponseMsg) String() string {
+func (this *GetRoomsResp) String() string {
 	if this == nil {
 		return "nil"
 	}
@@ -1277,7 +1277,7 @@ func (this *GetRoomsResponseMsg) String() string {
 		repeatedStringForRooms += strings.Replace(f.String(), "RoomData", "RoomData", 1) + ","
 	}
 	repeatedStringForRooms += "}"
-	s := strings.Join([]string{`&GetRoomsResponseMsg{`,
+	s := strings.Join([]string{`&GetRoomsResp{`,
 		`Rooms:` + repeatedStringForRooms + `,`,
 		`}`,
 	}, "")
@@ -1303,7 +1303,7 @@ func valueToStringRoomService(v interface{}) string {
 	pv := reflect.Indirect(rv).Interface()
 	return fmt.Sprintf("*%v", pv)
 }
-func (m *CreateRoomMsg) Unmarshal(dAtA []byte) error {
+func (m *CreateRoomReq) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1326,10 +1326,10 @@ func (m *CreateRoomMsg) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: CreateRoomMsg: wiretype end group for non-group")
+			return fmt.Errorf("proto: CreateRoomReq: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: CreateRoomMsg: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: CreateRoomReq: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
@@ -1407,7 +1407,7 @@ func (m *CreateRoomMsg) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *CreateRoomResponseMsg) Unmarshal(dAtA []byte) error {
+func (m *CreateRoomResp) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1430,10 +1430,10 @@ func (m *CreateRoomResponseMsg) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: CreateRoomResponseMsg: wiretype end group for non-group")
+			return fmt.Errorf("proto: CreateRoomResp: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: CreateRoomResponseMsg: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: CreateRoomResp: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
@@ -1479,7 +1479,7 @@ func (m *CreateRoomResponseMsg) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *DeleteRoomMsg) Unmarshal(dAtA []byte) error {
+func (m *DeleteRoomReq) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1502,10 +1502,10 @@ func (m *DeleteRoomMsg) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: DeleteRoomMsg: wiretype end group for non-group")
+			return fmt.Errorf("proto: DeleteRoomReq: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: DeleteRoomMsg: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: DeleteRoomReq: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
@@ -1551,7 +1551,7 @@ func (m *DeleteRoomMsg) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *DeleteRoomResponseMsg) Unmarshal(dAtA []byte) error {
+func (m *DeleteRoomResp) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1574,10 +1574,10 @@ func (m *DeleteRoomResponseMsg) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: DeleteRoomResponseMsg: wiretype end group for non-group")
+			return fmt.Errorf("proto: DeleteRoomResp: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: DeleteRoomResponseMsg: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: DeleteRoomResp: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		default:
@@ -1604,7 +1604,7 @@ func (m *DeleteRoomResponseMsg) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *GetRoomMsg) Unmarshal(dAtA []byte) error {
+func (m *GetRoomReq) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1627,10 +1627,10 @@ func (m *GetRoomMsg) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: GetRoomMsg: wiretype end group for non-group")
+			return fmt.Errorf("proto: GetRoomReq: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: GetRoomMsg: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: GetRoomReq: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
@@ -1676,7 +1676,7 @@ func (m *GetRoomMsg) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *GetRoomResponseMsg) Unmarshal(dAtA []byte) error {
+func (m *GetRoomResp) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1699,10 +1699,10 @@ func (m *GetRoomResponseMsg) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: GetRoomResponseMsg: wiretype end group for non-group")
+			return fmt.Errorf("proto: GetRoomResp: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: GetRoomResponseMsg: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: GetRoomResp: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
@@ -1765,7 +1765,7 @@ func (m *GetRoomResponseMsg) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *GetRoomsMsg) Unmarshal(dAtA []byte) error {
+func (m *GetRoomsReq) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1788,10 +1788,10 @@ func (m *GetRoomsMsg) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: GetRoomsMsg: wiretype end group for non-group")
+			return fmt.Errorf("proto: GetRoomsReq: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: GetRoomsMsg: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: GetRoomsReq: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		default:
@@ -1818,7 +1818,7 @@ func (m *GetRoomsMsg) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *GetRoomsResponseMsg) Unmarshal(dAtA []byte) error {
+func (m *GetRoomsResp) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1841,10 +1841,10 @@ func (m *GetRoomsResponseMsg) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: GetRoomsResponseMsg: wiretype end group for non-group")
+			return fmt.Errorf("proto: GetRoomsResp: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: GetRoomsResponseMsg: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: GetRoomsResp: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:

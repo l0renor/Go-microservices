@@ -2,39 +2,39 @@ syntax = "proto3";
 option go_package = "api";
 
 service Movie_Service {
-    rpc CreateMovie(CreateMovieMsg) returns (CreateMovieResponseMsg) {}
-    rpc DeleteMovie(DeleteMovieMsg) returns (DeleteMovieResponseMsg) {}
-    rpc GetMovie(GetMovieMsg) returns (GetMovieResponseMsg) {}
-    rpc GetMovies(GetMoviesMsg) returns (GetMoviesResponseMsg) {}
+    rpc CreateMovie(CreateMovieReq) returns (CreateMovieResp) {}
+    rpc DeleteMovie(DeleteMovieReq) returns (DeleteMovieResp) {}
+    rpc GetMovie(GetMovieReq) returns (GetMovieResp) {}
+    rpc GetMovies(GetMoviesReq) returns (GetMoviesResp) {}
 }
 
-message CreateMovieMsg {
+message CreateMovieReq {
     string name = 1;
 }
 
-message CreateMovieResponseMsg {
+message CreateMovieResp {
     int32 id = 1;
 }
 
-message DeleteMovieMsg {
+message DeleteMovieReq {
     int32 id = 1;
 }
 
-message DeleteMovieResponseMsg {
+message DeleteMovieResp {
 }
 
-message GetMovieMsg {
+message GetMovieReq {
     int32 id = 1;
 }
 
-message GetMovieResponseMsg {
+message GetMovieResp {
     string title = 6;
 }
 
-message GetMoviesMsg {
+message GetMoviesReq {
 }
 
-message GetMoviesResponseMsg {
+message GetMoviesResp {
     repeated Tuple movies = 1;
 }
 

@@ -34,10 +34,10 @@ var _ server.Option
 // Client API for Room_Service service
 
 type Room_Service interface {
-	CreateRoom(ctx context.Context, in *CreateRoomMsg, opts ...client.CallOption) (*CreateRoomResponseMsg, error)
-	DeleteRoom(ctx context.Context, in *DeleteRoomMsg, opts ...client.CallOption) (*DeleteRoomResponseMsg, error)
-	GetRoom(ctx context.Context, in *GetRoomMsg, opts ...client.CallOption) (*GetRoomResponseMsg, error)
-	GetRooms(ctx context.Context, in *GetRoomsMsg, opts ...client.CallOption) (*GetRoomsResponseMsg, error)
+	CreateRoom(ctx context.Context, in *CreateRoomReq, opts ...client.CallOption) (*CreateRoomResp, error)
+	DeleteRoom(ctx context.Context, in *DeleteRoomReq, opts ...client.CallOption) (*DeleteRoomResp, error)
+	GetRoom(ctx context.Context, in *GetRoomReq, opts ...client.CallOption) (*GetRoomResp, error)
+	GetRooms(ctx context.Context, in *GetRoomsReq, opts ...client.CallOption) (*GetRoomsResp, error)
 }
 
 type room_Service struct {
@@ -58,9 +58,9 @@ func NewRoom_Service(name string, c client.Client) Room_Service {
 	}
 }
 
-func (c *room_Service) CreateRoom(ctx context.Context, in *CreateRoomMsg, opts ...client.CallOption) (*CreateRoomResponseMsg, error) {
+func (c *room_Service) CreateRoom(ctx context.Context, in *CreateRoomReq, opts ...client.CallOption) (*CreateRoomResp, error) {
 	req := c.c.NewRequest(c.name, "Room_Service.CreateRoom", in)
-	out := new(CreateRoomResponseMsg)
+	out := new(CreateRoomResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -68,9 +68,9 @@ func (c *room_Service) CreateRoom(ctx context.Context, in *CreateRoomMsg, opts .
 	return out, nil
 }
 
-func (c *room_Service) DeleteRoom(ctx context.Context, in *DeleteRoomMsg, opts ...client.CallOption) (*DeleteRoomResponseMsg, error) {
+func (c *room_Service) DeleteRoom(ctx context.Context, in *DeleteRoomReq, opts ...client.CallOption) (*DeleteRoomResp, error) {
 	req := c.c.NewRequest(c.name, "Room_Service.DeleteRoom", in)
-	out := new(DeleteRoomResponseMsg)
+	out := new(DeleteRoomResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -78,9 +78,9 @@ func (c *room_Service) DeleteRoom(ctx context.Context, in *DeleteRoomMsg, opts .
 	return out, nil
 }
 
-func (c *room_Service) GetRoom(ctx context.Context, in *GetRoomMsg, opts ...client.CallOption) (*GetRoomResponseMsg, error) {
+func (c *room_Service) GetRoom(ctx context.Context, in *GetRoomReq, opts ...client.CallOption) (*GetRoomResp, error) {
 	req := c.c.NewRequest(c.name, "Room_Service.GetRoom", in)
-	out := new(GetRoomResponseMsg)
+	out := new(GetRoomResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -88,9 +88,9 @@ func (c *room_Service) GetRoom(ctx context.Context, in *GetRoomMsg, opts ...clie
 	return out, nil
 }
 
-func (c *room_Service) GetRooms(ctx context.Context, in *GetRoomsMsg, opts ...client.CallOption) (*GetRoomsResponseMsg, error) {
+func (c *room_Service) GetRooms(ctx context.Context, in *GetRoomsReq, opts ...client.CallOption) (*GetRoomsResp, error) {
 	req := c.c.NewRequest(c.name, "Room_Service.GetRooms", in)
-	out := new(GetRoomsResponseMsg)
+	out := new(GetRoomsResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -101,18 +101,18 @@ func (c *room_Service) GetRooms(ctx context.Context, in *GetRoomsMsg, opts ...cl
 // Server API for Room_Service service
 
 type Room_ServiceHandler interface {
-	CreateRoom(context.Context, *CreateRoomMsg, *CreateRoomResponseMsg) error
-	DeleteRoom(context.Context, *DeleteRoomMsg, *DeleteRoomResponseMsg) error
-	GetRoom(context.Context, *GetRoomMsg, *GetRoomResponseMsg) error
-	GetRooms(context.Context, *GetRoomsMsg, *GetRoomsResponseMsg) error
+	CreateRoom(context.Context, *CreateRoomReq, *CreateRoomResp) error
+	DeleteRoom(context.Context, *DeleteRoomReq, *DeleteRoomResp) error
+	GetRoom(context.Context, *GetRoomReq, *GetRoomResp) error
+	GetRooms(context.Context, *GetRoomsReq, *GetRoomsResp) error
 }
 
 func RegisterRoom_ServiceHandler(s server.Server, hdlr Room_ServiceHandler, opts ...server.HandlerOption) error {
 	type room_Service interface {
-		CreateRoom(ctx context.Context, in *CreateRoomMsg, out *CreateRoomResponseMsg) error
-		DeleteRoom(ctx context.Context, in *DeleteRoomMsg, out *DeleteRoomResponseMsg) error
-		GetRoom(ctx context.Context, in *GetRoomMsg, out *GetRoomResponseMsg) error
-		GetRooms(ctx context.Context, in *GetRoomsMsg, out *GetRoomsResponseMsg) error
+		CreateRoom(ctx context.Context, in *CreateRoomReq, out *CreateRoomResp) error
+		DeleteRoom(ctx context.Context, in *DeleteRoomReq, out *DeleteRoomResp) error
+		GetRoom(ctx context.Context, in *GetRoomReq, out *GetRoomResp) error
+		GetRooms(ctx context.Context, in *GetRoomsReq, out *GetRoomsResp) error
 	}
 	type Room_Service struct {
 		room_Service
@@ -125,18 +125,18 @@ type room_ServiceHandler struct {
 	Room_ServiceHandler
 }
 
-func (h *room_ServiceHandler) CreateRoom(ctx context.Context, in *CreateRoomMsg, out *CreateRoomResponseMsg) error {
+func (h *room_ServiceHandler) CreateRoom(ctx context.Context, in *CreateRoomReq, out *CreateRoomResp) error {
 	return h.Room_ServiceHandler.CreateRoom(ctx, in, out)
 }
 
-func (h *room_ServiceHandler) DeleteRoom(ctx context.Context, in *DeleteRoomMsg, out *DeleteRoomResponseMsg) error {
+func (h *room_ServiceHandler) DeleteRoom(ctx context.Context, in *DeleteRoomReq, out *DeleteRoomResp) error {
 	return h.Room_ServiceHandler.DeleteRoom(ctx, in, out)
 }
 
-func (h *room_ServiceHandler) GetRoom(ctx context.Context, in *GetRoomMsg, out *GetRoomResponseMsg) error {
+func (h *room_ServiceHandler) GetRoom(ctx context.Context, in *GetRoomReq, out *GetRoomResp) error {
 	return h.Room_ServiceHandler.GetRoom(ctx, in, out)
 }
 
-func (h *room_ServiceHandler) GetRooms(ctx context.Context, in *GetRoomsMsg, out *GetRoomsResponseMsg) error {
+func (h *room_ServiceHandler) GetRooms(ctx context.Context, in *GetRoomsReq, out *GetRoomsResp) error {
 	return h.Room_ServiceHandler.GetRooms(ctx, in, out)
 }

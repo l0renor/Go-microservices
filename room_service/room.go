@@ -20,7 +20,7 @@ type Service struct {
 	screening api.Screening_Service
 }
 
-func (m *Service) CreateRoom(ctx context.Context, req *api.CreateRoomMsg, rsp *api.CreateRoomResponseMsg) error {
+func (m *Service) CreateRoom(ctx context.Context, req *api.CreateRoomReq, rsp *api.CreateRoomResp) error {
 	id := m.nextID()
 	m.rooms[id] = Room{
 		nrOfSeats: req.NrOfSeats,
@@ -30,7 +30,7 @@ func (m *Service) CreateRoom(ctx context.Context, req *api.CreateRoomMsg, rsp *a
 	return nil
 }
 
-func (m *Service) DeleteRoom(ctx context.Context, req *api.DeleteRoomMsg, rsp *api.DeleteRoomResponseMsg) error {
+func (m *Service) DeleteRoom(ctx context.Context, req *api.DeleteRoomReq, rsp *api.DeleteRoomResp) error {
 	_, ok := m.rooms[req.GetId()]
 	if !ok {
 		return errors.NotFound("ERR-NO-ROOM", "Room (ID: %d) not found!", req.GetId())
@@ -43,7 +43,7 @@ func (m *Service) DeleteRoom(ctx context.Context, req *api.DeleteRoomMsg, rsp *a
 	return nil
 }
 
-func (m *Service) GetRoom(ctx context.Context, req *api.GetRoomMsg, rsp *api.GetRoomResponseMsg) error {
+func (m *Service) GetRoom(ctx context.Context, req *api.GetRoomReq, rsp *api.GetRoomResp) error {
 	room, ok := m.rooms[req.GetId()]
 	if !ok {
 		return errors.NotFound("ERR-NO-ROOM", "Room (ID: %d) not found!", req.GetId())
@@ -56,7 +56,7 @@ func (m *Service) GetRoom(ctx context.Context, req *api.GetRoomMsg, rsp *api.Get
 	return nil
 }
 
-func (m *Service) GetRooms(ctx context.Context, req *api.GetRoomsMsg, rsp *api.GetRoomsResponseMsg) error {
+func (m *Service) GetRooms(ctx context.Context, req *api.GetRoomsReq, rsp *api.GetRoomsResp) error {
 	var rooms []*api.RoomData
 	for id, room := range m.rooms {
 		rooms = append(rooms, &api.RoomData{
