@@ -31,24 +31,25 @@ func (m *Service) CreateRoom(ctx context.Context, req *api.CreateRoomMsg, rsp *a
 }
 
 func (m *Service) DeleteRoom(ctx context.Context, req *api.DeleteRoomMsg, rsp *api.DeleteRoomResponseMsg) error {
-	id := req.Id
-	_, ok := m.rooms[id]
+	_, ok := m.rooms[req.GetId()]
 	if !ok {
 		return errors.NotFound("room_not_found", "room(ID: %v not found", req.Id)
 	}
-
-	delete(m.rooms, id)
+	_, err := m.screening.DeleteRoom(context.TODO(), &api.DeleteRoomReq{RoomID: req.GetId()})
+	if err != nil {
+		return err
+	}
+	delete(m.rooms, req.GetId())
 	return nil
 }
 
 func (m *Service) GetRoom(ctx context.Context, req *api.GetRoomMsg, rsp *api.GetRoomResponseMsg) error {
-	id := req.Id
-	res, ok := m.rooms[id]
+	room, ok := m.rooms[req.GetId()]
 	if ok {
 		rsp.Room = &api.RoomData{
-			Name:      res.name,
-			Id:        id,
-			NrOfSeats: res.nrOfSeats,
+			Name:      room.name,
+			Id:        req.GetId(),
+			NrOfSeats: room.nrOfSeats,
 		}
 	} else {
 		return errors.NotFound("room_not_found", "room(ID: %v not found", req.Id)
@@ -57,15 +58,15 @@ func (m *Service) GetRoom(ctx context.Context, req *api.GetRoomMsg, rsp *api.Get
 }
 
 func (m *Service) GetRooms(ctx context.Context, req *api.GetRoomsMsg, rsp *api.GetRoomsResponseMsg) error {
-	var res []*api.RoomData
+	var rooms []*api.RoomData
 	for k, v := range m.rooms {
-		res = append(res, &api.RoomData{
+		rooms = append(rooms, &api.RoomData{
 			Name:      v.name,
 			Id:        k,
 			NrOfSeats: v.nrOfSeats,
 		})
 	}
-	rsp.Rooms = res
+	rsp.Rooms = rooms
 	return nil
 }
 
