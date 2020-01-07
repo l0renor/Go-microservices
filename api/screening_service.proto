@@ -29,7 +29,6 @@ message ChangeFreeSeatsReq {
 }
 
 message ChangeFreeSeatsResp {
-    bool success = 1;
 }
 
 message DeleteScreeningReq {
@@ -37,7 +36,6 @@ message DeleteScreeningReq {
 }
 
 message DeleteScreeningResp {
-    bool success = 1;
 }
 
 message GetScreeningReq {

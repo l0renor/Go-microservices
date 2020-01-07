@@ -41,14 +41,21 @@ func (service *Service) CreateScreening(ctx context.Context, req *api.CreateScre
 	return nil
 }
 
-func (service *Service) DeleteScreening(ctx context.Context, req *api.DeleteScreeningReq, resp *api.DeleteScreeningResp) error {
-	// TODO: Check reservations
-	if true {
-		delete(service.screenings, req.ScreeningID)
-		resp.Success = true
+func (service *Service) ChangeFreeSeats(ctx context.Context, req *api.ChangeFreeSeatsReq, resp *api.ChangeFreeSeatsResp) error {
+	screening, ok := service.screenings[req.GetScreeningID()]
+	if !ok {
+		return errors.NotFound("screening_not_found", "screening (ID: %v) not found", req.GetScreeningID())
+	} else if screening.freeSeats+req.GetChange() < 0 {
+		return errors.Conflict("already_reserved", "Screening (ID: %v) has already too much reservations", req.GetScreeningID())
 	} else {
-		resp.Success = false
+		screening.freeSeats += req.GetChange()
+		return nil
 	}
+}
+
+func (service *Service) DeleteScreening(ctx context.Context, req *api.DeleteScreeningReq, resp *api.DeleteScreeningResp) error {
+	delete(service.screenings, req.ScreeningID)
+	// TODO: Notify reservations
 	return nil
 }
 
@@ -92,8 +99,8 @@ func main() {
 	if err := api.RegisterScreening_ServiceHandler(service.Server(), &Service{
 		screenings:   make(map[int32]Screening),
 		nextID:       helpers.IDGenerator(),
-		roomService:  api.NewScreening_Service("room", room.Client()),
-		movieService: api.NewUser_Service("movie", movie.Client()),
+		roomService:  api.NewRoom_Service("room", room.Client()),
+		movieService: api.NewMovie_Service("movie", movie.Client()),
 	}); err != nil {
 		log.Fatal(err)
 	}
