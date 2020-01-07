@@ -50,11 +50,3 @@ func (m *movieService) GetMovies(ctx context.Context, req *api.GetMoviesMsg, rsp
 	rsp.Movies = res
 	return nil
 }
-
-func idGenerator() func() int32 {
-	i := 0
-	return func() int32 {
-		i++
-		return int32(i)
-	}
-}

@@ -46,10 +46,10 @@ func (service *Service) ActivateReservation(ctx context.Context, req *api.Activa
 	if ok {
 		screeningRsp, err := service.screeningService.GetScreening(ctx, &api.GetScreeningReq{ScreeningID: reservation.screeningID})
 		if err != nil {
-			return errors.NotFound("screening_not_found", "screening(ID: %v not found", req.ScreeningID)
+			return errors.NotFound("screening_not_found", "screening(ID: %v not found", reservation.screeningID)
 		}
 		if screeningRsp.NrOfFreeSeats < reservation.seats {
-			return errors.Conflict("Not_enought_Seats", "Not_enought_Seats needed %v; free %v", screeningRsp.NrOfFreeSeats, reservation.seats)
+			return errors.Conflict("Not_enough_Seats", "Not_enough_Seats needed %v; free %v", screeningRsp.NrOfFreeSeats, reservation.seats)
 		}
 		reservation.isActive = true
 		service.reservations[req.ReservationID] = reservation
@@ -57,10 +57,10 @@ func (service *Service) ActivateReservation(ctx context.Context, req *api.Activa
 			UserID: reservation.userID,
 		})
 		if err != nil {
-			return errors.NotFound("error reserving in userprofile", "error reserving in user profile")
+			return errors.NotFound("Error reserving in user profile", "error reserving in user profile")
 		}
 	} else {
-		return errors.InternalServerError("Reservation aktivation failed", "Reservation aktivation failed id %v", req.ReservationID)
+		return errors.InternalServerError("Reservation activation failed", "Reservation activation failed id %v", req.ReservationID)
 	}
 	return nil
 }
