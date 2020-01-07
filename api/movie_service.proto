@@ -13,19 +13,19 @@ message CreateMovieMsg {
 }
 
 message CreateMovieResponseMsg {
-    int32 id = 2;
+    int32 id = 1;
 }
 
 message DeleteMovieMsg {
-    int32 id = 3;
+    int32 id = 1;
 }
 
 message DeleteMovieResponseMsg {
-    bool success = 4;
+    bool success = 1;
 }
 
 message GetMovieMsg {
-    int32 id = 5;
+    int32 id = 1;
 }
 
 message GetMovieResponseMsg {
@@ -36,10 +36,10 @@ message GetMoviesMsg {
 }
 
 message GetMoviesResponseMsg {
-    repeated Tuple movies = 7;
+    repeated Tuple movies = 1;
 }
 
 message Tuple {
-    string title = 8;
-    int32 id = 9;
+    string title = 1;
+    int32 id = 2;
 }
