@@ -10,8 +10,9 @@ import (
 )
 
 type movieService struct {
-	movies map[int32]string
-	nextID func() int32
+	movies    map[int32]string
+	nextID    func() int32
+	screening api.Screening_Service
 }
 
 func (m *movieService) CreateMovie(ctx context.Context, req *api.CreateMovieMsg, rsp *api.CreateMovieResponseMsg) error {
@@ -22,20 +23,22 @@ func (m *movieService) CreateMovie(ctx context.Context, req *api.CreateMovieMsg,
 }
 
 func (m *movieService) DeleteMovie(ctx context.Context, req *api.DeleteMovieMsg, rsp *api.DeleteMovieResponseMsg) error {
-	id := req.Id
-	delete(m.movies, id)
-	_, ok := m.movies[id]
+	_, ok := m.movies[req.GetId()]
 	if !ok {
 		return errors.NotFound("movie_not_found", "Movie  with id %v not found  not found", req.Id)
 	}
+	_, err := m.screening.DeleteMovie(context.TODO(), &api.DeleteMovieReq{MovieID: req.GetId()})
+	if err != nil {
+		return err
+	}
+	delete(m.movies, req.GetId())
 	return nil
 }
 
 func (m *movieService) GetMovie(ctx context.Context, req *api.GetMovieMsg, rsp *api.GetMovieResponseMsg) error {
-	id := req.Id
-	res, ok := m.movies[id]
+	title, ok := m.movies[req.GetId()]
 	if ok {
-		rsp.Title = res
+		rsp.Title = title
 	} else {
 		return errors.NotFound("movie_not_found", "Movie  with id %v not found  not found", req.Id)
 	}
@@ -43,14 +46,14 @@ func (m *movieService) GetMovie(ctx context.Context, req *api.GetMovieMsg, rsp *
 }
 
 func (m *movieService) GetMovies(ctx context.Context, req *api.GetMoviesMsg, rsp *api.GetMoviesResponseMsg) error {
-	var res []*api.Tuple
+	var movies []*api.Tuple
 	for k, v := range m.movies {
-		res = append(res, &api.Tuple{
+		movies = append(movies, &api.Tuple{
 			Title: v,
 			Id:    k,
 		})
 	}
-	rsp.Movies = res
+	rsp.Movies = movies
 	return nil
 }
 
@@ -60,11 +63,15 @@ func main() {
 		micro.Version("latest"),
 	)
 
+	screening := micro.NewService()
+	screening.Init()
+
 	service.Init()
 
 	if err := api.RegisterMovie_ServiceHandler(service.Server(), &movieService{
-		movies: make(map[int32]string),
-		nextID: helpers.IDGenerator(),
+		movies:    make(map[int32]string),
+		nextID:    helpers.IDGenerator(),
+		screening: api.NewScreening_Service("screening", screening.Client()),
 	}); err != nil {
 		log.Fatal(err)
 	}

@@ -37,6 +37,8 @@ type Screening_Service interface {
 	CreateScreening(ctx context.Context, in *CreateScreeningReq, opts ...client.CallOption) (*CreateScreeningResp, error)
 	ChangeFreeSeats(ctx context.Context, in *ChangeFreeSeatsReq, opts ...client.CallOption) (*ChangeFreeSeatsResp, error)
 	DeleteScreening(ctx context.Context, in *DeleteScreeningReq, opts ...client.CallOption) (*DeleteScreeningResp, error)
+	DeleteRoom(ctx context.Context, in *DeleteRoomReq, opts ...client.CallOption) (*DeleteRoomResp, error)
+	DeleteMovie(ctx context.Context, in *DeleteMovieReq, opts ...client.CallOption) (*DeleteMovieResp, error)
 	GetScreening(ctx context.Context, in *GetScreeningReq, opts ...client.CallOption) (*GetScreeningResp, error)
 	GetScreenings(ctx context.Context, in *GetScreeningsReq, opts ...client.CallOption) (*GetScreeningsResp, error)
 }
@@ -89,6 +91,26 @@ func (c *screening_Service) DeleteScreening(ctx context.Context, in *DeleteScree
 	return out, nil
 }
 
+func (c *screening_Service) DeleteRoom(ctx context.Context, in *DeleteRoomReq, opts ...client.CallOption) (*DeleteRoomResp, error) {
+	req := c.c.NewRequest(c.name, "Screening_Service.DeleteRoom", in)
+	out := new(DeleteRoomResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *screening_Service) DeleteMovie(ctx context.Context, in *DeleteMovieReq, opts ...client.CallOption) (*DeleteMovieResp, error) {
+	req := c.c.NewRequest(c.name, "Screening_Service.DeleteMovie", in)
+	out := new(DeleteMovieResp)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *screening_Service) GetScreening(ctx context.Context, in *GetScreeningReq, opts ...client.CallOption) (*GetScreeningResp, error) {
 	req := c.c.NewRequest(c.name, "Screening_Service.GetScreening", in)
 	out := new(GetScreeningResp)
@@ -115,6 +137,8 @@ type Screening_ServiceHandler interface {
 	CreateScreening(context.Context, *CreateScreeningReq, *CreateScreeningResp) error
 	ChangeFreeSeats(context.Context, *ChangeFreeSeatsReq, *ChangeFreeSeatsResp) error
 	DeleteScreening(context.Context, *DeleteScreeningReq, *DeleteScreeningResp) error
+	DeleteRoom(context.Context, *DeleteRoomReq, *DeleteRoomResp) error
+	DeleteMovie(context.Context, *DeleteMovieReq, *DeleteMovieResp) error
 	GetScreening(context.Context, *GetScreeningReq, *GetScreeningResp) error
 	GetScreenings(context.Context, *GetScreeningsReq, *GetScreeningsResp) error
 }
@@ -124,6 +148,8 @@ func RegisterScreening_ServiceHandler(s server.Server, hdlr Screening_ServiceHan
 		CreateScreening(ctx context.Context, in *CreateScreeningReq, out *CreateScreeningResp) error
 		ChangeFreeSeats(ctx context.Context, in *ChangeFreeSeatsReq, out *ChangeFreeSeatsResp) error
 		DeleteScreening(ctx context.Context, in *DeleteScreeningReq, out *DeleteScreeningResp) error
+		DeleteRoom(ctx context.Context, in *DeleteRoomReq, out *DeleteRoomResp) error
+		DeleteMovie(ctx context.Context, in *DeleteMovieReq, out *DeleteMovieResp) error
 		GetScreening(ctx context.Context, in *GetScreeningReq, out *GetScreeningResp) error
 		GetScreenings(ctx context.Context, in *GetScreeningsReq, out *GetScreeningsResp) error
 	}
@@ -148,6 +174,14 @@ func (h *screening_ServiceHandler) ChangeFreeSeats(ctx context.Context, in *Chan
 
 func (h *screening_ServiceHandler) DeleteScreening(ctx context.Context, in *DeleteScreeningReq, out *DeleteScreeningResp) error {
 	return h.Screening_ServiceHandler.DeleteScreening(ctx, in, out)
+}
+
+func (h *screening_ServiceHandler) DeleteRoom(ctx context.Context, in *DeleteRoomReq, out *DeleteRoomResp) error {
+	return h.Screening_ServiceHandler.DeleteRoom(ctx, in, out)
+}
+
+func (h *screening_ServiceHandler) DeleteMovie(ctx context.Context, in *DeleteMovieReq, out *DeleteMovieResp) error {
+	return h.Screening_ServiceHandler.DeleteMovie(ctx, in, out)
 }
 
 func (h *screening_ServiceHandler) GetScreening(ctx context.Context, in *GetScreeningReq, out *GetScreeningResp) error {
