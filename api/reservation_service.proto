@@ -29,7 +29,6 @@ message ActivateReservationReq {
 }
 
 message ActivateReservationResp {
-    bool success = 1;
 }
 
 message DeleteReservationReq {
@@ -37,7 +36,6 @@ message DeleteReservationReq {
 }
 
 message DeleteReservationResp {
-    bool success = 1;
 }
 
 message GetReservationReq {
