@@ -37,8 +37,8 @@ type Screening_Service interface {
 	CreateScreening(ctx context.Context, in *CreateScreeningReq, opts ...client.CallOption) (*CreateScreeningResp, error)
 	ChangeFreeSeats(ctx context.Context, in *ChangeFreeSeatsReq, opts ...client.CallOption) (*ChangeFreeSeatsResp, error)
 	DeleteScreening(ctx context.Context, in *DeleteScreeningReq, opts ...client.CallOption) (*DeleteScreeningResp, error)
-	DeleteRoom(ctx context.Context, in *DeleteRoomReq, opts ...client.CallOption) (*DeleteRoomResp, error)
-	DeleteMovie(ctx context.Context, in *DeleteMovieReq, opts ...client.CallOption) (*DeleteMovieResp, error)
+	DeleteScreeningsWithRoom(ctx context.Context, in *DeleteScreeningsWithRoomReq, opts ...client.CallOption) (*DeleteScreeningsWithRoomResp, error)
+	DeleteScreeningsWithMovie(ctx context.Context, in *DeleteScreeningsWithMovieReq, opts ...client.CallOption) (*DeleteScreeningsWithMovieResp, error)
 	GetScreening(ctx context.Context, in *GetScreeningReq, opts ...client.CallOption) (*GetScreeningResp, error)
 	GetScreenings(ctx context.Context, in *GetScreeningsReq, opts ...client.CallOption) (*GetScreeningsResp, error)
 }
@@ -91,9 +91,9 @@ func (c *screening_Service) DeleteScreening(ctx context.Context, in *DeleteScree
 	return out, nil
 }
 
-func (c *screening_Service) DeleteRoom(ctx context.Context, in *DeleteRoomReq, opts ...client.CallOption) (*DeleteRoomResp, error) {
-	req := c.c.NewRequest(c.name, "Screening_Service.DeleteRoom", in)
-	out := new(DeleteRoomResp)
+func (c *screening_Service) DeleteScreeningsWithRoom(ctx context.Context, in *DeleteScreeningsWithRoomReq, opts ...client.CallOption) (*DeleteScreeningsWithRoomResp, error) {
+	req := c.c.NewRequest(c.name, "Screening_Service.DeleteScreeningsWithRoom", in)
+	out := new(DeleteScreeningsWithRoomResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -101,9 +101,9 @@ func (c *screening_Service) DeleteRoom(ctx context.Context, in *DeleteRoomReq, o
 	return out, nil
 }
 
-func (c *screening_Service) DeleteMovie(ctx context.Context, in *DeleteMovieReq, opts ...client.CallOption) (*DeleteMovieResp, error) {
-	req := c.c.NewRequest(c.name, "Screening_Service.DeleteMovie", in)
-	out := new(DeleteMovieResp)
+func (c *screening_Service) DeleteScreeningsWithMovie(ctx context.Context, in *DeleteScreeningsWithMovieReq, opts ...client.CallOption) (*DeleteScreeningsWithMovieResp, error) {
+	req := c.c.NewRequest(c.name, "Screening_Service.DeleteScreeningsWithMovie", in)
+	out := new(DeleteScreeningsWithMovieResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -137,8 +137,8 @@ type Screening_ServiceHandler interface {
 	CreateScreening(context.Context, *CreateScreeningReq, *CreateScreeningResp) error
 	ChangeFreeSeats(context.Context, *ChangeFreeSeatsReq, *ChangeFreeSeatsResp) error
 	DeleteScreening(context.Context, *DeleteScreeningReq, *DeleteScreeningResp) error
-	DeleteRoom(context.Context, *DeleteRoomReq, *DeleteRoomResp) error
-	DeleteMovie(context.Context, *DeleteMovieReq, *DeleteMovieResp) error
+	DeleteScreeningsWithRoom(context.Context, *DeleteScreeningsWithRoomReq, *DeleteScreeningsWithRoomResp) error
+	DeleteScreeningsWithMovie(context.Context, *DeleteScreeningsWithMovieReq, *DeleteScreeningsWithMovieResp) error
 	GetScreening(context.Context, *GetScreeningReq, *GetScreeningResp) error
 	GetScreenings(context.Context, *GetScreeningsReq, *GetScreeningsResp) error
 }
@@ -148,8 +148,8 @@ func RegisterScreening_ServiceHandler(s server.Server, hdlr Screening_ServiceHan
 		CreateScreening(ctx context.Context, in *CreateScreeningReq, out *CreateScreeningResp) error
 		ChangeFreeSeats(ctx context.Context, in *ChangeFreeSeatsReq, out *ChangeFreeSeatsResp) error
 		DeleteScreening(ctx context.Context, in *DeleteScreeningReq, out *DeleteScreeningResp) error
-		DeleteRoom(ctx context.Context, in *DeleteRoomReq, out *DeleteRoomResp) error
-		DeleteMovie(ctx context.Context, in *DeleteMovieReq, out *DeleteMovieResp) error
+		DeleteScreeningsWithRoom(ctx context.Context, in *DeleteScreeningsWithRoomReq, out *DeleteScreeningsWithRoomResp) error
+		DeleteScreeningsWithMovie(ctx context.Context, in *DeleteScreeningsWithMovieReq, out *DeleteScreeningsWithMovieResp) error
 		GetScreening(ctx context.Context, in *GetScreeningReq, out *GetScreeningResp) error
 		GetScreenings(ctx context.Context, in *GetScreeningsReq, out *GetScreeningsResp) error
 	}
@@ -176,12 +176,12 @@ func (h *screening_ServiceHandler) DeleteScreening(ctx context.Context, in *Dele
 	return h.Screening_ServiceHandler.DeleteScreening(ctx, in, out)
 }
 
-func (h *screening_ServiceHandler) DeleteRoom(ctx context.Context, in *DeleteRoomReq, out *DeleteRoomResp) error {
-	return h.Screening_ServiceHandler.DeleteRoom(ctx, in, out)
+func (h *screening_ServiceHandler) DeleteScreeningsWithRoom(ctx context.Context, in *DeleteScreeningsWithRoomReq, out *DeleteScreeningsWithRoomResp) error {
+	return h.Screening_ServiceHandler.DeleteScreeningsWithRoom(ctx, in, out)
 }
 
-func (h *screening_ServiceHandler) DeleteMovie(ctx context.Context, in *DeleteMovieReq, out *DeleteMovieResp) error {
-	return h.Screening_ServiceHandler.DeleteMovie(ctx, in, out)
+func (h *screening_ServiceHandler) DeleteScreeningsWithMovie(ctx context.Context, in *DeleteScreeningsWithMovieReq, out *DeleteScreeningsWithMovieResp) error {
+	return h.Screening_ServiceHandler.DeleteScreeningsWithMovie(ctx, in, out)
 }
 
 func (h *screening_ServiceHandler) GetScreening(ctx context.Context, in *GetScreeningReq, out *GetScreeningResp) error {

@@ -59,7 +59,7 @@ func (service *Service) DeleteScreening(ctx context.Context, req *api.DeleteScre
 	if !ok {
 		return errors.NotFound("ERR-NO-SCREENING", "Screening (ID: %d) not found!", req.GetScreeningID())
 	}
-	_, err := service.reservation.DeleteScreening(context.TODO(), &api.DeleteScreeningReq{ScreeningID: req.GetScreeningID()})
+	_, err := service.reservation.DeleteReservationsWithScreening(ctx, &api.DeleteReservationsWithScreeningReq{ScreeningID: req.GetScreeningID()})
 	if err != nil {
 		return err
 	}
@@ -67,7 +67,7 @@ func (service *Service) DeleteScreening(ctx context.Context, req *api.DeleteScre
 	return nil
 }
 
-func (service *Service) DeleteRoom(ctx context.Context, req *api.DeleteRoomReq, resp *api.DeleteRoomResp) error {
+func (service *Service) DeleteScreeningsWithRoom(ctx context.Context, req *api.DeleteScreeningsWithRoomReq, resp *api.DeleteScreeningsWithRoomResp) error {
 	ids := make([]int32, 0)
 	for id, screening := range service.screenings {
 		if screening.roomID == req.GetRoomID() {
@@ -80,7 +80,7 @@ func (service *Service) DeleteRoom(ctx context.Context, req *api.DeleteRoomReq, 
 	return nil
 }
 
-func (service *Service) DeleteMovie(ctx context.Context, req *api.DeleteMovieReq, resp *api.DeleteMovieResp) error {
+func (service *Service) DeleteScreeningsWithMovie(ctx context.Context, req *api.DeleteScreeningsWithMovieReq, resp *api.DeleteScreeningsWithMovieResp) error {
 	ids := make([]int32, 0)
 	for id, screening := range service.screenings {
 		if screening.movieID == req.GetMovieID() {
@@ -88,7 +88,10 @@ func (service *Service) DeleteMovie(ctx context.Context, req *api.DeleteMovieReq
 		}
 	}
 	for _, id := range ids {
-		delete(service.screenings, id)
+		err := service.DeleteScreening(ctx, &api.DeleteScreeningReq{ScreeningID: id}, &api.DeleteScreeningResp{})
+		if err != nil {
+			return err
+		}
 	}
 	return nil
 }

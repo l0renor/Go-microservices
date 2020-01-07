@@ -8,7 +8,7 @@ service Reservation_Service {
     }
     rpc DeleteReservation (DeleteReservationReq) returns (DeleteReservationResp) {
     }
-    rpc DeleteScreening (DeleteScreeningReq) returns (DeleteScreeningResp) {
+    rpc DeleteReservationsWithScreening (DeleteReservationsWithScreeningReq) returns (DeleteReservationsWithScreeningResp) {
     }
     rpc GetReservation (GetReservationReq) returns (GetReservationResp) {
     }
@@ -40,11 +40,11 @@ message DeleteReservationReq {
 message DeleteReservationResp {
 }
 
-message DeleteScreeningReq {
+message DeleteReservationsWithScreeningReq {
     int32 screeningID = 1;
 }
 
-message DeleteScreeningResp {
+message DeleteReservationsWithScreeningResp {
 }
 
 message GetReservationReq {

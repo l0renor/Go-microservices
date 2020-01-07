@@ -403,22 +403,22 @@ func (m *GetUsersResp_User) GetName() string {
 	return ""
 }
 
-type AddReservationReq struct {
+type AddUserReservationReq struct {
 	UserID        int32 `protobuf:"varint,1,opt,name=userID,proto3" json:"userID,omitempty"`
 	ReservationID int32 `protobuf:"varint,2,opt,name=reservationID,proto3" json:"reservationID,omitempty"`
 }
 
-func (m *AddReservationReq) Reset()      { *m = AddReservationReq{} }
-func (*AddReservationReq) ProtoMessage() {}
-func (*AddReservationReq) Descriptor() ([]byte, []int) {
+func (m *AddUserReservationReq) Reset()      { *m = AddUserReservationReq{} }
+func (*AddUserReservationReq) ProtoMessage() {}
+func (*AddUserReservationReq) Descriptor() ([]byte, []int) {
 	return fileDescriptor_98283fe9d58e3946, []int{8}
 }
-func (m *AddReservationReq) XXX_Unmarshal(b []byte) error {
+func (m *AddUserReservationReq) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *AddReservationReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *AddUserReservationReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_AddReservationReq.Marshal(b, m, deterministic)
+		return xxx_messageInfo_AddUserReservationReq.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -428,46 +428,46 @@ func (m *AddReservationReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, e
 		return b[:n], nil
 	}
 }
-func (m *AddReservationReq) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_AddReservationReq.Merge(m, src)
+func (m *AddUserReservationReq) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AddUserReservationReq.Merge(m, src)
 }
-func (m *AddReservationReq) XXX_Size() int {
+func (m *AddUserReservationReq) XXX_Size() int {
 	return m.Size()
 }
-func (m *AddReservationReq) XXX_DiscardUnknown() {
-	xxx_messageInfo_AddReservationReq.DiscardUnknown(m)
+func (m *AddUserReservationReq) XXX_DiscardUnknown() {
+	xxx_messageInfo_AddUserReservationReq.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_AddReservationReq proto.InternalMessageInfo
+var xxx_messageInfo_AddUserReservationReq proto.InternalMessageInfo
 
-func (m *AddReservationReq) GetUserID() int32 {
+func (m *AddUserReservationReq) GetUserID() int32 {
 	if m != nil {
 		return m.UserID
 	}
 	return 0
 }
 
-func (m *AddReservationReq) GetReservationID() int32 {
+func (m *AddUserReservationReq) GetReservationID() int32 {
 	if m != nil {
 		return m.ReservationID
 	}
 	return 0
 }
 
-type AddReservationResp struct {
+type AddUserReservationResp struct {
 }
 
-func (m *AddReservationResp) Reset()      { *m = AddReservationResp{} }
-func (*AddReservationResp) ProtoMessage() {}
-func (*AddReservationResp) Descriptor() ([]byte, []int) {
+func (m *AddUserReservationResp) Reset()      { *m = AddUserReservationResp{} }
+func (*AddUserReservationResp) ProtoMessage() {}
+func (*AddUserReservationResp) Descriptor() ([]byte, []int) {
 	return fileDescriptor_98283fe9d58e3946, []int{9}
 }
-func (m *AddReservationResp) XXX_Unmarshal(b []byte) error {
+func (m *AddUserReservationResp) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *AddReservationResp) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *AddUserReservationResp) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_AddReservationResp.Marshal(b, m, deterministic)
+		return xxx_messageInfo_AddUserReservationResp.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -477,34 +477,34 @@ func (m *AddReservationResp) XXX_Marshal(b []byte, deterministic bool) ([]byte, 
 		return b[:n], nil
 	}
 }
-func (m *AddReservationResp) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_AddReservationResp.Merge(m, src)
+func (m *AddUserReservationResp) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AddUserReservationResp.Merge(m, src)
 }
-func (m *AddReservationResp) XXX_Size() int {
+func (m *AddUserReservationResp) XXX_Size() int {
 	return m.Size()
 }
-func (m *AddReservationResp) XXX_DiscardUnknown() {
-	xxx_messageInfo_AddReservationResp.DiscardUnknown(m)
+func (m *AddUserReservationResp) XXX_DiscardUnknown() {
+	xxx_messageInfo_AddUserReservationResp.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_AddReservationResp proto.InternalMessageInfo
+var xxx_messageInfo_AddUserReservationResp proto.InternalMessageInfo
 
-type DeleteReservationReq struct {
+type DeleteUserReservationReq struct {
 	UserID        int32 `protobuf:"varint,1,opt,name=userID,proto3" json:"userID,omitempty"`
 	ReservationID int32 `protobuf:"varint,2,opt,name=reservationID,proto3" json:"reservationID,omitempty"`
 }
 
-func (m *DeleteReservationReq) Reset()      { *m = DeleteReservationReq{} }
-func (*DeleteReservationReq) ProtoMessage() {}
-func (*DeleteReservationReq) Descriptor() ([]byte, []int) {
+func (m *DeleteUserReservationReq) Reset()      { *m = DeleteUserReservationReq{} }
+func (*DeleteUserReservationReq) ProtoMessage() {}
+func (*DeleteUserReservationReq) Descriptor() ([]byte, []int) {
 	return fileDescriptor_98283fe9d58e3946, []int{10}
 }
-func (m *DeleteReservationReq) XXX_Unmarshal(b []byte) error {
+func (m *DeleteUserReservationReq) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *DeleteReservationReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *DeleteUserReservationReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_DeleteReservationReq.Marshal(b, m, deterministic)
+		return xxx_messageInfo_DeleteUserReservationReq.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -514,46 +514,46 @@ func (m *DeleteReservationReq) XXX_Marshal(b []byte, deterministic bool) ([]byte
 		return b[:n], nil
 	}
 }
-func (m *DeleteReservationReq) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DeleteReservationReq.Merge(m, src)
+func (m *DeleteUserReservationReq) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DeleteUserReservationReq.Merge(m, src)
 }
-func (m *DeleteReservationReq) XXX_Size() int {
+func (m *DeleteUserReservationReq) XXX_Size() int {
 	return m.Size()
 }
-func (m *DeleteReservationReq) XXX_DiscardUnknown() {
-	xxx_messageInfo_DeleteReservationReq.DiscardUnknown(m)
+func (m *DeleteUserReservationReq) XXX_DiscardUnknown() {
+	xxx_messageInfo_DeleteUserReservationReq.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_DeleteReservationReq proto.InternalMessageInfo
+var xxx_messageInfo_DeleteUserReservationReq proto.InternalMessageInfo
 
-func (m *DeleteReservationReq) GetUserID() int32 {
+func (m *DeleteUserReservationReq) GetUserID() int32 {
 	if m != nil {
 		return m.UserID
 	}
 	return 0
 }
 
-func (m *DeleteReservationReq) GetReservationID() int32 {
+func (m *DeleteUserReservationReq) GetReservationID() int32 {
 	if m != nil {
 		return m.ReservationID
 	}
 	return 0
 }
 
-type DeleteReservationResp struct {
+type DeleteUserReservationResp struct {
 }
 
-func (m *DeleteReservationResp) Reset()      { *m = DeleteReservationResp{} }
-func (*DeleteReservationResp) ProtoMessage() {}
-func (*DeleteReservationResp) Descriptor() ([]byte, []int) {
+func (m *DeleteUserReservationResp) Reset()      { *m = DeleteUserReservationResp{} }
+func (*DeleteUserReservationResp) ProtoMessage() {}
+func (*DeleteUserReservationResp) Descriptor() ([]byte, []int) {
 	return fileDescriptor_98283fe9d58e3946, []int{11}
 }
-func (m *DeleteReservationResp) XXX_Unmarshal(b []byte) error {
+func (m *DeleteUserReservationResp) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *DeleteReservationResp) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *DeleteUserReservationResp) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_DeleteReservationResp.Marshal(b, m, deterministic)
+		return xxx_messageInfo_DeleteUserReservationResp.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -563,17 +563,17 @@ func (m *DeleteReservationResp) XXX_Marshal(b []byte, deterministic bool) ([]byt
 		return b[:n], nil
 	}
 }
-func (m *DeleteReservationResp) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DeleteReservationResp.Merge(m, src)
+func (m *DeleteUserReservationResp) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DeleteUserReservationResp.Merge(m, src)
 }
-func (m *DeleteReservationResp) XXX_Size() int {
+func (m *DeleteUserReservationResp) XXX_Size() int {
 	return m.Size()
 }
-func (m *DeleteReservationResp) XXX_DiscardUnknown() {
-	xxx_messageInfo_DeleteReservationResp.DiscardUnknown(m)
+func (m *DeleteUserReservationResp) XXX_DiscardUnknown() {
+	xxx_messageInfo_DeleteUserReservationResp.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_DeleteReservationResp proto.InternalMessageInfo
+var xxx_messageInfo_DeleteUserReservationResp proto.InternalMessageInfo
 
 func init() {
 	proto.RegisterType((*CreateUserReq)(nil), "CreateUserReq")
@@ -585,43 +585,43 @@ func init() {
 	proto.RegisterType((*GetUsersReq)(nil), "GetUsersReq")
 	proto.RegisterType((*GetUsersResp)(nil), "GetUsersResp")
 	proto.RegisterType((*GetUsersResp_User)(nil), "GetUsersResp.User")
-	proto.RegisterType((*AddReservationReq)(nil), "AddReservationReq")
-	proto.RegisterType((*AddReservationResp)(nil), "AddReservationResp")
-	proto.RegisterType((*DeleteReservationReq)(nil), "DeleteReservationReq")
-	proto.RegisterType((*DeleteReservationResp)(nil), "DeleteReservationResp")
+	proto.RegisterType((*AddUserReservationReq)(nil), "AddUserReservationReq")
+	proto.RegisterType((*AddUserReservationResp)(nil), "AddUserReservationResp")
+	proto.RegisterType((*DeleteUserReservationReq)(nil), "DeleteUserReservationReq")
+	proto.RegisterType((*DeleteUserReservationResp)(nil), "DeleteUserReservationResp")
 }
 
 func init() { proto.RegisterFile("api/user_service.proto", fileDescriptor_98283fe9d58e3946) }
 
 var fileDescriptor_98283fe9d58e3946 = []byte{
-	// 421 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x53, 0x3d, 0x13, 0xd2, 0x40,
-	0x10, 0xbd, 0xe3, 0x4b, 0x5d, 0x92, 0x20, 0x2b, 0x20, 0x93, 0xe2, 0x06, 0x4f, 0x46, 0x63, 0x73,
-	0xcc, 0x60, 0xe5, 0x58, 0xa9, 0x99, 0x71, 0x28, 0x8d, 0xda, 0xd8, 0x30, 0x51, 0xae, 0xc8, 0x0c,
-	0xc2, 0x91, 0x8b, 0xd6, 0xfe, 0x04, 0x7f, 0x86, 0xbf, 0xc4, 0xb1, 0xa4, 0xa4, 0x94, 0xd0, 0x58,
-	0xf2, 0x13, 0x9c, 0x04, 0x24, 0x09, 0x04, 0x6d, 0xec, 0x76, 0x93, 0xb7, 0x6f, 0x37, 0xef, 0xbd,
-	0x40, 0xcf, 0x57, 0xc1, 0xe8, 0x93, 0x96, 0xe1, 0x54, 0xcb, 0xf0, 0x73, 0xf0, 0x41, 0x0a, 0x15,
-	0x2e, 0xa3, 0x25, 0xbf, 0x0f, 0xe6, 0x8b, 0x50, 0xfa, 0x91, 0x7c, 0xab, 0x65, 0xe8, 0xc9, 0x15,
-	0x22, 0xd4, 0x16, 0xfe, 0x47, 0xd9, 0xa7, 0x03, 0xea, 0xdc, 0xf2, 0xd2, 0x9a, 0x3b, 0x60, 0xe5,
-	0x41, 0x5a, 0x61, 0x0f, 0x1a, 0x09, 0xd9, 0xc4, 0x4d, 0x71, 0x75, 0xef, 0xd8, 0xf1, 0x87, 0x60,
-	0xba, 0x72, 0x2e, 0x33, 0xba, 0x6b, 0xc0, 0xdb, 0x60, 0xe5, 0x81, 0x5a, 0xf1, 0x21, 0xc0, 0x4b,
-	0x19, 0xfd, 0x6b, 0xee, 0x1e, 0x34, 0x4f, 0x28, 0xad, 0x4a, 0xaf, 0x35, 0x4f, 0x10, 0xed, 0xc9,
-	0x15, 0x9f, 0x83, 0x91, 0xb5, 0x5a, 0xa1, 0x03, 0xf5, 0xb4, 0xe9, 0xd3, 0x41, 0xd5, 0x69, 0x8e,
-	0x51, 0xe4, 0xdf, 0x8a, 0x94, 0xf9, 0x00, 0xb0, 0xc7, 0x50, 0x4b, 0x8a, 0x6b, 0xb7, 0x9c, 0x96,
-	0x57, 0x72, 0xcb, 0x5f, 0x41, 0xfb, 0xd9, 0x6c, 0xe6, 0xc9, 0x44, 0x65, 0x3f, 0x0a, 0x96, 0x8b,
-	0xbf, 0x7c, 0x0c, 0x0e, 0xc1, 0x0c, 0x33, 0xe4, 0xc4, 0x4d, 0x99, 0xea, 0x5e, 0xf1, 0x21, 0xef,
-	0x00, 0x9e, 0x53, 0x6a, 0xc5, 0xdf, 0x40, 0xe7, 0x20, 0xe0, 0x7f, 0xdd, 0x75, 0x17, 0xba, 0x25,
-	0xac, 0x5a, 0x8d, 0xbf, 0x57, 0xc0, 0x48, 0xc4, 0x98, 0xbe, 0x3e, 0xc4, 0x07, 0x47, 0x00, 0x59,
-	0x26, 0xd0, 0x12, 0x85, 0x14, 0xd9, 0x2d, 0x51, 0x0c, 0x0c, 0x27, 0xc9, 0x40, 0xe6, 0x38, 0x5a,
-	0xa2, 0x90, 0x13, 0xbb, 0x25, 0xce, 0xe2, 0x40, 0xf0, 0x01, 0xdc, 0x38, 0x5a, 0x83, 0x4d, 0x91,
-	0x45, 0xc3, 0x36, 0x44, 0x2e, 0x01, 0x9c, 0xe0, 0x23, 0xb8, 0xf9, 0xc7, 0x42, 0x34, 0x72, 0x6e,
-	0xae, 0x6c, 0xb3, 0xe0, 0x2d, 0x27, 0xf8, 0x14, 0xac, 0xa2, 0x94, 0x88, 0xe2, 0xc2, 0x2e, 0xfb,
-	0x8e, 0x28, 0xd1, 0x9b, 0xa0, 0x0b, 0xed, 0x0b, 0x6d, 0xb0, 0x2b, 0xca, 0x5c, 0xb0, 0x7b, 0xa2,
-	0x54, 0x46, 0x4e, 0x9e, 0x3f, 0x59, 0x6f, 0x19, 0xd9, 0x6c, 0x19, 0xd9, 0x6f, 0x19, 0xfd, 0x12,
-	0x33, 0xfa, 0x2d, 0x66, 0xf4, 0x47, 0xcc, 0xe8, 0x3a, 0x66, 0xf4, 0x67, 0xcc, 0xe8, 0xaf, 0x98,
-	0x91, 0x7d, 0xcc, 0xe8, 0xd7, 0x1d, 0x23, 0xeb, 0x1d, 0x23, 0x9b, 0x1d, 0x23, 0xef, 0xaa, 0xbe,
-	0x0a, 0xde, 0x37, 0xd2, 0x5f, 0xf6, 0xf1, 0xef, 0x00, 0x00, 0x00, 0xff, 0xff, 0x91, 0xa1, 0xe2,
-	0xba, 0xcc, 0x03, 0x00, 0x00,
+	// 425 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x53, 0xb1, 0x8e, 0xd3, 0x40,
+	0x10, 0xdd, 0xbd, 0xbb, 0x1c, 0x30, 0xb1, 0x7d, 0x68, 0xa4, 0x33, 0xbe, 0x45, 0x5a, 0x85, 0x25,
+	0x02, 0xd3, 0x6c, 0xa4, 0x50, 0x51, 0x02, 0x91, 0xa2, 0x74, 0xc8, 0x28, 0x12, 0xa2, 0x89, 0x0c,
+	0xd9, 0xc2, 0x52, 0x48, 0x36, 0x5e, 0x93, 0x9a, 0x4f, 0xe0, 0x33, 0xf8, 0x14, 0xca, 0x94, 0xa9,
+	0x10, 0x71, 0x1a, 0xca, 0x7c, 0x02, 0xb2, 0x13, 0x62, 0x1b, 0x6c, 0x68, 0xe8, 0x76, 0xd6, 0x6f,
+	0xde, 0x8c, 0xdf, 0x7b, 0x0b, 0x6e, 0xa8, 0xa3, 0xde, 0x47, 0xa3, 0xe2, 0x89, 0x51, 0xf1, 0x2a,
+	0x7a, 0xaf, 0xa4, 0x8e, 0x17, 0xc9, 0x42, 0x3c, 0x04, 0xfb, 0x65, 0xac, 0xc2, 0x44, 0x8d, 0x8d,
+	0x8a, 0x03, 0xb5, 0x44, 0x84, 0x8b, 0x79, 0xf8, 0x41, 0x79, 0xb4, 0x43, 0xfd, 0x3b, 0x41, 0x7e,
+	0x16, 0x3e, 0x38, 0x65, 0x90, 0xd1, 0xe8, 0xc2, 0x65, 0x46, 0x36, 0x1a, 0xe4, 0xb8, 0x56, 0x70,
+	0xac, 0xc4, 0x63, 0xb0, 0x07, 0x6a, 0xa6, 0x0a, 0xba, 0x26, 0xe0, 0x5d, 0x70, 0xca, 0x40, 0xa3,
+	0x45, 0x17, 0x60, 0xa8, 0x92, 0x7f, 0xf5, 0x3d, 0x80, 0xf6, 0x09, 0x65, 0x74, 0xed, 0xb6, 0xf6,
+	0x09, 0x62, 0x02, 0xb5, 0x14, 0x33, 0xb0, 0x8a, 0xd2, 0x68, 0xf4, 0xa1, 0x95, 0x17, 0x1e, 0xed,
+	0x9c, 0xfb, 0xed, 0x3e, 0xca, 0xf2, 0x57, 0x99, 0x33, 0x1f, 0x00, 0xac, 0x0f, 0x17, 0xd9, 0xa1,
+	0x69, 0x97, 0xd3, 0xf0, 0xb3, 0xd2, 0xf0, 0x31, 0x5c, 0x3f, 0x9f, 0x4e, 0x8f, 0xfb, 0xa9, 0x78,
+	0x15, 0x26, 0xd1, 0x62, 0xfe, 0x97, 0x1f, 0xc2, 0x2e, 0xd8, 0x71, 0x81, 0x1c, 0x0d, 0x72, 0xb6,
+	0x56, 0x50, 0xbd, 0x14, 0x1e, 0xb8, 0x75, 0xb4, 0x46, 0x8b, 0x37, 0xe0, 0x55, 0x84, 0xfc, 0x7f,
+	0x33, 0xef, 0xc3, 0x4d, 0x03, 0xb3, 0xd1, 0xfd, 0x6f, 0x67, 0x60, 0x65, 0xf7, 0x93, 0xd7, 0x87,
+	0x38, 0x61, 0x0f, 0xa0, 0xc8, 0x08, 0x3a, 0xb2, 0x92, 0x2a, 0x76, 0x25, 0xab, 0x01, 0x12, 0x24,
+	0x6b, 0x28, 0xe8, 0xd1, 0x91, 0x95, 0xdc, 0xb0, 0x2b, 0xf9, 0x5b, 0x3c, 0x08, 0x3e, 0x82, 0x5b,
+	0x47, 0xab, 0xb0, 0x2d, 0x8b, 0xa8, 0x30, 0x4b, 0x96, 0x12, 0x21, 0x08, 0x3e, 0x81, 0xdb, 0xbf,
+	0x2c, 0x45, 0xab, 0xe4, 0xee, 0x92, 0xd9, 0x15, 0xaf, 0x05, 0xc1, 0x21, 0xe0, 0x9f, 0xb2, 0xa2,
+	0x2b, 0x6b, 0x2d, 0x64, 0xf7, 0x64, 0x83, 0x07, 0x04, 0x5f, 0xc1, 0x75, 0xad, 0x56, 0x78, 0x23,
+	0x9b, 0xdc, 0x61, 0x4c, 0x36, 0xca, 0x2b, 0xc8, 0x8b, 0x67, 0xeb, 0x2d, 0x27, 0x9b, 0x2d, 0x27,
+	0xfb, 0x2d, 0xa7, 0x9f, 0x52, 0x4e, 0xbf, 0xa4, 0x9c, 0x7e, 0x4d, 0x39, 0x5d, 0xa7, 0x9c, 0x7e,
+	0x4f, 0x39, 0xfd, 0x91, 0x72, 0xb2, 0x4f, 0x39, 0xfd, 0xbc, 0xe3, 0x64, 0xbd, 0xe3, 0x64, 0xb3,
+	0xe3, 0xe4, 0xed, 0x79, 0xa8, 0xa3, 0x77, 0x97, 0xf9, 0xd3, 0x7e, 0xfa, 0x33, 0x00, 0x00, 0xff,
+	0xff, 0x48, 0x0e, 0x55, 0xf3, 0xf4, 0x03, 0x00, 0x00,
 }
 
 func (this *CreateUserReq) Equal(that interface{}) bool {
@@ -842,14 +842,14 @@ func (this *GetUsersResp_User) Equal(that interface{}) bool {
 	}
 	return true
 }
-func (this *AddReservationReq) Equal(that interface{}) bool {
+func (this *AddUserReservationReq) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
 	}
 
-	that1, ok := that.(*AddReservationReq)
+	that1, ok := that.(*AddUserReservationReq)
 	if !ok {
-		that2, ok := that.(AddReservationReq)
+		that2, ok := that.(AddUserReservationReq)
 		if ok {
 			that1 = &that2
 		} else {
@@ -869,14 +869,14 @@ func (this *AddReservationReq) Equal(that interface{}) bool {
 	}
 	return true
 }
-func (this *AddReservationResp) Equal(that interface{}) bool {
+func (this *AddUserReservationResp) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
 	}
 
-	that1, ok := that.(*AddReservationResp)
+	that1, ok := that.(*AddUserReservationResp)
 	if !ok {
-		that2, ok := that.(AddReservationResp)
+		that2, ok := that.(AddUserReservationResp)
 		if ok {
 			that1 = &that2
 		} else {
@@ -890,14 +890,14 @@ func (this *AddReservationResp) Equal(that interface{}) bool {
 	}
 	return true
 }
-func (this *DeleteReservationReq) Equal(that interface{}) bool {
+func (this *DeleteUserReservationReq) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
 	}
 
-	that1, ok := that.(*DeleteReservationReq)
+	that1, ok := that.(*DeleteUserReservationReq)
 	if !ok {
-		that2, ok := that.(DeleteReservationReq)
+		that2, ok := that.(DeleteUserReservationReq)
 		if ok {
 			that1 = &that2
 		} else {
@@ -917,14 +917,14 @@ func (this *DeleteReservationReq) Equal(that interface{}) bool {
 	}
 	return true
 }
-func (this *DeleteReservationResp) Equal(that interface{}) bool {
+func (this *DeleteUserReservationResp) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
 	}
 
-	that1, ok := that.(*DeleteReservationResp)
+	that1, ok := that.(*DeleteUserReservationResp)
 	if !ok {
-		that2, ok := that.(DeleteReservationResp)
+		that2, ok := that.(DeleteUserReservationResp)
 		if ok {
 			that1 = &that2
 		} else {
@@ -1029,43 +1029,43 @@ func (this *GetUsersResp_User) GoString() string {
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
-func (this *AddReservationReq) GoString() string {
+func (this *AddUserReservationReq) GoString() string {
 	if this == nil {
 		return "nil"
 	}
 	s := make([]string, 0, 6)
-	s = append(s, "&api.AddReservationReq{")
+	s = append(s, "&api.AddUserReservationReq{")
 	s = append(s, "UserID: "+fmt.Sprintf("%#v", this.UserID)+",\n")
 	s = append(s, "ReservationID: "+fmt.Sprintf("%#v", this.ReservationID)+",\n")
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
-func (this *AddReservationResp) GoString() string {
+func (this *AddUserReservationResp) GoString() string {
 	if this == nil {
 		return "nil"
 	}
 	s := make([]string, 0, 4)
-	s = append(s, "&api.AddReservationResp{")
+	s = append(s, "&api.AddUserReservationResp{")
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
-func (this *DeleteReservationReq) GoString() string {
+func (this *DeleteUserReservationReq) GoString() string {
 	if this == nil {
 		return "nil"
 	}
 	s := make([]string, 0, 6)
-	s = append(s, "&api.DeleteReservationReq{")
+	s = append(s, "&api.DeleteUserReservationReq{")
 	s = append(s, "UserID: "+fmt.Sprintf("%#v", this.UserID)+",\n")
 	s = append(s, "ReservationID: "+fmt.Sprintf("%#v", this.ReservationID)+",\n")
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
-func (this *DeleteReservationResp) GoString() string {
+func (this *DeleteUserReservationResp) GoString() string {
 	if this == nil {
 		return "nil"
 	}
 	s := make([]string, 0, 4)
-	s = append(s, "&api.DeleteReservationResp{")
+	s = append(s, "&api.DeleteUserReservationResp{")
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
@@ -1339,7 +1339,7 @@ func (m *GetUsersResp_User) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *AddReservationReq) Marshal() (dAtA []byte, err error) {
+func (m *AddUserReservationReq) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -1349,12 +1349,12 @@ func (m *AddReservationReq) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *AddReservationReq) MarshalTo(dAtA []byte) (int, error) {
+func (m *AddUserReservationReq) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *AddReservationReq) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *AddUserReservationReq) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -1372,7 +1372,7 @@ func (m *AddReservationReq) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *AddReservationResp) Marshal() (dAtA []byte, err error) {
+func (m *AddUserReservationResp) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -1382,12 +1382,12 @@ func (m *AddReservationResp) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *AddReservationResp) MarshalTo(dAtA []byte) (int, error) {
+func (m *AddUserReservationResp) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *AddReservationResp) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *AddUserReservationResp) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -1395,7 +1395,7 @@ func (m *AddReservationResp) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *DeleteReservationReq) Marshal() (dAtA []byte, err error) {
+func (m *DeleteUserReservationReq) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -1405,12 +1405,12 @@ func (m *DeleteReservationReq) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *DeleteReservationReq) MarshalTo(dAtA []byte) (int, error) {
+func (m *DeleteUserReservationReq) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *DeleteReservationReq) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *DeleteUserReservationReq) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -1428,7 +1428,7 @@ func (m *DeleteReservationReq) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *DeleteReservationResp) Marshal() (dAtA []byte, err error) {
+func (m *DeleteUserReservationResp) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -1438,12 +1438,12 @@ func (m *DeleteReservationResp) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *DeleteReservationResp) MarshalTo(dAtA []byte) (int, error) {
+func (m *DeleteUserReservationResp) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *DeleteReservationResp) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *DeleteUserReservationResp) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -1573,7 +1573,7 @@ func (m *GetUsersResp_User) Size() (n int) {
 	return n
 }
 
-func (m *AddReservationReq) Size() (n int) {
+func (m *AddUserReservationReq) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -1588,7 +1588,7 @@ func (m *AddReservationReq) Size() (n int) {
 	return n
 }
 
-func (m *AddReservationResp) Size() (n int) {
+func (m *AddUserReservationResp) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -1597,7 +1597,7 @@ func (m *AddReservationResp) Size() (n int) {
 	return n
 }
 
-func (m *DeleteReservationReq) Size() (n int) {
+func (m *DeleteUserReservationReq) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -1612,7 +1612,7 @@ func (m *DeleteReservationReq) Size() (n int) {
 	return n
 }
 
-func (m *DeleteReservationResp) Size() (n int) {
+func (m *DeleteUserReservationResp) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -1721,42 +1721,42 @@ func (this *GetUsersResp_User) String() string {
 	}, "")
 	return s
 }
-func (this *AddReservationReq) String() string {
+func (this *AddUserReservationReq) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&AddReservationReq{`,
+	s := strings.Join([]string{`&AddUserReservationReq{`,
 		`UserID:` + fmt.Sprintf("%v", this.UserID) + `,`,
 		`ReservationID:` + fmt.Sprintf("%v", this.ReservationID) + `,`,
 		`}`,
 	}, "")
 	return s
 }
-func (this *AddReservationResp) String() string {
+func (this *AddUserReservationResp) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&AddReservationResp{`,
+	s := strings.Join([]string{`&AddUserReservationResp{`,
 		`}`,
 	}, "")
 	return s
 }
-func (this *DeleteReservationReq) String() string {
+func (this *DeleteUserReservationReq) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&DeleteReservationReq{`,
+	s := strings.Join([]string{`&DeleteUserReservationReq{`,
 		`UserID:` + fmt.Sprintf("%v", this.UserID) + `,`,
 		`ReservationID:` + fmt.Sprintf("%v", this.ReservationID) + `,`,
 		`}`,
 	}, "")
 	return s
 }
-func (this *DeleteReservationResp) String() string {
+func (this *DeleteUserReservationResp) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&DeleteReservationResp{`,
+	s := strings.Join([]string{`&DeleteUserReservationResp{`,
 		`}`,
 	}, "")
 	return s
@@ -2452,7 +2452,7 @@ func (m *GetUsersResp_User) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *AddReservationReq) Unmarshal(dAtA []byte) error {
+func (m *AddUserReservationReq) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -2475,10 +2475,10 @@ func (m *AddReservationReq) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: AddReservationReq: wiretype end group for non-group")
+			return fmt.Errorf("proto: AddUserReservationReq: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: AddReservationReq: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: AddUserReservationReq: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
@@ -2543,7 +2543,7 @@ func (m *AddReservationReq) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *AddReservationResp) Unmarshal(dAtA []byte) error {
+func (m *AddUserReservationResp) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -2566,10 +2566,10 @@ func (m *AddReservationResp) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: AddReservationResp: wiretype end group for non-group")
+			return fmt.Errorf("proto: AddUserReservationResp: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: AddReservationResp: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: AddUserReservationResp: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		default:
@@ -2596,7 +2596,7 @@ func (m *AddReservationResp) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *DeleteReservationReq) Unmarshal(dAtA []byte) error {
+func (m *DeleteUserReservationReq) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -2619,10 +2619,10 @@ func (m *DeleteReservationReq) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: DeleteReservationReq: wiretype end group for non-group")
+			return fmt.Errorf("proto: DeleteUserReservationReq: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: DeleteReservationReq: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: DeleteUserReservationReq: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
@@ -2687,7 +2687,7 @@ func (m *DeleteReservationReq) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *DeleteReservationResp) Unmarshal(dAtA []byte) error {
+func (m *DeleteUserReservationResp) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -2710,10 +2710,10 @@ func (m *DeleteReservationResp) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: DeleteReservationResp: wiretype end group for non-group")
+			return fmt.Errorf("proto: DeleteUserReservationResp: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: DeleteReservationResp: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: DeleteUserReservationResp: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		default:

@@ -35,7 +35,7 @@ func (m *Service) DeleteRoom(ctx context.Context, req *api.DeleteRoomMsg, rsp *a
 	if !ok {
 		return errors.NotFound("ERR-NO-ROOM", "Room (ID: %d) not found!", req.GetId())
 	}
-	_, err := m.screening.DeleteRoom(context.TODO(), &api.DeleteRoomReq{RoomID: req.GetId()})
+	_, err := m.screening.DeleteScreeningsWithRoom(context.TODO(), &api.DeleteScreeningsWithRoomReq{RoomID: req.GetId()})
 	if err != nil {
 		return err
 	}

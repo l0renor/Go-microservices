@@ -83,7 +83,7 @@ func (service *Service) DeleteReservation(ctx context.Context, req *api.DeleteRe
 	return nil
 }
 
-func (service *Service) DeleteScreening(ctx context.Context, req *api.DeleteScreeningReq, resp *api.DeleteScreeningResp) error {
+func (service *Service) DeleteReservationsWithScreening(ctx context.Context, req *api.DeleteReservationsWithScreeningReq, resp *api.DeleteReservationsWithScreeningResp) error {
 	ids := make([]int32, 0)
 	for id, reservation := range service.reservations {
 		if reservation.screeningID == req.GetScreeningID() {
@@ -91,7 +91,10 @@ func (service *Service) DeleteScreening(ctx context.Context, req *api.DeleteScre
 		}
 	}
 	for _, id := range ids {
-		delete(service.reservations, id)
+		err := service.DeleteReservation(ctx, &api.DeleteReservationReq{ReservationID: id}, &api.DeleteReservationResp{})
+		if err != nil {
+			return err
+		}
 	}
 	return nil
 }

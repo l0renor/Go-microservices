@@ -37,7 +37,7 @@ type Reservation_Service interface {
 	CreateReservation(ctx context.Context, in *CreateReservationReq, opts ...client.CallOption) (*CreateReservationResp, error)
 	ActivateReservation(ctx context.Context, in *ActivateReservationReq, opts ...client.CallOption) (*ActivateReservationResp, error)
 	DeleteReservation(ctx context.Context, in *DeleteReservationReq, opts ...client.CallOption) (*DeleteReservationResp, error)
-	DeleteScreening(ctx context.Context, in *DeleteScreeningReq, opts ...client.CallOption) (*DeleteScreeningResp, error)
+	DeleteReservationsWithScreening(ctx context.Context, in *DeleteReservationsWithScreeningReq, opts ...client.CallOption) (*DeleteReservationsWithScreeningResp, error)
 	GetReservation(ctx context.Context, in *GetReservationReq, opts ...client.CallOption) (*GetReservationResp, error)
 	GetReservations(ctx context.Context, in *GetReservationsReq, opts ...client.CallOption) (*GetReservationsResp, error)
 }
@@ -90,9 +90,9 @@ func (c *reservation_Service) DeleteReservation(ctx context.Context, in *DeleteR
 	return out, nil
 }
 
-func (c *reservation_Service) DeleteScreening(ctx context.Context, in *DeleteScreeningReq, opts ...client.CallOption) (*DeleteScreeningResp, error) {
-	req := c.c.NewRequest(c.name, "Reservation_Service.DeleteScreening", in)
-	out := new(DeleteScreeningResp)
+func (c *reservation_Service) DeleteReservationsWithScreening(ctx context.Context, in *DeleteReservationsWithScreeningReq, opts ...client.CallOption) (*DeleteReservationsWithScreeningResp, error) {
+	req := c.c.NewRequest(c.name, "Reservation_Service.DeleteReservationsWithScreening", in)
+	out := new(DeleteReservationsWithScreeningResp)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
 		return nil, err
@@ -126,7 +126,7 @@ type Reservation_ServiceHandler interface {
 	CreateReservation(context.Context, *CreateReservationReq, *CreateReservationResp) error
 	ActivateReservation(context.Context, *ActivateReservationReq, *ActivateReservationResp) error
 	DeleteReservation(context.Context, *DeleteReservationReq, *DeleteReservationResp) error
-	DeleteScreening(context.Context, *DeleteScreeningReq, *DeleteScreeningResp) error
+	DeleteReservationsWithScreening(context.Context, *DeleteReservationsWithScreeningReq, *DeleteReservationsWithScreeningResp) error
 	GetReservation(context.Context, *GetReservationReq, *GetReservationResp) error
 	GetReservations(context.Context, *GetReservationsReq, *GetReservationsResp) error
 }
@@ -136,7 +136,7 @@ func RegisterReservation_ServiceHandler(s server.Server, hdlr Reservation_Servic
 		CreateReservation(ctx context.Context, in *CreateReservationReq, out *CreateReservationResp) error
 		ActivateReservation(ctx context.Context, in *ActivateReservationReq, out *ActivateReservationResp) error
 		DeleteReservation(ctx context.Context, in *DeleteReservationReq, out *DeleteReservationResp) error
-		DeleteScreening(ctx context.Context, in *DeleteScreeningReq, out *DeleteScreeningResp) error
+		DeleteReservationsWithScreening(ctx context.Context, in *DeleteReservationsWithScreeningReq, out *DeleteReservationsWithScreeningResp) error
 		GetReservation(ctx context.Context, in *GetReservationReq, out *GetReservationResp) error
 		GetReservations(ctx context.Context, in *GetReservationsReq, out *GetReservationsResp) error
 	}
@@ -163,8 +163,8 @@ func (h *reservation_ServiceHandler) DeleteReservation(ctx context.Context, in *
 	return h.Reservation_ServiceHandler.DeleteReservation(ctx, in, out)
 }
 
-func (h *reservation_ServiceHandler) DeleteScreening(ctx context.Context, in *DeleteScreeningReq, out *DeleteScreeningResp) error {
-	return h.Reservation_ServiceHandler.DeleteScreening(ctx, in, out)
+func (h *reservation_ServiceHandler) DeleteReservationsWithScreening(ctx context.Context, in *DeleteReservationsWithScreeningReq, out *DeleteReservationsWithScreeningResp) error {
+	return h.Reservation_ServiceHandler.DeleteReservationsWithScreening(ctx, in, out)
 }
 
 func (h *reservation_ServiceHandler) GetReservation(ctx context.Context, in *GetReservationReq, out *GetReservationResp) error {

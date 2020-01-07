@@ -27,7 +27,7 @@ func (m *movieService) DeleteMovie(ctx context.Context, req *api.DeleteMovieMsg,
 	if !ok {
 		return errors.NotFound("ERR-NO-MOVIE", "Movie (ID: %d) not found!", req.GetId())
 	}
-	_, err := m.screening.DeleteMovie(context.TODO(), &api.DeleteMovieReq{MovieID: req.GetId()})
+	_, err := m.screening.DeleteScreeningsWithMovie(context.TODO(), &api.DeleteScreeningsWithMovieReq{MovieID: req.GetId()})
 	if err != nil {
 		return err
 	}
