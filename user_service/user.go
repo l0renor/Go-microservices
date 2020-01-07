@@ -36,9 +36,7 @@ func (service *Service) DeleteUser(ctx context.Context, req *api.DeleteUserReq, 
 			return errors.Conflict("usr_has_res", "The user still has reservations;can't be deleted")
 		}
 		delete(service.users, req.GetUserID())
-		resp.Success = true
 	} else {
-		resp.Success = false
 		return errors.NotFound("usr_not_found", "User can't be deleted not found")
 	}
 	return nil

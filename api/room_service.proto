@@ -22,7 +22,6 @@ message DeleteRoomMsg {
 }
 
 message DeleteRoomResponseMsg {
-    bool success = 1;
 }
 
 message GetRoomMsg {

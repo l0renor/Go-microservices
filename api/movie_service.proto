@@ -21,7 +21,6 @@ message DeleteMovieMsg {
 }
 
 message DeleteMovieResponseMsg {
-    bool success = 1;
 }
 
 message GetMovieMsg {
