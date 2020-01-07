@@ -72,6 +72,7 @@ func (service *Service) DeleteReservation(ctx context.Context, req *api.DeleteRe
 	_, ok := service.reservations[req.ReservationID]
 	if ok {
 		delete(service.reservations, req.ReservationID)
+
 	} else {
 		return errors.NotFound("Reservation_not_found", "Reservation(%v)not_found", req.ReservationID)
 	}
