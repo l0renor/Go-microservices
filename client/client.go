@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"github.com/micro/go-micro"
 	"github.com/ob-vss-ws19/blatt-4-myteam/api"
 	"log"
@@ -146,8 +147,48 @@ func (c Client) deletedRoom() {
 
 	reservationsrsp, err := c.reservationService.GetReservations(context.TODO(), &api.GetReservationsReq{})
 
+	fmt.Print("Deleted room of reservation")
 	for i := 0; i < len(reservationsrsp.Reservations); i++ {
-		print(reservationsrsp.Reservations[i])
+
+		fmt.Print(reservationsrsp.Reservations[i])
+	}
+
+}
+
+//Call after setup()
+func (c Client) conflictReservation() {
+	reservationrsp, err := c.reservationService.CreateReservation(context.TODO(), &api.CreateReservationReq{
+		UserID:      c.ids["Oleg"],
+		ScreeningID: c.ids["1"],
+		NrOfSeats:   2,
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	reservationrsp2, err := c.reservationService.CreateReservation(context.TODO(), &api.CreateReservationReq{
+		UserID:      c.ids["Fabi"],
+		ScreeningID: c.ids["1"],
+		NrOfSeats:   2,
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	_, err = c.reservationService.ActivateReservation(context.TODO(), &api.ActivateReservationReq{ReservationID: reservationrsp.ReservationID})
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	_, err = c.reservationService.ActivateReservation(context.TODO(), &api.ActivateReservationReq{ReservationID: reservationrsp2.ReservationID})
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	reservationsrsp, err := c.reservationService.GetReservations(context.TODO(), &api.GetReservationsReq{})
+
+	for i := 0; i < len(reservationsrsp.Reservations); i++ {
+		fmt.Print(reservationsrsp.Reservations[i])
 	}
 
 }
