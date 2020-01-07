@@ -14,35 +14,35 @@ message CreateRoomMsg {
 }
 
 message CreateRoomResponseMsg {
-    int32 id = 3;
+    int32 id = 1;
 }
 
 message DeleteRoomMsg {
-    int32 id = 4;
+    int32 id = 1;
 }
 
 message DeleteRoomResponseMsg {
-    bool success = 5;
+    bool success = 1;
 }
 
 message GetRoomMsg {
-    int32 id = 6;
+    int32 id = 1;
 }
 
 message GetRoomResponseMsg {
-    RoomData room = 7;
+    RoomData room = 1;
 }
 
 message GetRoomsMsg {
 }
 
 message GetRoomsResponseMsg {
-    repeated RoomData Rooms = 8;
+    repeated RoomData Rooms = 1;
 }
 
 
 message RoomData {
-    string name = 9;
-    int32 id = 10;
-    int32 nrOfSeats =  11;
+    string name = 1;
+    int32 id = 2;
+    int32 nrOfSeats = 3;
 }
