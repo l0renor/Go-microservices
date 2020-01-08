@@ -48,6 +48,8 @@ func (c Client) setup() {
 	}
 	c.ids["SvenShulz"] = rsp.UserID
 
+	log.Print("Users created")
+
 	roomrsp, err := c.roomService.CreateRoom(context.TODO(), &api.CreateRoomReq{
 		Name:      "Mordor",
 		NrOfSeats: 4,
@@ -65,6 +67,8 @@ func (c Client) setup() {
 		log.Fatal(err)
 	}
 	c.ids["Isengard"] = roomrsp.RoomID
+
+	log.Print("Rooms created")
 
 	moviersp, err := c.movieService.CreateMovie(context.TODO(), &api.CreateMovieReq{Name: "Leon der Profi"})
 	if err != nil {
@@ -87,6 +91,8 @@ func (c Client) setup() {
 	}
 	c.ids["Mitten im Leben der Film"] = moviersp.MovieID
 
+	log.Print("Movies created")
+
 	scrreningrsp, err := c.screeningService.CreateScreening(context.TODO(), &api.CreateScreeningReq{
 		MovieID: c.ids["Mitten im Leben der Film"],
 		RoomID:  c.ids["Isengard"],
@@ -94,6 +100,8 @@ func (c Client) setup() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	log.Print("Screening 1 created")
+
 	c.ids["1"] = scrreningrsp.ScreeningID
 
 	scrreningrsp, err = c.screeningService.CreateScreening(context.TODO(), &api.CreateScreeningReq{
@@ -103,15 +111,17 @@ func (c Client) setup() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	log.Print("Screening 3 created")
 	c.ids["2"] = scrreningrsp.ScreeningID
 
 	scrreningrsp, err = c.screeningService.CreateScreening(context.TODO(), &api.CreateScreeningReq{
-		MovieID: c.ids["Leon der Profi "],
+		MovieID: c.ids["Leon der Profi"],
 		RoomID:  c.ids["Mordor"],
 	})
 	if err != nil {
 		log.Fatal(err)
 	}
+	log.Print("Screening 3 created")
 	c.ids["3"] = scrreningrsp.ScreeningID
 
 	scrreningrsp, err = c.screeningService.CreateScreening(context.TODO(), &api.CreateScreeningReq{
@@ -122,7 +132,7 @@ func (c Client) setup() {
 		log.Fatal(err)
 	}
 	c.ids["4"] = scrreningrsp.ScreeningID
-
+	log.Print("-------------- Setup done -----------------")
 }
 
 //Call after setup()
@@ -195,16 +205,28 @@ func (c Client) conflictReservation() {
 
 func main() {
 
-	service := micro.NewService()
-	service.Init()
+	serviceMovie := micro.NewService()
+	serviceMovie.Init()
+
+	serviceUser := micro.NewService()
+	serviceUser.Init()
+
+	serviceRoom := micro.NewService()
+	serviceRoom.Init()
+
+	serviceReservation := micro.NewService()
+	serviceReservation.Init()
+
+	serviceScreening := micro.NewService()
+	serviceScreening.Init()
 
 	// create the greeter client using the service name and client
 	client := Client{
-		roomService:        api.NewRoom_Service("room", service.Client()),
-		userService:        api.NewUser_Service("user", service.Client()),
-		reservationService: api.NewReservation_Service("reservation", service.Client()),
-		screeningService:   api.NewScreening_Service("screening", service.Client()),
-		movieService:       api.NewMovie_Service("movie", service.Client()),
+		roomService:        api.NewRoom_Service("room", serviceRoom.Client()),
+		userService:        api.NewUser_Service("user", serviceUser.Client()),
+		reservationService: api.NewReservation_Service("reservation", serviceReservation.Client()),
+		screeningService:   api.NewScreening_Service("screening", serviceScreening.Client()),
+		movieService:       api.NewMovie_Service("movie", serviceMovie.Client()),
 		ids:                make(map[string]int32),
 	}
 	client.setup()

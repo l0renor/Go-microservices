@@ -12,22 +12,22 @@ registry:
 	etcd
 
 movie:
-	MICRO_REGISTRY=etcd go run movie_service/main.go
+	MICRO_REGISTRY=etcd go run movie_service/movie.go
 
 room:
-	MICRO_REGISTRY=etcd go run room_service/main.go
+	MICRO_REGISTRY=etcd go run room_service/room.go
 
 user:
-	MICRO_REGISTRY=etcd go run user_service/main.go
+	MICRO_REGISTRY=etcd go run user_service/user.go
 
 screening:
-	MICRO_REGISTRY=etcd go run screening_service/main.go
+	MICRO_REGISTRY=etcd go run screening_service/screening.go
 
 reservation:
-	MICRO_REGISTRY=etcd go run reservation_service/main.go
+	MICRO_REGISTRY=etcd go run reservation_service/reservation.go
 
 client:
-	MICRO_REGISTRY=etcd go run client/main.go
+	MICRO_REGISTRY=etcd go run client/client.go
 
 docker: docker-movie docker-room docker-user docker-screening docker-reservation docker-client
 
