@@ -1,23 +1,25 @@
-package tests
+package main
 
 import (
 	"github.com/micro/go-micro"
 	"github.com/ob-vss-ws19/blatt-4-myteam/api"
-	"github.com/ob-vss-ws19/blatt-4-myteam/room_service"
 	"testing"
 )
 
-func TestInitRoomService(t *testing.T) {
+func TestInitRoom(t *testing.T) {
 	service := micro.NewService(
 		micro.Name("Room_Service"),
 		micro.Version("latest"),
 	)
 
 	service.Init()
-	api.RegisterRoom_ServiceHandler(service.Server(), &room_service.Service{})
+
+	if err := api.RegisterRoom_ServiceHandler(service.Server(), &Service{}); err != nil {
+		t.Error("Error registering room service.")
+	}
 
 	if err := service.Run(); err != nil {
-		t.Error("Error run room Service")
+		t.Error("Error running room service")
 	}
 
 }
