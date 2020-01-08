@@ -1,15 +1,30 @@
 all:
-	@echo "make start-registry"
+	@echo "make registry"
+	@echo "make movie"
+	@echo "make room"
+	@echo "make user"
+	@echo "make screening"
+	@echo "make reservation"
+	@echo "make client"
 
 
-start-registry:
+registry:
 	etcd
 
-start-movie:
-	MICRO_REGISTRY=etcd go run counter-service/main.go
+movie:
+	MICRO_REGISTRY=etcd go run movie_service/main.go
 
-start-greeter:
-	MICRO_REGISTRY=etcd go run greeter-service/main.go
+room:
+    MICRO_REGISTRY=etcd go run room_service/main.go
 
-start-client:
+user:
+	MICRO_REGISTRY=etcd go run user_service/main.go
+
+screening:
+    MICRO_REGISTRY=etcd go run screening_service/main.go
+
+reservation:
+    MICRO_REGISTRY=etcd go run reservation_service/main.go
+
+client:
 	MICRO_REGISTRY=etcd go run client/main.go
