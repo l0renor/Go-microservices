@@ -1,9 +1,12 @@
-package room_service
+package main
 
 import (
 	"context"
+	"github.com/micro/go-micro"
 	"github.com/micro/go-micro/errors"
 	"github.com/ob-vss-ws19/blatt-4-myteam/api"
+	"github.com/ob-vss-ws19/blatt-4-myteam/helpers"
+	"log"
 )
 
 type Room struct {
@@ -12,62 +15,80 @@ type Room struct {
 }
 
 type Service struct {
-	rooms  map[int32]Room
-	nextID func() int32
+	rooms     map[int32]Room
+	nextID    func() int32
+	screening api.Screening_Service
 }
 
-func (m *Service) CreateRoom(ctx context.Context, req *api.CreateRoomMsg, rsp *api.CreateRoomResponseMsg) error {
+func (m *Service) CreateRoom(ctx context.Context, req *api.CreateRoomReq, resp *api.CreateRoomResp) error {
 	id := m.nextID()
 	m.rooms[id] = Room{
 		nrOfSeats: req.NrOfSeats,
 		name:      req.Name,
 	}
-	rsp.Id = id
+	resp.RoomID = id
 	return nil
 }
 
-func (m *Service) DeleteRoom(ctx context.Context, req *api.DeleteRoomMsg, rsp *api.DeleteRoomResponseMsg) error {
-	id := req.Id
-	delete(m.rooms, id)
-	_, ok := m.rooms[id]
+func (m *Service) DeleteRoom(ctx context.Context, req *api.DeleteRoomReq, resp *api.DeleteRoomResp) error {
+	_, ok := m.rooms[req.GetRoomID()]
 	if !ok {
-		return errors.NotFound("room_not_found", "room(ID: %v not found", req.Id)
+		return errors.NotFound("ERR-NO-ROOM", "Room (ID: %d) not found!", req.GetRoomID())
+	}
+	_, err := m.screening.DeleteScreeningsWithRoom(context.TODO(), &api.DeleteScreeningsWithRoomReq{RoomID: req.GetRoomID()})
+	if err != nil {
+		return err
+	}
+	delete(m.rooms, req.GetRoomID())
+	return nil
+}
+
+func (m *Service) GetRoom(ctx context.Context, req *api.GetRoomReq, resp *api.GetRoomResp) error {
+	room, ok := m.rooms[req.GetRoomID()]
+	if !ok {
+		return errors.NotFound("ERR-NO-ROOM", "Room (ID: %d) not found!", req.GetRoomID())
+	}
+	resp.Room = &api.Room{
+		Name:      room.name,
+		RoomID:    req.GetRoomID(),
+		NrOfSeats: room.nrOfSeats,
 	}
 	return nil
 }
 
-func (m *Service) GetRoom(ctx context.Context, req *api.GetRoomMsg, rsp *api.GetRoomResponseMsg) error {
-	id := req.Id
-	res, ok := m.rooms[id]
-	if ok {
-		rsp.Room = &api.RoomData{
-			Name:      res.name,
-			Id:        id,
-			NrOfSeats: res.nrOfSeats,
-		}
-	} else {
-		return errors.NotFound("room_not_found", "room(ID: %v not found", req.Id)
-	}
-	return nil
-}
-
-func (m *Service) GetRooms(ctx context.Context, req *api.GetRoomsMsg, rsp *api.GetRoomsResponseMsg) error {
-	var res []*api.RoomData
-	for k, v := range m.rooms {
-		res = append(res, &api.RoomData{
-			Name:      v.name,
-			Id:        k,
-			NrOfSeats: v.nrOfSeats,
+func (m *Service) GetRooms(ctx context.Context, req *api.GetRoomsReq, resp *api.GetRoomsResp) error {
+	var rooms []*api.Room
+	for id, room := range m.rooms {
+		rooms = append(rooms, &api.Room{
+			Name:      room.name,
+			RoomID:    id,
+			NrOfSeats: room.nrOfSeats,
 		})
 	}
-	rsp.Rooms = res
+	resp.Rooms = rooms
 	return nil
 }
 
-func idGenerator() func() int32 {
-	i := 0
-	return func() int32 {
-		i++
-		return int32(i)
+func main() {
+	service := micro.NewService(
+		micro.Name("room"),
+		micro.Version("latest"),
+	)
+
+	screening := micro.NewService()
+	screening.Init()
+
+	service.Init()
+
+	if err := api.RegisterRoom_ServiceHandler(service.Server(), &Service{
+		rooms:     make(map[int32]Room),
+		nextID:    helpers.IDGenerator(),
+		screening: api.NewScreening_Service("screening", screening.Client()),
+	}); err != nil {
+		log.Fatal(err)
+	}
+
+	if err := service.Run(); err != nil {
+		log.Fatal(err)
 	}
 }

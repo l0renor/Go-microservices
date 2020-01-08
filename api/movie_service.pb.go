@@ -24,21 +24,21 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
-type CreateMovieMsg struct {
+type CreateMovieReq struct {
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 }
 
-func (m *CreateMovieMsg) Reset()      { *m = CreateMovieMsg{} }
-func (*CreateMovieMsg) ProtoMessage() {}
-func (*CreateMovieMsg) Descriptor() ([]byte, []int) {
+func (m *CreateMovieReq) Reset()      { *m = CreateMovieReq{} }
+func (*CreateMovieReq) ProtoMessage() {}
+func (*CreateMovieReq) Descriptor() ([]byte, []int) {
 	return fileDescriptor_937daf6a4ffecea5, []int{0}
 }
-func (m *CreateMovieMsg) XXX_Unmarshal(b []byte) error {
+func (m *CreateMovieReq) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *CreateMovieMsg) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *CreateMovieReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_CreateMovieMsg.Marshal(b, m, deterministic)
+		return xxx_messageInfo_CreateMovieReq.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -48,40 +48,40 @@ func (m *CreateMovieMsg) XXX_Marshal(b []byte, deterministic bool) ([]byte, erro
 		return b[:n], nil
 	}
 }
-func (m *CreateMovieMsg) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CreateMovieMsg.Merge(m, src)
+func (m *CreateMovieReq) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateMovieReq.Merge(m, src)
 }
-func (m *CreateMovieMsg) XXX_Size() int {
+func (m *CreateMovieReq) XXX_Size() int {
 	return m.Size()
 }
-func (m *CreateMovieMsg) XXX_DiscardUnknown() {
-	xxx_messageInfo_CreateMovieMsg.DiscardUnknown(m)
+func (m *CreateMovieReq) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreateMovieReq.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_CreateMovieMsg proto.InternalMessageInfo
+var xxx_messageInfo_CreateMovieReq proto.InternalMessageInfo
 
-func (m *CreateMovieMsg) GetName() string {
+func (m *CreateMovieReq) GetName() string {
 	if m != nil {
 		return m.Name
 	}
 	return ""
 }
 
-type CreateMovieResponseMsg struct {
-	Id int32 `protobuf:"varint,2,opt,name=id,proto3" json:"id,omitempty"`
+type CreateMovieResp struct {
+	MovieID int32 `protobuf:"varint,1,opt,name=movieID,proto3" json:"movieID,omitempty"`
 }
 
-func (m *CreateMovieResponseMsg) Reset()      { *m = CreateMovieResponseMsg{} }
-func (*CreateMovieResponseMsg) ProtoMessage() {}
-func (*CreateMovieResponseMsg) Descriptor() ([]byte, []int) {
+func (m *CreateMovieResp) Reset()      { *m = CreateMovieResp{} }
+func (*CreateMovieResp) ProtoMessage() {}
+func (*CreateMovieResp) Descriptor() ([]byte, []int) {
 	return fileDescriptor_937daf6a4ffecea5, []int{1}
 }
-func (m *CreateMovieResponseMsg) XXX_Unmarshal(b []byte) error {
+func (m *CreateMovieResp) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *CreateMovieResponseMsg) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *CreateMovieResp) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_CreateMovieResponseMsg.Marshal(b, m, deterministic)
+		return xxx_messageInfo_CreateMovieResp.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -91,40 +91,40 @@ func (m *CreateMovieResponseMsg) XXX_Marshal(b []byte, deterministic bool) ([]by
 		return b[:n], nil
 	}
 }
-func (m *CreateMovieResponseMsg) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CreateMovieResponseMsg.Merge(m, src)
+func (m *CreateMovieResp) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateMovieResp.Merge(m, src)
 }
-func (m *CreateMovieResponseMsg) XXX_Size() int {
+func (m *CreateMovieResp) XXX_Size() int {
 	return m.Size()
 }
-func (m *CreateMovieResponseMsg) XXX_DiscardUnknown() {
-	xxx_messageInfo_CreateMovieResponseMsg.DiscardUnknown(m)
+func (m *CreateMovieResp) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreateMovieResp.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_CreateMovieResponseMsg proto.InternalMessageInfo
+var xxx_messageInfo_CreateMovieResp proto.InternalMessageInfo
 
-func (m *CreateMovieResponseMsg) GetId() int32 {
+func (m *CreateMovieResp) GetMovieID() int32 {
 	if m != nil {
-		return m.Id
+		return m.MovieID
 	}
 	return 0
 }
 
-type DeleteMovieMsg struct {
-	Id int32 `protobuf:"varint,3,opt,name=id,proto3" json:"id,omitempty"`
+type DeleteMovieReq struct {
+	MovieID int32 `protobuf:"varint,1,opt,name=movieID,proto3" json:"movieID,omitempty"`
 }
 
-func (m *DeleteMovieMsg) Reset()      { *m = DeleteMovieMsg{} }
-func (*DeleteMovieMsg) ProtoMessage() {}
-func (*DeleteMovieMsg) Descriptor() ([]byte, []int) {
+func (m *DeleteMovieReq) Reset()      { *m = DeleteMovieReq{} }
+func (*DeleteMovieReq) ProtoMessage() {}
+func (*DeleteMovieReq) Descriptor() ([]byte, []int) {
 	return fileDescriptor_937daf6a4ffecea5, []int{2}
 }
-func (m *DeleteMovieMsg) XXX_Unmarshal(b []byte) error {
+func (m *DeleteMovieReq) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *DeleteMovieMsg) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *DeleteMovieReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_DeleteMovieMsg.Marshal(b, m, deterministic)
+		return xxx_messageInfo_DeleteMovieReq.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -134,40 +134,39 @@ func (m *DeleteMovieMsg) XXX_Marshal(b []byte, deterministic bool) ([]byte, erro
 		return b[:n], nil
 	}
 }
-func (m *DeleteMovieMsg) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DeleteMovieMsg.Merge(m, src)
+func (m *DeleteMovieReq) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DeleteMovieReq.Merge(m, src)
 }
-func (m *DeleteMovieMsg) XXX_Size() int {
+func (m *DeleteMovieReq) XXX_Size() int {
 	return m.Size()
 }
-func (m *DeleteMovieMsg) XXX_DiscardUnknown() {
-	xxx_messageInfo_DeleteMovieMsg.DiscardUnknown(m)
+func (m *DeleteMovieReq) XXX_DiscardUnknown() {
+	xxx_messageInfo_DeleteMovieReq.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_DeleteMovieMsg proto.InternalMessageInfo
+var xxx_messageInfo_DeleteMovieReq proto.InternalMessageInfo
 
-func (m *DeleteMovieMsg) GetId() int32 {
+func (m *DeleteMovieReq) GetMovieID() int32 {
 	if m != nil {
-		return m.Id
+		return m.MovieID
 	}
 	return 0
 }
 
-type DeleteMovieResponseMsg struct {
-	Success bool `protobuf:"varint,4,opt,name=success,proto3" json:"success,omitempty"`
+type DeleteMovieResp struct {
 }
 
-func (m *DeleteMovieResponseMsg) Reset()      { *m = DeleteMovieResponseMsg{} }
-func (*DeleteMovieResponseMsg) ProtoMessage() {}
-func (*DeleteMovieResponseMsg) Descriptor() ([]byte, []int) {
+func (m *DeleteMovieResp) Reset()      { *m = DeleteMovieResp{} }
+func (*DeleteMovieResp) ProtoMessage() {}
+func (*DeleteMovieResp) Descriptor() ([]byte, []int) {
 	return fileDescriptor_937daf6a4ffecea5, []int{3}
 }
-func (m *DeleteMovieResponseMsg) XXX_Unmarshal(b []byte) error {
+func (m *DeleteMovieResp) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *DeleteMovieResponseMsg) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *DeleteMovieResp) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_DeleteMovieResponseMsg.Marshal(b, m, deterministic)
+		return xxx_messageInfo_DeleteMovieResp.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -177,40 +176,33 @@ func (m *DeleteMovieResponseMsg) XXX_Marshal(b []byte, deterministic bool) ([]by
 		return b[:n], nil
 	}
 }
-func (m *DeleteMovieResponseMsg) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DeleteMovieResponseMsg.Merge(m, src)
+func (m *DeleteMovieResp) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DeleteMovieResp.Merge(m, src)
 }
-func (m *DeleteMovieResponseMsg) XXX_Size() int {
+func (m *DeleteMovieResp) XXX_Size() int {
 	return m.Size()
 }
-func (m *DeleteMovieResponseMsg) XXX_DiscardUnknown() {
-	xxx_messageInfo_DeleteMovieResponseMsg.DiscardUnknown(m)
+func (m *DeleteMovieResp) XXX_DiscardUnknown() {
+	xxx_messageInfo_DeleteMovieResp.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_DeleteMovieResponseMsg proto.InternalMessageInfo
+var xxx_messageInfo_DeleteMovieResp proto.InternalMessageInfo
 
-func (m *DeleteMovieResponseMsg) GetSuccess() bool {
-	if m != nil {
-		return m.Success
-	}
-	return false
+type GetMovieReq struct {
+	MovieID int32 `protobuf:"varint,1,opt,name=movieID,proto3" json:"movieID,omitempty"`
 }
 
-type GetMovieMsg struct {
-	Id int32 `protobuf:"varint,5,opt,name=id,proto3" json:"id,omitempty"`
-}
-
-func (m *GetMovieMsg) Reset()      { *m = GetMovieMsg{} }
-func (*GetMovieMsg) ProtoMessage() {}
-func (*GetMovieMsg) Descriptor() ([]byte, []int) {
+func (m *GetMovieReq) Reset()      { *m = GetMovieReq{} }
+func (*GetMovieReq) ProtoMessage() {}
+func (*GetMovieReq) Descriptor() ([]byte, []int) {
 	return fileDescriptor_937daf6a4ffecea5, []int{4}
 }
-func (m *GetMovieMsg) XXX_Unmarshal(b []byte) error {
+func (m *GetMovieReq) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *GetMovieMsg) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *GetMovieReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_GetMovieMsg.Marshal(b, m, deterministic)
+		return xxx_messageInfo_GetMovieReq.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -220,40 +212,40 @@ func (m *GetMovieMsg) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) 
 		return b[:n], nil
 	}
 }
-func (m *GetMovieMsg) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetMovieMsg.Merge(m, src)
+func (m *GetMovieReq) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetMovieReq.Merge(m, src)
 }
-func (m *GetMovieMsg) XXX_Size() int {
+func (m *GetMovieReq) XXX_Size() int {
 	return m.Size()
 }
-func (m *GetMovieMsg) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetMovieMsg.DiscardUnknown(m)
+func (m *GetMovieReq) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetMovieReq.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_GetMovieMsg proto.InternalMessageInfo
+var xxx_messageInfo_GetMovieReq proto.InternalMessageInfo
 
-func (m *GetMovieMsg) GetId() int32 {
+func (m *GetMovieReq) GetMovieID() int32 {
 	if m != nil {
-		return m.Id
+		return m.MovieID
 	}
 	return 0
 }
 
-type GetMovieResponseMsg struct {
-	Title string `protobuf:"bytes,6,opt,name=title,proto3" json:"title,omitempty"`
+type GetMovieResp struct {
+	Title string `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
 }
 
-func (m *GetMovieResponseMsg) Reset()      { *m = GetMovieResponseMsg{} }
-func (*GetMovieResponseMsg) ProtoMessage() {}
-func (*GetMovieResponseMsg) Descriptor() ([]byte, []int) {
+func (m *GetMovieResp) Reset()      { *m = GetMovieResp{} }
+func (*GetMovieResp) ProtoMessage() {}
+func (*GetMovieResp) Descriptor() ([]byte, []int) {
 	return fileDescriptor_937daf6a4ffecea5, []int{5}
 }
-func (m *GetMovieResponseMsg) XXX_Unmarshal(b []byte) error {
+func (m *GetMovieResp) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *GetMovieResponseMsg) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *GetMovieResp) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_GetMovieResponseMsg.Marshal(b, m, deterministic)
+		return xxx_messageInfo_GetMovieResp.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -263,39 +255,39 @@ func (m *GetMovieResponseMsg) XXX_Marshal(b []byte, deterministic bool) ([]byte,
 		return b[:n], nil
 	}
 }
-func (m *GetMovieResponseMsg) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetMovieResponseMsg.Merge(m, src)
+func (m *GetMovieResp) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetMovieResp.Merge(m, src)
 }
-func (m *GetMovieResponseMsg) XXX_Size() int {
+func (m *GetMovieResp) XXX_Size() int {
 	return m.Size()
 }
-func (m *GetMovieResponseMsg) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetMovieResponseMsg.DiscardUnknown(m)
+func (m *GetMovieResp) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetMovieResp.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_GetMovieResponseMsg proto.InternalMessageInfo
+var xxx_messageInfo_GetMovieResp proto.InternalMessageInfo
 
-func (m *GetMovieResponseMsg) GetTitle() string {
+func (m *GetMovieResp) GetTitle() string {
 	if m != nil {
 		return m.Title
 	}
 	return ""
 }
 
-type GetMoviesMsg struct {
+type GetMoviesReq struct {
 }
 
-func (m *GetMoviesMsg) Reset()      { *m = GetMoviesMsg{} }
-func (*GetMoviesMsg) ProtoMessage() {}
-func (*GetMoviesMsg) Descriptor() ([]byte, []int) {
+func (m *GetMoviesReq) Reset()      { *m = GetMoviesReq{} }
+func (*GetMoviesReq) ProtoMessage() {}
+func (*GetMoviesReq) Descriptor() ([]byte, []int) {
 	return fileDescriptor_937daf6a4ffecea5, []int{6}
 }
-func (m *GetMoviesMsg) XXX_Unmarshal(b []byte) error {
+func (m *GetMoviesReq) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *GetMoviesMsg) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *GetMoviesReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_GetMoviesMsg.Marshal(b, m, deterministic)
+		return xxx_messageInfo_GetMoviesReq.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -305,33 +297,33 @@ func (m *GetMoviesMsg) XXX_Marshal(b []byte, deterministic bool) ([]byte, error)
 		return b[:n], nil
 	}
 }
-func (m *GetMoviesMsg) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetMoviesMsg.Merge(m, src)
+func (m *GetMoviesReq) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetMoviesReq.Merge(m, src)
 }
-func (m *GetMoviesMsg) XXX_Size() int {
+func (m *GetMoviesReq) XXX_Size() int {
 	return m.Size()
 }
-func (m *GetMoviesMsg) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetMoviesMsg.DiscardUnknown(m)
+func (m *GetMoviesReq) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetMoviesReq.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_GetMoviesMsg proto.InternalMessageInfo
+var xxx_messageInfo_GetMoviesReq proto.InternalMessageInfo
 
-type GetMoviesResponseMsg struct {
-	Movies []*Tuple `protobuf:"bytes,7,rep,name=movies,proto3" json:"movies,omitempty"`
+type GetMoviesResp struct {
+	Movies []*Tuple `protobuf:"bytes,1,rep,name=movies,proto3" json:"movies,omitempty"`
 }
 
-func (m *GetMoviesResponseMsg) Reset()      { *m = GetMoviesResponseMsg{} }
-func (*GetMoviesResponseMsg) ProtoMessage() {}
-func (*GetMoviesResponseMsg) Descriptor() ([]byte, []int) {
+func (m *GetMoviesResp) Reset()      { *m = GetMoviesResp{} }
+func (*GetMoviesResp) ProtoMessage() {}
+func (*GetMoviesResp) Descriptor() ([]byte, []int) {
 	return fileDescriptor_937daf6a4ffecea5, []int{7}
 }
-func (m *GetMoviesResponseMsg) XXX_Unmarshal(b []byte) error {
+func (m *GetMoviesResp) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *GetMoviesResponseMsg) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *GetMoviesResp) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_GetMoviesResponseMsg.Marshal(b, m, deterministic)
+		return xxx_messageInfo_GetMoviesResp.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -341,19 +333,19 @@ func (m *GetMoviesResponseMsg) XXX_Marshal(b []byte, deterministic bool) ([]byte
 		return b[:n], nil
 	}
 }
-func (m *GetMoviesResponseMsg) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetMoviesResponseMsg.Merge(m, src)
+func (m *GetMoviesResp) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetMoviesResp.Merge(m, src)
 }
-func (m *GetMoviesResponseMsg) XXX_Size() int {
+func (m *GetMoviesResp) XXX_Size() int {
 	return m.Size()
 }
-func (m *GetMoviesResponseMsg) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetMoviesResponseMsg.DiscardUnknown(m)
+func (m *GetMoviesResp) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetMoviesResp.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_GetMoviesResponseMsg proto.InternalMessageInfo
+var xxx_messageInfo_GetMoviesResp proto.InternalMessageInfo
 
-func (m *GetMoviesResponseMsg) GetMovies() []*Tuple {
+func (m *GetMoviesResp) GetMovies() []*Tuple {
 	if m != nil {
 		return m.Movies
 	}
@@ -361,8 +353,8 @@ func (m *GetMoviesResponseMsg) GetMovies() []*Tuple {
 }
 
 type Tuple struct {
-	Title string `protobuf:"bytes,8,opt,name=title,proto3" json:"title,omitempty"`
-	Id    int32  `protobuf:"varint,9,opt,name=id,proto3" json:"id,omitempty"`
+	Title   string `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
+	MovieID int32  `protobuf:"varint,2,opt,name=movieID,proto3" json:"movieID,omitempty"`
 }
 
 func (m *Tuple) Reset()      { *m = Tuple{} }
@@ -404,64 +396,61 @@ func (m *Tuple) GetTitle() string {
 	return ""
 }
 
-func (m *Tuple) GetId() int32 {
+func (m *Tuple) GetMovieID() int32 {
 	if m != nil {
-		return m.Id
+		return m.MovieID
 	}
 	return 0
 }
 
 func init() {
-	proto.RegisterType((*CreateMovieMsg)(nil), "CreateMovieMsg")
-	proto.RegisterType((*CreateMovieResponseMsg)(nil), "CreateMovieResponseMsg")
-	proto.RegisterType((*DeleteMovieMsg)(nil), "DeleteMovieMsg")
-	proto.RegisterType((*DeleteMovieResponseMsg)(nil), "DeleteMovieResponseMsg")
-	proto.RegisterType((*GetMovieMsg)(nil), "GetMovieMsg")
-	proto.RegisterType((*GetMovieResponseMsg)(nil), "GetMovieResponseMsg")
-	proto.RegisterType((*GetMoviesMsg)(nil), "GetMoviesMsg")
-	proto.RegisterType((*GetMoviesResponseMsg)(nil), "GetMoviesResponseMsg")
+	proto.RegisterType((*CreateMovieReq)(nil), "CreateMovieReq")
+	proto.RegisterType((*CreateMovieResp)(nil), "CreateMovieResp")
+	proto.RegisterType((*DeleteMovieReq)(nil), "DeleteMovieReq")
+	proto.RegisterType((*DeleteMovieResp)(nil), "DeleteMovieResp")
+	proto.RegisterType((*GetMovieReq)(nil), "GetMovieReq")
+	proto.RegisterType((*GetMovieResp)(nil), "GetMovieResp")
+	proto.RegisterType((*GetMoviesReq)(nil), "GetMoviesReq")
+	proto.RegisterType((*GetMoviesResp)(nil), "GetMoviesResp")
 	proto.RegisterType((*Tuple)(nil), "Tuple")
 }
 
 func init() { proto.RegisterFile("api/movie_service.proto", fileDescriptor_937daf6a4ffecea5) }
 
 var fileDescriptor_937daf6a4ffecea5 = []byte{
-	// 387 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x6c, 0x92, 0xb1, 0x6e, 0xe2, 0x40,
-	0x10, 0x86, 0x77, 0x01, 0x1b, 0x18, 0xc0, 0x48, 0x7b, 0x1c, 0x58, 0x96, 0x6e, 0x65, 0xad, 0xae,
-	0xb0, 0x74, 0xba, 0x4d, 0x04, 0x52, 0x24, 0xda, 0x24, 0x52, 0x2a, 0x1a, 0x27, 0x55, 0x1a, 0xe4,
-	0xc0, 0x0a, 0x59, 0x02, 0x6c, 0xb1, 0x86, 0x3a, 0x8f, 0x90, 0xc7, 0xc8, 0xa3, 0xa4, 0xa4, 0xa4,
-	0x0c, 0xa6, 0x49, 0x91, 0x82, 0x47, 0x88, 0x30, 0xd8, 0x59, 0x22, 0x77, 0x9e, 0x9d, 0x7f, 0xfe,
-	0x99, 0xf9, 0xc6, 0xd0, 0xf1, 0x42, 0xff, 0x62, 0x16, 0xac, 0x7c, 0x31, 0x94, 0x62, 0xb1, 0xf2,
-	0x47, 0x82, 0x87, 0x8b, 0x20, 0x0a, 0xd8, 0x5f, 0x30, 0x6e, 0x16, 0xc2, 0x8b, 0xc4, 0xe0, 0x90,
-	0x1c, 0xc8, 0x09, 0x21, 0x50, 0x9a, 0x7b, 0x33, 0x61, 0x62, 0x1b, 0x3b, 0x55, 0x37, 0xf9, 0x66,
-	0x0e, 0xb4, 0x15, 0x95, 0x2b, 0x64, 0x18, 0xcc, 0x65, 0xa2, 0x36, 0xa0, 0xe0, 0x8f, 0xcd, 0x82,
-	0x8d, 0x1d, 0xcd, 0x2d, 0xf8, 0x63, 0x66, 0x83, 0x71, 0x2b, 0xa6, 0x42, 0xf1, 0x3b, 0x2a, 0x8a,
-	0x99, 0xa2, 0x0b, 0x6d, 0x45, 0xa1, 0x7a, 0x99, 0x50, 0x96, 0xcb, 0xd1, 0x48, 0x48, 0x69, 0x96,
-	0x6c, 0xec, 0x54, 0xdc, 0x34, 0x64, 0x7f, 0xa0, 0x76, 0x27, 0xa2, 0x1f, 0x96, 0x5a, 0x66, 0xf9,
-	0x0f, 0x7e, 0xa5, 0x69, 0xd5, 0xaf, 0x05, 0x5a, 0xe4, 0x47, 0x53, 0x61, 0xea, 0xc9, 0x2a, 0xc7,
-	0x80, 0x19, 0x50, 0x4f, 0xc5, 0x72, 0x20, 0x27, 0xec, 0x0a, 0x5a, 0x59, 0xac, 0x56, 0x53, 0xd0,
-	0x13, 0x60, 0xd2, 0x2c, 0xdb, 0x45, 0xa7, 0xd6, 0xd5, 0xf9, 0xc3, 0x32, 0x9c, 0x0a, 0xf7, 0xf4,
-	0xca, 0xfe, 0x83, 0x96, 0x3c, 0x7c, 0xb7, 0xa9, 0x28, 0x6d, 0x4e, 0x33, 0x56, 0xd3, 0x19, 0xbb,
-	0x9f, 0x18, 0x1a, 0x49, 0x93, 0xe1, 0xfd, 0xf1, 0x00, 0xa4, 0x0f, 0x35, 0x05, 0x2a, 0x69, 0xf2,
-	0xf3, 0x43, 0x58, 0x1d, 0x9e, 0xcf, 0x9c, 0xa1, 0x43, 0xa9, 0xc2, 0x90, 0x34, 0xf9, 0x39, 0x73,
-	0xab, 0xc3, 0xf3, 0x11, 0x33, 0x44, 0x2e, 0xa1, 0x92, 0xae, 0x4b, 0xea, 0x5c, 0xa1, 0x6a, 0xb5,
-	0x78, 0x0e, 0x44, 0x86, 0x48, 0x0f, 0xaa, 0x19, 0x20, 0xd2, 0xe0, 0x2a, 0x3c, 0xeb, 0x37, 0xcf,
-	0x63, 0xc7, 0xd0, 0x75, 0x7f, 0xbd, 0xa5, 0x68, 0xb3, 0xa5, 0x68, 0xbf, 0xa5, 0xf8, 0x39, 0xa6,
-	0xf8, 0x35, 0xa6, 0xf8, 0x2d, 0xa6, 0x78, 0x1d, 0x53, 0xfc, 0x1e, 0x53, 0xfc, 0x11, 0x53, 0xb4,
-	0x8f, 0x29, 0x7e, 0xd9, 0x51, 0xb4, 0xde, 0x51, 0xb4, 0xd9, 0x51, 0xf4, 0x58, 0xf4, 0x42, 0xff,
-	0x49, 0x4f, 0xfe, 0xcc, 0xde, 0x57, 0x00, 0x00, 0x00, 0xff, 0xff, 0xaf, 0x2b, 0x7a, 0xb9, 0xb4,
-	0x02, 0x00, 0x00,
+	// 351 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x92, 0xbf, 0x4e, 0x32, 0x41,
+	0x14, 0xc5, 0x67, 0x3e, 0x3e, 0x50, 0x2e, 0xb0, 0x8b, 0x13, 0x13, 0xc9, 0x16, 0x37, 0x64, 0x42,
+	0x22, 0xfe, 0xc9, 0x90, 0x60, 0x61, 0x6c, 0x95, 0xc4, 0x58, 0xd8, 0xac, 0x56, 0x36, 0x64, 0x35,
+	0x53, 0x6c, 0x02, 0x32, 0x30, 0x2b, 0xb5, 0x8f, 0xe0, 0x63, 0xf8, 0x28, 0x96, 0x5b, 0x52, 0xca,
+	0xd0, 0x58, 0xf2, 0x08, 0x86, 0x41, 0x64, 0x96, 0x68, 0x62, 0x37, 0xf7, 0xde, 0x73, 0xcf, 0x9c,
+	0xf9, 0x65, 0x60, 0x2f, 0x52, 0x71, 0xab, 0x3f, 0x18, 0xc7, 0xb2, 0xab, 0xe5, 0x68, 0x1c, 0x3f,
+	0x48, 0xa1, 0x46, 0x83, 0x64, 0xc0, 0x1b, 0xe0, 0x5d, 0x8c, 0x64, 0x94, 0xc8, 0xeb, 0xc5, 0x30,
+	0x94, 0x43, 0xc6, 0xe0, 0xff, 0x63, 0xd4, 0x97, 0x35, 0x5a, 0xa7, 0xcd, 0x62, 0x68, 0xcf, 0xfc,
+	0x08, 0xfc, 0x8c, 0x4a, 0x2b, 0x56, 0x83, 0x2d, 0xeb, 0x77, 0xd5, 0xb1, 0xca, 0x7c, 0xb8, 0x2a,
+	0xf9, 0x21, 0x78, 0x1d, 0xd9, 0x93, 0x8e, 0xe5, 0xef, 0xda, 0x1d, 0xf0, 0x33, 0x5a, 0xad, 0xf8,
+	0x3e, 0x94, 0x2e, 0x65, 0xf2, 0x87, 0xdd, 0x06, 0x94, 0xd7, 0x42, 0xad, 0xd8, 0x2e, 0xe4, 0x93,
+	0x38, 0xe9, 0xad, 0x92, 0x2f, 0x0b, 0xee, 0xad, 0x55, 0x3a, 0x94, 0x43, 0xde, 0x82, 0x8a, 0x53,
+	0x6b, 0xc5, 0x10, 0x0a, 0xd6, 0x51, 0xd7, 0x68, 0x3d, 0xd7, 0x2c, 0xb5, 0x0b, 0xe2, 0xf6, 0x49,
+	0xf5, 0x64, 0xf8, 0xd5, 0xe5, 0xa7, 0x90, 0xb7, 0x8d, 0x9f, 0xfd, 0xdd, 0x7c, 0xff, 0x32, 0xf9,
+	0xda, 0x29, 0x85, 0x8a, 0xbd, 0xa7, 0x7b, 0xb3, 0x44, 0xce, 0xda, 0x50, 0x72, 0x30, 0x32, 0x5f,
+	0x64, 0xd1, 0x07, 0x55, 0xb1, 0x41, 0x99, 0x93, 0xc5, 0x8e, 0x43, 0x88, 0xf9, 0x22, 0xcb, 0x36,
+	0xa8, 0x8a, 0x4d, 0x80, 0x84, 0x1d, 0xc0, 0xf6, 0xea, 0x8d, 0xac, 0x2c, 0x1c, 0x9a, 0x41, 0x45,
+	0xb8, 0xc8, 0x38, 0x61, 0xc7, 0x50, 0xfc, 0xc6, 0xc1, 0xd6, 0xd3, 0x05, 0xaa, 0xc0, 0x13, 0x19,
+	0x52, 0x9c, 0x9c, 0x9f, 0xa5, 0x53, 0x24, 0x93, 0x29, 0x92, 0xf9, 0x14, 0xe9, 0xb3, 0x41, 0xfa,
+	0x6a, 0x90, 0xbe, 0x19, 0xa4, 0xa9, 0x41, 0xfa, 0x6e, 0x90, 0x7e, 0x18, 0x24, 0x73, 0x83, 0xf4,
+	0x65, 0x86, 0x24, 0x9d, 0x21, 0x99, 0xcc, 0x90, 0xdc, 0xe5, 0x22, 0x15, 0xdf, 0x17, 0xec, 0x7f,
+	0x3b, 0xf9, 0x0c, 0x00, 0x00, 0xff, 0xff, 0x06, 0x28, 0xaf, 0x38, 0x8a, 0x02, 0x00, 0x00,
 }
 
-func (this *CreateMovieMsg) Equal(that interface{}) bool {
+func (this *CreateMovieReq) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
 	}
 
-	that1, ok := that.(*CreateMovieMsg)
+	that1, ok := that.(*CreateMovieReq)
 	if !ok {
-		that2, ok := that.(CreateMovieMsg)
+		that2, ok := that.(CreateMovieReq)
 		if ok {
 			that1 = &that2
 		} else {
@@ -478,14 +467,14 @@ func (this *CreateMovieMsg) Equal(that interface{}) bool {
 	}
 	return true
 }
-func (this *CreateMovieResponseMsg) Equal(that interface{}) bool {
+func (this *CreateMovieResp) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
 	}
 
-	that1, ok := that.(*CreateMovieResponseMsg)
+	that1, ok := that.(*CreateMovieResp)
 	if !ok {
-		that2, ok := that.(CreateMovieResponseMsg)
+		that2, ok := that.(CreateMovieResp)
 		if ok {
 			that1 = &that2
 		} else {
@@ -497,19 +486,19 @@ func (this *CreateMovieResponseMsg) Equal(that interface{}) bool {
 	} else if this == nil {
 		return false
 	}
-	if this.Id != that1.Id {
+	if this.MovieID != that1.MovieID {
 		return false
 	}
 	return true
 }
-func (this *DeleteMovieMsg) Equal(that interface{}) bool {
+func (this *DeleteMovieReq) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
 	}
 
-	that1, ok := that.(*DeleteMovieMsg)
+	that1, ok := that.(*DeleteMovieReq)
 	if !ok {
-		that2, ok := that.(DeleteMovieMsg)
+		that2, ok := that.(DeleteMovieReq)
 		if ok {
 			that1 = &that2
 		} else {
@@ -521,19 +510,19 @@ func (this *DeleteMovieMsg) Equal(that interface{}) bool {
 	} else if this == nil {
 		return false
 	}
-	if this.Id != that1.Id {
+	if this.MovieID != that1.MovieID {
 		return false
 	}
 	return true
 }
-func (this *DeleteMovieResponseMsg) Equal(that interface{}) bool {
+func (this *DeleteMovieResp) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
 	}
 
-	that1, ok := that.(*DeleteMovieResponseMsg)
+	that1, ok := that.(*DeleteMovieResp)
 	if !ok {
-		that2, ok := that.(DeleteMovieResponseMsg)
+		that2, ok := that.(DeleteMovieResp)
 		if ok {
 			that1 = &that2
 		} else {
@@ -545,19 +534,16 @@ func (this *DeleteMovieResponseMsg) Equal(that interface{}) bool {
 	} else if this == nil {
 		return false
 	}
-	if this.Success != that1.Success {
-		return false
-	}
 	return true
 }
-func (this *GetMovieMsg) Equal(that interface{}) bool {
+func (this *GetMovieReq) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
 	}
 
-	that1, ok := that.(*GetMovieMsg)
+	that1, ok := that.(*GetMovieReq)
 	if !ok {
-		that2, ok := that.(GetMovieMsg)
+		that2, ok := that.(GetMovieReq)
 		if ok {
 			that1 = &that2
 		} else {
@@ -569,19 +555,19 @@ func (this *GetMovieMsg) Equal(that interface{}) bool {
 	} else if this == nil {
 		return false
 	}
-	if this.Id != that1.Id {
+	if this.MovieID != that1.MovieID {
 		return false
 	}
 	return true
 }
-func (this *GetMovieResponseMsg) Equal(that interface{}) bool {
+func (this *GetMovieResp) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
 	}
 
-	that1, ok := that.(*GetMovieResponseMsg)
+	that1, ok := that.(*GetMovieResp)
 	if !ok {
-		that2, ok := that.(GetMovieResponseMsg)
+		that2, ok := that.(GetMovieResp)
 		if ok {
 			that1 = &that2
 		} else {
@@ -598,14 +584,14 @@ func (this *GetMovieResponseMsg) Equal(that interface{}) bool {
 	}
 	return true
 }
-func (this *GetMoviesMsg) Equal(that interface{}) bool {
+func (this *GetMoviesReq) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
 	}
 
-	that1, ok := that.(*GetMoviesMsg)
+	that1, ok := that.(*GetMoviesReq)
 	if !ok {
-		that2, ok := that.(GetMoviesMsg)
+		that2, ok := that.(GetMoviesReq)
 		if ok {
 			that1 = &that2
 		} else {
@@ -619,14 +605,14 @@ func (this *GetMoviesMsg) Equal(that interface{}) bool {
 	}
 	return true
 }
-func (this *GetMoviesResponseMsg) Equal(that interface{}) bool {
+func (this *GetMoviesResp) Equal(that interface{}) bool {
 	if that == nil {
 		return this == nil
 	}
 
-	that1, ok := that.(*GetMoviesResponseMsg)
+	that1, ok := that.(*GetMoviesResp)
 	if !ok {
-		that2, ok := that.(GetMoviesResponseMsg)
+		that2, ok := that.(GetMoviesResp)
 		if ok {
 			that1 = &that2
 		} else {
@@ -670,86 +656,85 @@ func (this *Tuple) Equal(that interface{}) bool {
 	if this.Title != that1.Title {
 		return false
 	}
-	if this.Id != that1.Id {
+	if this.MovieID != that1.MovieID {
 		return false
 	}
 	return true
 }
-func (this *CreateMovieMsg) GoString() string {
+func (this *CreateMovieReq) GoString() string {
 	if this == nil {
 		return "nil"
 	}
 	s := make([]string, 0, 5)
-	s = append(s, "&api.CreateMovieMsg{")
+	s = append(s, "&api.CreateMovieReq{")
 	s = append(s, "Name: "+fmt.Sprintf("%#v", this.Name)+",\n")
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
-func (this *CreateMovieResponseMsg) GoString() string {
+func (this *CreateMovieResp) GoString() string {
 	if this == nil {
 		return "nil"
 	}
 	s := make([]string, 0, 5)
-	s = append(s, "&api.CreateMovieResponseMsg{")
-	s = append(s, "Id: "+fmt.Sprintf("%#v", this.Id)+",\n")
+	s = append(s, "&api.CreateMovieResp{")
+	s = append(s, "MovieID: "+fmt.Sprintf("%#v", this.MovieID)+",\n")
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
-func (this *DeleteMovieMsg) GoString() string {
+func (this *DeleteMovieReq) GoString() string {
 	if this == nil {
 		return "nil"
 	}
 	s := make([]string, 0, 5)
-	s = append(s, "&api.DeleteMovieMsg{")
-	s = append(s, "Id: "+fmt.Sprintf("%#v", this.Id)+",\n")
+	s = append(s, "&api.DeleteMovieReq{")
+	s = append(s, "MovieID: "+fmt.Sprintf("%#v", this.MovieID)+",\n")
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
-func (this *DeleteMovieResponseMsg) GoString() string {
-	if this == nil {
-		return "nil"
-	}
-	s := make([]string, 0, 5)
-	s = append(s, "&api.DeleteMovieResponseMsg{")
-	s = append(s, "Success: "+fmt.Sprintf("%#v", this.Success)+",\n")
-	s = append(s, "}")
-	return strings.Join(s, "")
-}
-func (this *GetMovieMsg) GoString() string {
-	if this == nil {
-		return "nil"
-	}
-	s := make([]string, 0, 5)
-	s = append(s, "&api.GetMovieMsg{")
-	s = append(s, "Id: "+fmt.Sprintf("%#v", this.Id)+",\n")
-	s = append(s, "}")
-	return strings.Join(s, "")
-}
-func (this *GetMovieResponseMsg) GoString() string {
-	if this == nil {
-		return "nil"
-	}
-	s := make([]string, 0, 5)
-	s = append(s, "&api.GetMovieResponseMsg{")
-	s = append(s, "Title: "+fmt.Sprintf("%#v", this.Title)+",\n")
-	s = append(s, "}")
-	return strings.Join(s, "")
-}
-func (this *GetMoviesMsg) GoString() string {
+func (this *DeleteMovieResp) GoString() string {
 	if this == nil {
 		return "nil"
 	}
 	s := make([]string, 0, 4)
-	s = append(s, "&api.GetMoviesMsg{")
+	s = append(s, "&api.DeleteMovieResp{")
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
-func (this *GetMoviesResponseMsg) GoString() string {
+func (this *GetMovieReq) GoString() string {
 	if this == nil {
 		return "nil"
 	}
 	s := make([]string, 0, 5)
-	s = append(s, "&api.GetMoviesResponseMsg{")
+	s = append(s, "&api.GetMovieReq{")
+	s = append(s, "MovieID: "+fmt.Sprintf("%#v", this.MovieID)+",\n")
+	s = append(s, "}")
+	return strings.Join(s, "")
+}
+func (this *GetMovieResp) GoString() string {
+	if this == nil {
+		return "nil"
+	}
+	s := make([]string, 0, 5)
+	s = append(s, "&api.GetMovieResp{")
+	s = append(s, "Title: "+fmt.Sprintf("%#v", this.Title)+",\n")
+	s = append(s, "}")
+	return strings.Join(s, "")
+}
+func (this *GetMoviesReq) GoString() string {
+	if this == nil {
+		return "nil"
+	}
+	s := make([]string, 0, 4)
+	s = append(s, "&api.GetMoviesReq{")
+	s = append(s, "}")
+	return strings.Join(s, "")
+}
+func (this *GetMoviesResp) GoString() string {
+	if this == nil {
+		return "nil"
+	}
+	s := make([]string, 0, 5)
+	s = append(s, "&api.GetMoviesResp{")
 	if this.Movies != nil {
 		s = append(s, "Movies: "+fmt.Sprintf("%#v", this.Movies)+",\n")
 	}
@@ -763,7 +748,7 @@ func (this *Tuple) GoString() string {
 	s := make([]string, 0, 6)
 	s = append(s, "&api.Tuple{")
 	s = append(s, "Title: "+fmt.Sprintf("%#v", this.Title)+",\n")
-	s = append(s, "Id: "+fmt.Sprintf("%#v", this.Id)+",\n")
+	s = append(s, "MovieID: "+fmt.Sprintf("%#v", this.MovieID)+",\n")
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
@@ -775,7 +760,7 @@ func valueToGoStringMovieService(v interface{}, typ string) string {
 	pv := reflect.Indirect(rv).Interface()
 	return fmt.Sprintf("func(v %v) *%v { return &v } ( %#v )", typ, typ, pv)
 }
-func (m *CreateMovieMsg) Marshal() (dAtA []byte, err error) {
+func (m *CreateMovieReq) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -785,12 +770,12 @@ func (m *CreateMovieMsg) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *CreateMovieMsg) MarshalTo(dAtA []byte) (int, error) {
+func (m *CreateMovieReq) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *CreateMovieMsg) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *CreateMovieReq) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -805,7 +790,7 @@ func (m *CreateMovieMsg) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *CreateMovieResponseMsg) Marshal() (dAtA []byte, err error) {
+func (m *CreateMovieResp) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -815,25 +800,25 @@ func (m *CreateMovieResponseMsg) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *CreateMovieResponseMsg) MarshalTo(dAtA []byte) (int, error) {
+func (m *CreateMovieResp) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *CreateMovieResponseMsg) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *CreateMovieResp) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
-	if m.Id != 0 {
-		i = encodeVarintMovieService(dAtA, i, uint64(m.Id))
+	if m.MovieID != 0 {
+		i = encodeVarintMovieService(dAtA, i, uint64(m.MovieID))
 		i--
-		dAtA[i] = 0x10
+		dAtA[i] = 0x8
 	}
 	return len(dAtA) - i, nil
 }
 
-func (m *DeleteMovieMsg) Marshal() (dAtA []byte, err error) {
+func (m *DeleteMovieReq) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -843,25 +828,25 @@ func (m *DeleteMovieMsg) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *DeleteMovieMsg) MarshalTo(dAtA []byte) (int, error) {
+func (m *DeleteMovieReq) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *DeleteMovieMsg) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *DeleteMovieReq) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
-	if m.Id != 0 {
-		i = encodeVarintMovieService(dAtA, i, uint64(m.Id))
+	if m.MovieID != 0 {
+		i = encodeVarintMovieService(dAtA, i, uint64(m.MovieID))
 		i--
-		dAtA[i] = 0x18
+		dAtA[i] = 0x8
 	}
 	return len(dAtA) - i, nil
 }
 
-func (m *DeleteMovieResponseMsg) Marshal() (dAtA []byte, err error) {
+func (m *DeleteMovieResp) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -871,30 +856,20 @@ func (m *DeleteMovieResponseMsg) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *DeleteMovieResponseMsg) MarshalTo(dAtA []byte) (int, error) {
+func (m *DeleteMovieResp) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *DeleteMovieResponseMsg) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *DeleteMovieResp) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
-	if m.Success {
-		i--
-		if m.Success {
-			dAtA[i] = 1
-		} else {
-			dAtA[i] = 0
-		}
-		i--
-		dAtA[i] = 0x20
-	}
 	return len(dAtA) - i, nil
 }
 
-func (m *GetMovieMsg) Marshal() (dAtA []byte, err error) {
+func (m *GetMovieReq) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -904,25 +879,25 @@ func (m *GetMovieMsg) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *GetMovieMsg) MarshalTo(dAtA []byte) (int, error) {
+func (m *GetMovieReq) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *GetMovieMsg) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *GetMovieReq) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
-	if m.Id != 0 {
-		i = encodeVarintMovieService(dAtA, i, uint64(m.Id))
+	if m.MovieID != 0 {
+		i = encodeVarintMovieService(dAtA, i, uint64(m.MovieID))
 		i--
-		dAtA[i] = 0x28
+		dAtA[i] = 0x8
 	}
 	return len(dAtA) - i, nil
 }
 
-func (m *GetMovieResponseMsg) Marshal() (dAtA []byte, err error) {
+func (m *GetMovieResp) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -932,12 +907,12 @@ func (m *GetMovieResponseMsg) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *GetMovieResponseMsg) MarshalTo(dAtA []byte) (int, error) {
+func (m *GetMovieResp) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *GetMovieResponseMsg) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *GetMovieResp) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -947,12 +922,12 @@ func (m *GetMovieResponseMsg) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		copy(dAtA[i:], m.Title)
 		i = encodeVarintMovieService(dAtA, i, uint64(len(m.Title)))
 		i--
-		dAtA[i] = 0x32
+		dAtA[i] = 0xa
 	}
 	return len(dAtA) - i, nil
 }
 
-func (m *GetMoviesMsg) Marshal() (dAtA []byte, err error) {
+func (m *GetMoviesReq) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -962,12 +937,12 @@ func (m *GetMoviesMsg) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *GetMoviesMsg) MarshalTo(dAtA []byte) (int, error) {
+func (m *GetMoviesReq) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *GetMoviesMsg) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *GetMoviesReq) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -975,7 +950,7 @@ func (m *GetMoviesMsg) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *GetMoviesResponseMsg) Marshal() (dAtA []byte, err error) {
+func (m *GetMoviesResp) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -985,12 +960,12 @@ func (m *GetMoviesResponseMsg) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *GetMoviesResponseMsg) MarshalTo(dAtA []byte) (int, error) {
+func (m *GetMoviesResp) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *GetMoviesResponseMsg) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *GetMoviesResp) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -1006,7 +981,7 @@ func (m *GetMoviesResponseMsg) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 				i = encodeVarintMovieService(dAtA, i, uint64(size))
 			}
 			i--
-			dAtA[i] = 0x3a
+			dAtA[i] = 0xa
 		}
 	}
 	return len(dAtA) - i, nil
@@ -1032,17 +1007,17 @@ func (m *Tuple) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if m.Id != 0 {
-		i = encodeVarintMovieService(dAtA, i, uint64(m.Id))
+	if m.MovieID != 0 {
+		i = encodeVarintMovieService(dAtA, i, uint64(m.MovieID))
 		i--
-		dAtA[i] = 0x48
+		dAtA[i] = 0x10
 	}
 	if len(m.Title) > 0 {
 		i -= len(m.Title)
 		copy(dAtA[i:], m.Title)
 		i = encodeVarintMovieService(dAtA, i, uint64(len(m.Title)))
 		i--
-		dAtA[i] = 0x42
+		dAtA[i] = 0xa
 	}
 	return len(dAtA) - i, nil
 }
@@ -1058,7 +1033,7 @@ func encodeVarintMovieService(dAtA []byte, offset int, v uint64) int {
 	dAtA[offset] = uint8(v)
 	return base
 }
-func (m *CreateMovieMsg) Size() (n int) {
+func (m *CreateMovieReq) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -1071,55 +1046,52 @@ func (m *CreateMovieMsg) Size() (n int) {
 	return n
 }
 
-func (m *CreateMovieResponseMsg) Size() (n int) {
+func (m *CreateMovieResp) Size() (n int) {
 	if m == nil {
 		return 0
 	}
 	var l int
 	_ = l
-	if m.Id != 0 {
-		n += 1 + sovMovieService(uint64(m.Id))
+	if m.MovieID != 0 {
+		n += 1 + sovMovieService(uint64(m.MovieID))
 	}
 	return n
 }
 
-func (m *DeleteMovieMsg) Size() (n int) {
+func (m *DeleteMovieReq) Size() (n int) {
 	if m == nil {
 		return 0
 	}
 	var l int
 	_ = l
-	if m.Id != 0 {
-		n += 1 + sovMovieService(uint64(m.Id))
+	if m.MovieID != 0 {
+		n += 1 + sovMovieService(uint64(m.MovieID))
 	}
 	return n
 }
 
-func (m *DeleteMovieResponseMsg) Size() (n int) {
+func (m *DeleteMovieResp) Size() (n int) {
 	if m == nil {
 		return 0
 	}
 	var l int
 	_ = l
-	if m.Success {
-		n += 2
-	}
 	return n
 }
 
-func (m *GetMovieMsg) Size() (n int) {
+func (m *GetMovieReq) Size() (n int) {
 	if m == nil {
 		return 0
 	}
 	var l int
 	_ = l
-	if m.Id != 0 {
-		n += 1 + sovMovieService(uint64(m.Id))
+	if m.MovieID != 0 {
+		n += 1 + sovMovieService(uint64(m.MovieID))
 	}
 	return n
 }
 
-func (m *GetMovieResponseMsg) Size() (n int) {
+func (m *GetMovieResp) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -1132,7 +1104,7 @@ func (m *GetMovieResponseMsg) Size() (n int) {
 	return n
 }
 
-func (m *GetMoviesMsg) Size() (n int) {
+func (m *GetMoviesReq) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -1141,7 +1113,7 @@ func (m *GetMoviesMsg) Size() (n int) {
 	return n
 }
 
-func (m *GetMoviesResponseMsg) Size() (n int) {
+func (m *GetMoviesResp) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -1166,8 +1138,8 @@ func (m *Tuple) Size() (n int) {
 	if l > 0 {
 		n += 1 + l + sovMovieService(uint64(l))
 	}
-	if m.Id != 0 {
-		n += 1 + sovMovieService(uint64(m.Id))
+	if m.MovieID != 0 {
+		n += 1 + sovMovieService(uint64(m.MovieID))
 	}
 	return n
 }
@@ -1178,76 +1150,75 @@ func sovMovieService(x uint64) (n int) {
 func sozMovieService(x uint64) (n int) {
 	return sovMovieService(uint64((x << 1) ^ uint64((int64(x) >> 63))))
 }
-func (this *CreateMovieMsg) String() string {
+func (this *CreateMovieReq) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&CreateMovieMsg{`,
+	s := strings.Join([]string{`&CreateMovieReq{`,
 		`Name:` + fmt.Sprintf("%v", this.Name) + `,`,
 		`}`,
 	}, "")
 	return s
 }
-func (this *CreateMovieResponseMsg) String() string {
+func (this *CreateMovieResp) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&CreateMovieResponseMsg{`,
-		`Id:` + fmt.Sprintf("%v", this.Id) + `,`,
+	s := strings.Join([]string{`&CreateMovieResp{`,
+		`MovieID:` + fmt.Sprintf("%v", this.MovieID) + `,`,
 		`}`,
 	}, "")
 	return s
 }
-func (this *DeleteMovieMsg) String() string {
+func (this *DeleteMovieReq) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&DeleteMovieMsg{`,
-		`Id:` + fmt.Sprintf("%v", this.Id) + `,`,
+	s := strings.Join([]string{`&DeleteMovieReq{`,
+		`MovieID:` + fmt.Sprintf("%v", this.MovieID) + `,`,
 		`}`,
 	}, "")
 	return s
 }
-func (this *DeleteMovieResponseMsg) String() string {
+func (this *DeleteMovieResp) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&DeleteMovieResponseMsg{`,
-		`Success:` + fmt.Sprintf("%v", this.Success) + `,`,
+	s := strings.Join([]string{`&DeleteMovieResp{`,
 		`}`,
 	}, "")
 	return s
 }
-func (this *GetMovieMsg) String() string {
+func (this *GetMovieReq) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&GetMovieMsg{`,
-		`Id:` + fmt.Sprintf("%v", this.Id) + `,`,
+	s := strings.Join([]string{`&GetMovieReq{`,
+		`MovieID:` + fmt.Sprintf("%v", this.MovieID) + `,`,
 		`}`,
 	}, "")
 	return s
 }
-func (this *GetMovieResponseMsg) String() string {
+func (this *GetMovieResp) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&GetMovieResponseMsg{`,
+	s := strings.Join([]string{`&GetMovieResp{`,
 		`Title:` + fmt.Sprintf("%v", this.Title) + `,`,
 		`}`,
 	}, "")
 	return s
 }
-func (this *GetMoviesMsg) String() string {
+func (this *GetMoviesReq) String() string {
 	if this == nil {
 		return "nil"
 	}
-	s := strings.Join([]string{`&GetMoviesMsg{`,
+	s := strings.Join([]string{`&GetMoviesReq{`,
 		`}`,
 	}, "")
 	return s
 }
-func (this *GetMoviesResponseMsg) String() string {
+func (this *GetMoviesResp) String() string {
 	if this == nil {
 		return "nil"
 	}
@@ -1256,7 +1227,7 @@ func (this *GetMoviesResponseMsg) String() string {
 		repeatedStringForMovies += strings.Replace(f.String(), "Tuple", "Tuple", 1) + ","
 	}
 	repeatedStringForMovies += "}"
-	s := strings.Join([]string{`&GetMoviesResponseMsg{`,
+	s := strings.Join([]string{`&GetMoviesResp{`,
 		`Movies:` + repeatedStringForMovies + `,`,
 		`}`,
 	}, "")
@@ -1268,7 +1239,7 @@ func (this *Tuple) String() string {
 	}
 	s := strings.Join([]string{`&Tuple{`,
 		`Title:` + fmt.Sprintf("%v", this.Title) + `,`,
-		`Id:` + fmt.Sprintf("%v", this.Id) + `,`,
+		`MovieID:` + fmt.Sprintf("%v", this.MovieID) + `,`,
 		`}`,
 	}, "")
 	return s
@@ -1281,7 +1252,7 @@ func valueToStringMovieService(v interface{}) string {
 	pv := reflect.Indirect(rv).Interface()
 	return fmt.Sprintf("*%v", pv)
 }
-func (m *CreateMovieMsg) Unmarshal(dAtA []byte) error {
+func (m *CreateMovieReq) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1304,10 +1275,10 @@ func (m *CreateMovieMsg) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: CreateMovieMsg: wiretype end group for non-group")
+			return fmt.Errorf("proto: CreateMovieReq: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: CreateMovieMsg: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: CreateMovieReq: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
@@ -1366,7 +1337,7 @@ func (m *CreateMovieMsg) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *CreateMovieResponseMsg) Unmarshal(dAtA []byte) error {
+func (m *CreateMovieResp) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1389,17 +1360,17 @@ func (m *CreateMovieResponseMsg) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: CreateMovieResponseMsg: wiretype end group for non-group")
+			return fmt.Errorf("proto: CreateMovieResp: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: CreateMovieResponseMsg: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: CreateMovieResp: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
-		case 2:
+		case 1:
 			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field MovieID", wireType)
 			}
-			m.Id = 0
+			m.MovieID = 0
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowMovieService
@@ -1409,7 +1380,7 @@ func (m *CreateMovieResponseMsg) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Id |= int32(b&0x7F) << shift
+				m.MovieID |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -1438,7 +1409,7 @@ func (m *CreateMovieResponseMsg) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *DeleteMovieMsg) Unmarshal(dAtA []byte) error {
+func (m *DeleteMovieReq) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1461,17 +1432,17 @@ func (m *DeleteMovieMsg) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: DeleteMovieMsg: wiretype end group for non-group")
+			return fmt.Errorf("proto: DeleteMovieReq: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: DeleteMovieMsg: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: DeleteMovieReq: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
-		case 3:
+		case 1:
 			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field MovieID", wireType)
 			}
-			m.Id = 0
+			m.MovieID = 0
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowMovieService
@@ -1481,7 +1452,7 @@ func (m *DeleteMovieMsg) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Id |= int32(b&0x7F) << shift
+				m.MovieID |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -1510,7 +1481,7 @@ func (m *DeleteMovieMsg) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *DeleteMovieResponseMsg) Unmarshal(dAtA []byte) error {
+func (m *DeleteMovieResp) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1533,32 +1504,12 @@ func (m *DeleteMovieResponseMsg) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: DeleteMovieResponseMsg: wiretype end group for non-group")
+			return fmt.Errorf("proto: DeleteMovieResp: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: DeleteMovieResponseMsg: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: DeleteMovieResp: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
-		case 4:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Success", wireType)
-			}
-			var v int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowMovieService
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				v |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			m.Success = bool(v != 0)
 		default:
 			iNdEx = preIndex
 			skippy, err := skipMovieService(dAtA[iNdEx:])
@@ -1583,7 +1534,7 @@ func (m *DeleteMovieResponseMsg) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *GetMovieMsg) Unmarshal(dAtA []byte) error {
+func (m *GetMovieReq) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1606,17 +1557,17 @@ func (m *GetMovieMsg) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: GetMovieMsg: wiretype end group for non-group")
+			return fmt.Errorf("proto: GetMovieReq: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: GetMovieMsg: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: GetMovieReq: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
-		case 5:
+		case 1:
 			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field MovieID", wireType)
 			}
-			m.Id = 0
+			m.MovieID = 0
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowMovieService
@@ -1626,7 +1577,7 @@ func (m *GetMovieMsg) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Id |= int32(b&0x7F) << shift
+				m.MovieID |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -1655,7 +1606,7 @@ func (m *GetMovieMsg) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *GetMovieResponseMsg) Unmarshal(dAtA []byte) error {
+func (m *GetMovieResp) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1678,13 +1629,13 @@ func (m *GetMovieResponseMsg) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: GetMovieResponseMsg: wiretype end group for non-group")
+			return fmt.Errorf("proto: GetMovieResp: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: GetMovieResponseMsg: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: GetMovieResp: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
-		case 6:
+		case 1:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Title", wireType)
 			}
@@ -1740,7 +1691,7 @@ func (m *GetMovieResponseMsg) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *GetMoviesMsg) Unmarshal(dAtA []byte) error {
+func (m *GetMoviesReq) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1763,10 +1714,10 @@ func (m *GetMoviesMsg) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: GetMoviesMsg: wiretype end group for non-group")
+			return fmt.Errorf("proto: GetMoviesReq: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: GetMoviesMsg: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: GetMoviesReq: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		default:
@@ -1793,7 +1744,7 @@ func (m *GetMoviesMsg) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *GetMoviesResponseMsg) Unmarshal(dAtA []byte) error {
+func (m *GetMoviesResp) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1816,13 +1767,13 @@ func (m *GetMoviesResponseMsg) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: GetMoviesResponseMsg: wiretype end group for non-group")
+			return fmt.Errorf("proto: GetMoviesResp: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: GetMoviesResponseMsg: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: GetMoviesResp: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
-		case 7:
+		case 1:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Movies", wireType)
 			}
@@ -1909,7 +1860,7 @@ func (m *Tuple) Unmarshal(dAtA []byte) error {
 			return fmt.Errorf("proto: Tuple: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
-		case 8:
+		case 1:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Title", wireType)
 			}
@@ -1941,11 +1892,11 @@ func (m *Tuple) Unmarshal(dAtA []byte) error {
 			}
 			m.Title = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		case 9:
+		case 2:
 			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Id", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field MovieID", wireType)
 			}
-			m.Id = 0
+			m.MovieID = 0
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowMovieService
@@ -1955,7 +1906,7 @@ func (m *Tuple) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Id |= int32(b&0x7F) << shift
+				m.MovieID |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}

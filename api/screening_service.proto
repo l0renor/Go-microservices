@@ -8,6 +8,10 @@ service Screening_Service {
     }
     rpc DeleteScreening (DeleteScreeningReq) returns (DeleteScreeningResp) {
     }
+    rpc DeleteScreeningsWithRoom (DeleteScreeningsWithRoomReq) returns (DeleteScreeningsWithRoomResp) {
+    }
+    rpc DeleteScreeningsWithMovie (DeleteScreeningsWithMovieReq) returns (DeleteScreeningsWithMovieResp) {
+    }
     rpc GetScreening (GetScreeningReq) returns (GetScreeningResp) {
     }
     rpc GetScreenings (GetScreeningsReq) returns (GetScreeningsResp) {
@@ -29,7 +33,6 @@ message ChangeFreeSeatsReq {
 }
 
 message ChangeFreeSeatsResp {
-    bool success = 1;
 }
 
 message DeleteScreeningReq {
@@ -37,7 +40,20 @@ message DeleteScreeningReq {
 }
 
 message DeleteScreeningResp {
-    bool success = 1;
+}
+
+message DeleteScreeningsWithRoomReq {
+    int32 roomID = 1;
+}
+
+message DeleteScreeningsWithRoomResp {
+}
+
+message DeleteScreeningsWithMovieReq {
+    int32 movieID = 1;
+}
+
+message DeleteScreeningsWithMovieResp {
 }
 
 message GetScreeningReq {
