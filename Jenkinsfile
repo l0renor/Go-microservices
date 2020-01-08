@@ -20,7 +20,7 @@ pipeline {
             }
             steps {
                 sh 'echo run tests...'
-                sh 'go test ./room_service'
+                sh 'go test ./...'
             }
         }
         stage('Build Docker Image') {

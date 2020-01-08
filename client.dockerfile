@@ -1,7 +1,7 @@
 FROM obraun/vss-micro-jenkins as builder
 COPY . /app
 WORKDIR /app
-RUN go build -o client/client client/main.go
+RUN go build -o client/client client/client.go
 
 FROM alpine
 COPY --from=builder /app/client/client /app/client
