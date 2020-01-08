@@ -20,7 +20,6 @@ pipeline {
             }
             steps {
                 sh 'echo run tests...'
-                sh 'go build ./room_service'
                 sh 'go test ./room_service'
             }
         }
