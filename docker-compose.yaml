@@ -1,0 +1,52 @@
+version: "3"
+services:
+  consul:
+    command: -server -bootstrap -rejoin
+    image: progrium/consul:latest
+    ports:
+      - "8300:8300"
+      - "8400:8400"
+      - "8500:8500"
+      - "8600:53/udp"
+  movie_service:
+    build:
+      context: .
+      dockerfile: movie_service.dockerfile
+    command: --registry_address=consul:8500
+    links:
+      - consul
+  room_service:
+    build:
+      context: .
+      dockerfile: room_service.dockerfile
+    command: --registry_address=consul:8500
+    links:
+      - consul
+  user_service:
+    build:
+      context: .
+      dockerfile: user_service.dockerfile
+    command: --registry_address=consul:8500
+    links:
+      - consul
+  screening_service:
+    build:
+      context: .
+      dockerfile: screening_service.dockerfile
+    command: --registry_address=consul:8500
+    links:
+      - consul
+  reservation_service:
+    build:
+      context: .
+      dockerfile: reservation_service.dockerfile
+    command: --registry_address=consul:8500
+    links:
+      - consul
+  client:
+    build:
+      context: .
+      dockerfile: client.dockerfile
+    command: --registry_address=consul:8500
+    links:
+      - consul

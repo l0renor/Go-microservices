@@ -29,7 +29,7 @@ reservation:
 client:
 	MICRO_REGISTRY=etcd go run client/main.go
 
-docker: docker-movie docker-room docker-user docker-screening docker-reservation
+docker: docker-movie docker-room docker-user docker-screening docker-reservation docker-client
 
 docker-movie:
 	docker build -f movie_service.dockerfile -t movie_service .
