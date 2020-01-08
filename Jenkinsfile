@@ -20,16 +20,7 @@ pipeline {
             }
             steps {
                 sh 'echo run tests...'
-                sh 'go build ./room_service'
                 sh 'go test ./room_service'
-            }
-        }
-        stage('Lint') {
-            agent {
-                docker { image 'obraun/vss-micro-jenkins' }
-            }
-            steps {
-                sh 'golangci-lint run --deadline 20m --enable-all'
             }
         }
         stage('Build Docker Image') {
