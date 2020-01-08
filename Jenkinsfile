@@ -23,14 +23,6 @@ pipeline {
                 sh 'go test ./room_service'
             }
         }
-        stage('Lint') {
-            agent {
-                docker { image 'obraun/vss-micro-jenkins' }
-            }
-            steps {
-                sh 'golangci-lint run --deadline 20m --enable-all'
-            }
-        }
         stage('Build Docker Image') {
             agent any
             steps {
