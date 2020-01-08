@@ -12,6 +12,8 @@ services:
     build:
       context: .
       dockerfile: movie_service.dockerfile
+    depends_on:
+      - consul
     command: --registry_address=consul:8500
     links:
       - consul
@@ -19,6 +21,8 @@ services:
     build:
       context: .
       dockerfile: room_service.dockerfile
+    depends_on:
+      - consul
     command: --registry_address=consul:8500
     links:
       - consul
@@ -26,6 +30,8 @@ services:
     build:
       context: .
       dockerfile: user_service.dockerfile
+    depends_on:
+      - consul
     command: --registry_address=consul:8500
     links:
       - consul
@@ -33,6 +39,9 @@ services:
     build:
       context: .
       dockerfile: screening_service.dockerfile
+    depends_on:
+      - movie_service
+      - room_service
     command: --registry_address=consul:8500
     links:
       - consul
@@ -40,6 +49,9 @@ services:
     build:
       context: .
       dockerfile: reservation_service.dockerfile
+    depends_on:
+      - screening_service
+      - user_service
     command: --registry_address=consul:8500
     links:
       - consul
@@ -47,6 +59,8 @@ services:
     build:
       context: .
       dockerfile: client.dockerfile
+    depends_on:
+      - reservation_service
     command: --registry_address=consul:8500
     links:
       - consul
