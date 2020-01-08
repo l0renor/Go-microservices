@@ -1,9 +1,12 @@
-package user_service
+package main
 
 import (
 	"context"
+	"github.com/micro/go-micro"
 	"github.com/micro/go-micro/errors"
 	"github.com/ob-vss-ws19/blatt-4-myteam/api"
+	"github.com/ob-vss-ws19/blatt-4-myteam/helpers"
+	"log"
 )
 
 type User struct {
@@ -12,9 +15,8 @@ type User struct {
 }
 
 type Service struct {
-	users              map[int32]User
-	nextID             func() int32
-	reservationService api.Reservation_Service
+	users  map[int32]User
+	nextID func() int32
 }
 
 func (service *Service) CreateUser(ctx context.Context, req *api.CreateUserReq, resp *api.CreateUserResp) error {
@@ -28,26 +30,22 @@ func (service *Service) CreateUser(ctx context.Context, req *api.CreateUserReq, 
 
 func (service *Service) DeleteUser(ctx context.Context, req *api.DeleteUserReq, resp *api.DeleteUserResp) error {
 	user, ok := service.users[req.GetUserID()]
-	if ok {
-		if len(user.reservations) > 0 {
-			return errors.Conflict("usr_has_res", "The user still has reservations;can't be deleted")
-		}
-		delete(service.users, req.GetUserID())
-		resp.Success = true
-	} else {
-		resp.Success = false
-		return errors.NotFound("usr_not_found", "User can't be deleted not found")
+	if !ok {
+		return errors.NotFound("ERR-NO-USER", "User (ID: %d) was not found!", req.GetUserID())
 	}
+	if len(user.reservations) > 0 {
+		return errors.Conflict("ERR-RESERVATION-LEFT", "The user still has %d reservation(s) and can't be deleted!", len(user.reservations))
+	}
+	delete(service.users, req.GetUserID())
 	return nil
 }
 
 func (service *Service) GetUser(ctx context.Context, req *api.GetUserReq, resp *api.GetUserResp) error {
 	user, ok := service.users[req.GetUserID()]
-	if ok {
-		resp.Name = user.name
-	} else {
-		return errors.NotFound("usr_not_found", "User not found")
+	if !ok {
+		return errors.NotFound("ERR-NO-USER", "User (ID: %d) not found!", req.GetUserID())
 	}
+	resp.Name = user.name
 	return nil
 }
 
@@ -63,31 +61,49 @@ func (service *Service) GetUsers(ctx context.Context, req *api.GetUsersReq, resp
 	return nil
 }
 
-func (service *Service) AddReservation(ctx context.Context, req *api.AddReservationReq, resp *api.AddReservationResp) error {
-	// check user exists
-	user, ok := service.users[req.UserID]
+func (service *Service) AddUserReservation(ctx context.Context, req *api.AddUserReservationReq, resp *api.AddUserReservationResp) error {
+	user, ok := service.users[req.GetUserID()]
 	if !ok {
-		return errors.NotFound("usr_not_found", "User not found")
+		return errors.NotFound("ERR-NO-USER", "User (ID: %d) not found!", req.GetUserID())
 	}
-	// check reservation not exists
-	existsAlready := contains(user.reservations, req.ReservationID)
+	existsAlready := contains(user.reservations, req.GetReservationID())
 	if existsAlready {
-		return errors.Conflict("Reservation exists", "This reservation already exists")
+		return errors.Conflict("ERR-RESERVATION-EXISTS", "Reservation (ID: %d) already exists!", req.GetReservationID())
 	}
-	user.reservations = append(user.reservations, req.ReservationID)
+	user.reservations = append(user.reservations, req.GetReservationID())
 	return nil
 }
 
-func (service *Service) DeleteReservation(ctx context.Context, req *api.DeleteReservationReq, resp *api.DeleteReservationResp) error {
-	user, ok := service.users[req.UserID]
+func (service *Service) DeleteUserReservation(ctx context.Context, req *api.DeleteUserReservationReq, resp *api.DeleteUserReservationResp) error {
+	user, ok := service.users[req.GetUserID()]
 	if !ok {
-		return errors.NotFound("usr_not_found", "User not found")
+		return errors.NotFound("ERR-NO-USER", "User (ID: %d) not found!", req.GetUserID())
 	}
-	exists := remove(user.reservations, req.ReservationID)
+	exists := remove(user.reservations, req.GetReservationID())
 	if !exists {
-		return errors.NotFound("rsv_not_found", "Reservation not found")
+		return errors.NotFound("ERR-NO-RESERVATION", "Reservation (ID: %d) not found!", req.GetReservationID())
 	}
 	return nil
+}
+
+func main() {
+	service := micro.NewService(
+		micro.Name("user"),
+		micro.Version("latest"),
+	)
+
+	service.Init()
+
+	if err := api.RegisterUser_ServiceHandler(service.Server(), &Service{
+		users:  make(map[int32]User),
+		nextID: helpers.IDGenerator(),
+	}); err != nil {
+		log.Fatal(err)
+	}
+
+	if err := service.Run(); err != nil {
+		log.Fatal(err)
+	}
 }
 
 func contains(s []int32, e int32) bool {

@@ -170,7 +170,6 @@ func (m *ActivateReservationReq) GetReservationID() int32 {
 }
 
 type ActivateReservationResp struct {
-	Success bool `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 }
 
 func (m *ActivateReservationResp) Reset()      { *m = ActivateReservationResp{} }
@@ -204,13 +203,6 @@ func (m *ActivateReservationResp) XXX_DiscardUnknown() {
 }
 
 var xxx_messageInfo_ActivateReservationResp proto.InternalMessageInfo
-
-func (m *ActivateReservationResp) GetSuccess() bool {
-	if m != nil {
-		return m.Success
-	}
-	return false
-}
 
 type DeleteReservationReq struct {
 	ReservationID int32 `protobuf:"varint,1,opt,name=reservationID,proto3" json:"reservationID,omitempty"`
@@ -256,7 +248,6 @@ func (m *DeleteReservationReq) GetReservationID() int32 {
 }
 
 type DeleteReservationResp struct {
-	Success bool `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
 }
 
 func (m *DeleteReservationResp) Reset()      { *m = DeleteReservationResp{} }
@@ -291,12 +282,83 @@ func (m *DeleteReservationResp) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_DeleteReservationResp proto.InternalMessageInfo
 
-func (m *DeleteReservationResp) GetSuccess() bool {
-	if m != nil {
-		return m.Success
-	}
-	return false
+type DeleteReservationsWithScreeningReq struct {
+	ScreeningID int32 `protobuf:"varint,1,opt,name=screeningID,proto3" json:"screeningID,omitempty"`
 }
+
+func (m *DeleteReservationsWithScreeningReq) Reset()      { *m = DeleteReservationsWithScreeningReq{} }
+func (*DeleteReservationsWithScreeningReq) ProtoMessage() {}
+func (*DeleteReservationsWithScreeningReq) Descriptor() ([]byte, []int) {
+	return fileDescriptor_96c598de4266c0f4, []int{6}
+}
+func (m *DeleteReservationsWithScreeningReq) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *DeleteReservationsWithScreeningReq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_DeleteReservationsWithScreeningReq.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *DeleteReservationsWithScreeningReq) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DeleteReservationsWithScreeningReq.Merge(m, src)
+}
+func (m *DeleteReservationsWithScreeningReq) XXX_Size() int {
+	return m.Size()
+}
+func (m *DeleteReservationsWithScreeningReq) XXX_DiscardUnknown() {
+	xxx_messageInfo_DeleteReservationsWithScreeningReq.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_DeleteReservationsWithScreeningReq proto.InternalMessageInfo
+
+func (m *DeleteReservationsWithScreeningReq) GetScreeningID() int32 {
+	if m != nil {
+		return m.ScreeningID
+	}
+	return 0
+}
+
+type DeleteReservationsWithScreeningResp struct {
+}
+
+func (m *DeleteReservationsWithScreeningResp) Reset()      { *m = DeleteReservationsWithScreeningResp{} }
+func (*DeleteReservationsWithScreeningResp) ProtoMessage() {}
+func (*DeleteReservationsWithScreeningResp) Descriptor() ([]byte, []int) {
+	return fileDescriptor_96c598de4266c0f4, []int{7}
+}
+func (m *DeleteReservationsWithScreeningResp) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *DeleteReservationsWithScreeningResp) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_DeleteReservationsWithScreeningResp.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *DeleteReservationsWithScreeningResp) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DeleteReservationsWithScreeningResp.Merge(m, src)
+}
+func (m *DeleteReservationsWithScreeningResp) XXX_Size() int {
+	return m.Size()
+}
+func (m *DeleteReservationsWithScreeningResp) XXX_DiscardUnknown() {
+	xxx_messageInfo_DeleteReservationsWithScreeningResp.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_DeleteReservationsWithScreeningResp proto.InternalMessageInfo
 
 type GetReservationReq struct {
 	ReservationID int32 `protobuf:"varint,1,opt,name=reservationID,proto3" json:"reservationID,omitempty"`
@@ -305,7 +367,7 @@ type GetReservationReq struct {
 func (m *GetReservationReq) Reset()      { *m = GetReservationReq{} }
 func (*GetReservationReq) ProtoMessage() {}
 func (*GetReservationReq) Descriptor() ([]byte, []int) {
-	return fileDescriptor_96c598de4266c0f4, []int{6}
+	return fileDescriptor_96c598de4266c0f4, []int{8}
 }
 func (m *GetReservationReq) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -351,7 +413,7 @@ type GetReservationResp struct {
 func (m *GetReservationResp) Reset()      { *m = GetReservationResp{} }
 func (*GetReservationResp) ProtoMessage() {}
 func (*GetReservationResp) Descriptor() ([]byte, []int) {
-	return fileDescriptor_96c598de4266c0f4, []int{7}
+	return fileDescriptor_96c598de4266c0f4, []int{9}
 }
 func (m *GetReservationResp) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -414,7 +476,7 @@ type GetReservationsReq struct {
 func (m *GetReservationsReq) Reset()      { *m = GetReservationsReq{} }
 func (*GetReservationsReq) ProtoMessage() {}
 func (*GetReservationsReq) Descriptor() ([]byte, []int) {
-	return fileDescriptor_96c598de4266c0f4, []int{8}
+	return fileDescriptor_96c598de4266c0f4, []int{10}
 }
 func (m *GetReservationsReq) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -450,7 +512,7 @@ type GetReservationsResp struct {
 func (m *GetReservationsResp) Reset()      { *m = GetReservationsResp{} }
 func (*GetReservationsResp) ProtoMessage() {}
 func (*GetReservationsResp) Descriptor() ([]byte, []int) {
-	return fileDescriptor_96c598de4266c0f4, []int{9}
+	return fileDescriptor_96c598de4266c0f4, []int{11}
 }
 func (m *GetReservationsResp) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -493,6 +555,8 @@ func init() {
 	proto.RegisterType((*ActivateReservationResp)(nil), "ActivateReservationResp")
 	proto.RegisterType((*DeleteReservationReq)(nil), "DeleteReservationReq")
 	proto.RegisterType((*DeleteReservationResp)(nil), "DeleteReservationResp")
+	proto.RegisterType((*DeleteReservationsWithScreeningReq)(nil), "DeleteReservationsWithScreeningReq")
+	proto.RegisterType((*DeleteReservationsWithScreeningResp)(nil), "DeleteReservationsWithScreeningResp")
 	proto.RegisterType((*GetReservationReq)(nil), "GetReservationReq")
 	proto.RegisterType((*GetReservationResp)(nil), "GetReservationResp")
 	proto.RegisterType((*GetReservationsReq)(nil), "GetReservationsReq")
@@ -502,35 +566,37 @@ func init() {
 func init() { proto.RegisterFile("api/reservation_service.proto", fileDescriptor_96c598de4266c0f4) }
 
 var fileDescriptor_96c598de4266c0f4 = []byte{
-	// 436 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xb4, 0x94, 0xbd, 0x8e, 0xd3, 0x40,
-	0x10, 0xc7, 0x77, 0x2f, 0x70, 0xc0, 0x1c, 0x1f, 0xba, 0xf1, 0xc7, 0x59, 0x16, 0xac, 0xa2, 0x15,
-	0xc5, 0x55, 0x8b, 0xb8, 0x2b, 0xd0, 0x09, 0x38, 0x09, 0xb0, 0x84, 0x8e, 0x02, 0x24, 0xa7, 0xa3,
-	0x89, 0x8c, 0x35, 0x20, 0x4b, 0xc8, 0x71, 0xbc, 0x4e, 0x6a, 0x0a, 0x1e, 0x80, 0xc7, 0xe0, 0x51,
-	0x28, 0x53, 0xa6, 0x24, 0x4e, 0x83, 0xa8, 0xf2, 0x08, 0xc8, 0x26, 0x10, 0xc7, 0x5e, 0x10, 0x8a,
-	0x44, 0xe7, 0xf9, 0xef, 0x8c, 0x67, 0xf6, 0x3f, 0x3f, 0x2d, 0xdc, 0x89, 0xb2, 0xe4, 0x5e, 0x4e,
-	0x9a, 0xf2, 0x69, 0x54, 0x24, 0xa3, 0x74, 0x58, 0x7d, 0x25, 0x31, 0xa9, 0x2c, 0x1f, 0x15, 0x23,
-	0x99, 0x82, 0xfd, 0x2c, 0xa7, 0xa8, 0xa0, 0x70, 0x93, 0x12, 0xd2, 0x18, 0x5d, 0xd8, 0x9f, 0x68,
-	0xca, 0x2f, 0x02, 0x8f, 0xf7, 0xf9, 0xf1, 0xe5, 0x70, 0x1d, 0x61, 0x1f, 0x0e, 0x74, 0x9c, 0x13,
-	0xa5, 0x49, 0xfa, 0xee, 0x22, 0xf0, 0xf6, 0xea, 0xc3, 0xa6, 0x84, 0xb7, 0xe1, 0x5a, 0x9a, 0xbf,
-	0x7a, 0x3b, 0xa0, 0xa8, 0xd0, 0x5e, 0xaf, 0x3e, 0xdf, 0x08, 0xf2, 0x31, 0x38, 0x86, 0x7e, 0x3a,
-	0xc3, 0xbb, 0x70, 0xa3, 0x31, 0xe5, 0xef, 0xbe, 0xdb, 0xa2, 0x3c, 0x07, 0xf7, 0x49, 0x5c, 0x24,
-	0xd3, 0xee, 0xc0, 0xff, 0x56, 0x7f, 0x0a, 0x47, 0xc6, 0x7a, 0x9d, 0xa1, 0x07, 0x57, 0xf4, 0x24,
-	0x8e, 0x49, 0xeb, 0xba, 0xf4, 0x6a, 0xf8, 0x2b, 0x94, 0x8f, 0xc0, 0x0e, 0xe8, 0x3d, 0xed, 0xd8,
-	0xf2, 0x3e, 0x38, 0x86, 0xea, 0xbf, 0x36, 0x3c, 0x83, 0xc3, 0xe7, 0x54, 0xec, 0xd4, 0xed, 0x23,
-	0x07, 0x6c, 0xd7, 0xea, 0xec, 0x7f, 0xad, 0xb3, 0xfa, 0x6f, 0x54, 0xf9, 0x49, 0xde, 0xa5, 0xfa,
-	0x0a, 0xeb, 0x48, 0xda, 0xed, 0x29, 0x74, 0x48, 0x63, 0xf9, 0x12, 0xac, 0x8e, 0xaa, 0x33, 0x7c,
-	0x00, 0xd7, 0x9b, 0x9a, 0xc7, 0xfb, 0xbd, 0xe3, 0x83, 0x13, 0x4b, 0x75, 0xef, 0x11, 0x6e, 0x25,
-	0x9e, 0x7c, 0xdf, 0x03, 0xab, 0x21, 0x0c, 0x07, 0x3f, 0xd1, 0xc6, 0x00, 0x0e, 0x3b, 0x90, 0xa1,
-	0xa3, 0x4c, 0xa0, 0xfb, 0xae, 0x32, 0xf2, 0x28, 0x19, 0xbe, 0x00, 0xcb, 0xc0, 0x0a, 0x1e, 0x29,
-	0x33, 0x81, 0xbe, 0xa7, 0xfe, 0x80, 0x96, 0x64, 0xd5, 0x44, 0x1d, 0x08, 0xd0, 0x51, 0x26, 0xac,
-	0x7c, 0x57, 0x19, 0x79, 0x91, 0x0c, 0x1f, 0xc2, 0xcd, 0x6d, 0x4f, 0x10, 0x3b, 0x26, 0x8d, 0x7d,
-	0x93, 0x71, 0x92, 0xe1, 0x39, 0xdc, 0x6a, 0x99, 0x8f, 0xed, 0xcc, 0x6a, 0x49, 0xbe, 0xad, 0x0c,
-	0x3b, 0x92, 0xec, 0xe9, 0xd9, 0x6c, 0x21, 0xd8, 0x7c, 0x21, 0xd8, 0x6a, 0x21, 0xf8, 0x87, 0x52,
-	0xf0, 0xcf, 0xa5, 0xe0, 0x5f, 0x4a, 0xc1, 0x67, 0xa5, 0xe0, 0x5f, 0x4b, 0xc1, 0xbf, 0x95, 0x82,
-	0xad, 0x4a, 0xc1, 0x3f, 0x2d, 0x05, 0x9b, 0x2d, 0x05, 0x9b, 0x2f, 0x05, 0x7b, 0xdd, 0x8b, 0xb2,
-	0xe4, 0xcd, 0x7e, 0xfd, 0xd6, 0x9c, 0xfe, 0x08, 0x00, 0x00, 0xff, 0xff, 0x64, 0x45, 0x91, 0xd7,
-	0x8c, 0x04, 0x00, 0x00,
+	// 467 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xb4, 0x94, 0x4d, 0x6b, 0xd4, 0x40,
+	0x18, 0xc7, 0x67, 0x8c, 0x16, 0x7d, 0xea, 0x0b, 0x7d, 0xf2, 0xb2, 0x31, 0xe8, 0x18, 0xa6, 0x15,
+	0xf6, 0x34, 0x42, 0x3d, 0x48, 0x51, 0x0b, 0x6a, 0x50, 0xea, 0x41, 0x21, 0x7b, 0x10, 0xbc, 0x94,
+	0xb8, 0x8c, 0x1a, 0x90, 0xec, 0x6c, 0x26, 0xf6, 0xec, 0xc1, 0x0f, 0xe0, 0xc7, 0xf0, 0xa3, 0x78,
+	0xdc, 0x63, 0xf1, 0xe4, 0x66, 0x2f, 0x1e, 0xfb, 0x11, 0x24, 0x6b, 0xb5, 0xd9, 0xcc, 0xc8, 0x2e,
+	0x0b, 0xde, 0x32, 0xff, 0x99, 0xe7, 0x65, 0x9e, 0xff, 0x6f, 0x02, 0x37, 0x33, 0x95, 0xdf, 0x29,
+	0xa5, 0x96, 0xe5, 0x51, 0x56, 0xe5, 0xa3, 0xe2, 0xb0, 0xf9, 0xca, 0x87, 0x52, 0xa8, 0x72, 0x54,
+	0x8d, 0x78, 0x01, 0xde, 0x93, 0x52, 0x66, 0x95, 0x4c, 0xcf, 0x8e, 0xa4, 0x72, 0x8c, 0x01, 0x6c,
+	0x7c, 0xd4, 0xb2, 0x3c, 0x48, 0x42, 0x1a, 0xd3, 0xfe, 0x85, 0xf4, 0x74, 0x85, 0x31, 0x6c, 0xea,
+	0x61, 0x29, 0x65, 0x91, 0x17, 0xef, 0x0e, 0x92, 0xf0, 0xdc, 0x7c, 0xb3, 0x2d, 0xe1, 0x0d, 0xb8,
+	0x54, 0x94, 0x2f, 0xdf, 0x0e, 0x64, 0x56, 0xe9, 0xd0, 0x99, 0xef, 0x9f, 0x09, 0xfc, 0x21, 0xf8,
+	0x96, 0x7a, 0x5a, 0xe1, 0x0e, 0x5c, 0x69, 0x75, 0xf9, 0xb7, 0xee, 0xa2, 0xc8, 0xf7, 0x21, 0x78,
+	0x34, 0xac, 0xf2, 0x23, 0xb3, 0xe1, 0xd5, 0xe2, 0xaf, 0x43, 0xcf, 0x1a, 0xaf, 0x15, 0x7f, 0x00,
+	0x5e, 0x22, 0x3f, 0xc8, 0x35, 0x13, 0xf7, 0xc0, 0xb7, 0x44, 0x6b, 0xc5, 0x9f, 0x02, 0x37, 0x36,
+	0xf4, 0xab, 0xbc, 0x7a, 0x3f, 0xf8, 0x33, 0xb3, 0xa6, 0x48, 0x67, 0xac, 0xd4, 0x18, 0x2b, 0xbf,
+	0x0d, 0xdb, 0x4b, 0xf3, 0x68, 0xc5, 0xf7, 0x60, 0xeb, 0x99, 0xac, 0xd6, 0xba, 0xc2, 0x67, 0x0a,
+	0xd8, 0x8d, 0xd5, 0xea, 0x7f, 0x91, 0xd0, 0xe4, 0xcd, 0x1a, 0x2b, 0x64, 0x78, 0x3e, 0xa6, 0xfd,
+	0x8b, 0xe9, 0xe9, 0x8a, 0x7b, 0xdd, 0x2e, 0x74, 0x2a, 0xc7, 0xfc, 0x05, 0xb8, 0x86, 0xaa, 0x15,
+	0xde, 0x83, 0xcb, 0x6d, 0x2d, 0xa4, 0xb1, 0xd3, 0xdf, 0xdc, 0x75, 0x85, 0x79, 0x8f, 0x74, 0xe1,
+	0xe0, 0xee, 0x77, 0x07, 0xdc, 0x96, 0x70, 0x38, 0xf8, 0xfd, 0x2a, 0x30, 0x81, 0x2d, 0x83, 0x4f,
+	0xf4, 0x85, 0xed, 0x8d, 0x44, 0x81, 0xb0, 0xa2, 0xcc, 0x09, 0x3e, 0x07, 0xd7, 0x82, 0x19, 0xf6,
+	0x84, 0x1d, 0xde, 0x28, 0x14, 0xff, 0xa2, 0x92, 0x34, 0x1d, 0x19, 0xc6, 0xa3, 0x2f, 0x6c, 0xac,
+	0x46, 0x81, 0xb0, 0x43, 0x48, 0xb0, 0x80, 0x5b, 0x4b, 0xf0, 0xc1, 0x6d, 0xb1, 0x1c, 0xd4, 0x68,
+	0x47, 0xac, 0x42, 0x21, 0xc1, 0xfb, 0x70, 0x75, 0xd1, 0x03, 0x44, 0xc3, 0x94, 0x71, 0x64, 0x33,
+	0x8a, 0x13, 0xdc, 0x87, 0x6b, 0x1d, 0xb3, 0xb1, 0x7b, 0xb2, 0x81, 0x22, 0xf2, 0x84, 0x85, 0x09,
+	0x4e, 0x1e, 0xef, 0x4d, 0xa6, 0x8c, 0x1c, 0x4f, 0x19, 0x39, 0x99, 0x32, 0xfa, 0xa9, 0x66, 0xf4,
+	0x6b, 0xcd, 0xe8, 0xb7, 0x9a, 0xd1, 0x49, 0xcd, 0xe8, 0x8f, 0x9a, 0xd1, 0x9f, 0x35, 0x23, 0x27,
+	0x35, 0xa3, 0x5f, 0x66, 0x8c, 0x4c, 0x66, 0x8c, 0x1c, 0xcf, 0x18, 0x79, 0xed, 0x64, 0x2a, 0x7f,
+	0xb3, 0x31, 0xff, 0x2d, 0xde, 0xfd, 0x15, 0x00, 0x00, 0xff, 0xff, 0xe5, 0xd3, 0x40, 0x05, 0x37,
+	0x05, 0x00, 0x00,
 }
 
 func (this *CreateReservationReq) Equal(that interface{}) bool {
@@ -630,9 +696,6 @@ func (this *ActivateReservationResp) Equal(that interface{}) bool {
 	} else if this == nil {
 		return false
 	}
-	if this.Success != that1.Success {
-		return false
-	}
 	return true
 }
 func (this *DeleteReservationReq) Equal(that interface{}) bool {
@@ -678,7 +741,49 @@ func (this *DeleteReservationResp) Equal(that interface{}) bool {
 	} else if this == nil {
 		return false
 	}
-	if this.Success != that1.Success {
+	return true
+}
+func (this *DeleteReservationsWithScreeningReq) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*DeleteReservationsWithScreeningReq)
+	if !ok {
+		that2, ok := that.(DeleteReservationsWithScreeningReq)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
+		return false
+	}
+	if this.ScreeningID != that1.ScreeningID {
+		return false
+	}
+	return true
+}
+func (this *DeleteReservationsWithScreeningResp) Equal(that interface{}) bool {
+	if that == nil {
+		return this == nil
+	}
+
+	that1, ok := that.(*DeleteReservationsWithScreeningResp)
+	if !ok {
+		that2, ok := that.(DeleteReservationsWithScreeningResp)
+		if ok {
+			that1 = &that2
+		} else {
+			return false
+		}
+	}
+	if that1 == nil {
+		return this == nil
+	} else if this == nil {
 		return false
 	}
 	return true
@@ -826,9 +931,8 @@ func (this *ActivateReservationResp) GoString() string {
 	if this == nil {
 		return "nil"
 	}
-	s := make([]string, 0, 5)
+	s := make([]string, 0, 4)
 	s = append(s, "&api.ActivateReservationResp{")
-	s = append(s, "Success: "+fmt.Sprintf("%#v", this.Success)+",\n")
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
@@ -846,9 +950,27 @@ func (this *DeleteReservationResp) GoString() string {
 	if this == nil {
 		return "nil"
 	}
-	s := make([]string, 0, 5)
+	s := make([]string, 0, 4)
 	s = append(s, "&api.DeleteReservationResp{")
-	s = append(s, "Success: "+fmt.Sprintf("%#v", this.Success)+",\n")
+	s = append(s, "}")
+	return strings.Join(s, "")
+}
+func (this *DeleteReservationsWithScreeningReq) GoString() string {
+	if this == nil {
+		return "nil"
+	}
+	s := make([]string, 0, 5)
+	s = append(s, "&api.DeleteReservationsWithScreeningReq{")
+	s = append(s, "ScreeningID: "+fmt.Sprintf("%#v", this.ScreeningID)+",\n")
+	s = append(s, "}")
+	return strings.Join(s, "")
+}
+func (this *DeleteReservationsWithScreeningResp) GoString() string {
+	if this == nil {
+		return "nil"
+	}
+	s := make([]string, 0, 4)
+	s = append(s, "&api.DeleteReservationsWithScreeningResp{")
 	s = append(s, "}")
 	return strings.Join(s, "")
 }
@@ -1018,16 +1140,6 @@ func (m *ActivateReservationResp) MarshalToSizedBuffer(dAtA []byte) (int, error)
 	_ = i
 	var l int
 	_ = l
-	if m.Success {
-		i--
-		if m.Success {
-			dAtA[i] = 1
-		} else {
-			dAtA[i] = 0
-		}
-		i--
-		dAtA[i] = 0x8
-	}
 	return len(dAtA) - i, nil
 }
 
@@ -1079,16 +1191,57 @@ func (m *DeleteReservationResp) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if m.Success {
-		i--
-		if m.Success {
-			dAtA[i] = 1
-		} else {
-			dAtA[i] = 0
-		}
+	return len(dAtA) - i, nil
+}
+
+func (m *DeleteReservationsWithScreeningReq) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *DeleteReservationsWithScreeningReq) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *DeleteReservationsWithScreeningReq) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.ScreeningID != 0 {
+		i = encodeVarintReservationService(dAtA, i, uint64(m.ScreeningID))
 		i--
 		dAtA[i] = 0x8
 	}
+	return len(dAtA) - i, nil
+}
+
+func (m *DeleteReservationsWithScreeningResp) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *DeleteReservationsWithScreeningResp) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *DeleteReservationsWithScreeningResp) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
 	return len(dAtA) - i, nil
 }
 
@@ -1287,9 +1440,6 @@ func (m *ActivateReservationResp) Size() (n int) {
 	}
 	var l int
 	_ = l
-	if m.Success {
-		n += 2
-	}
 	return n
 }
 
@@ -1311,9 +1461,27 @@ func (m *DeleteReservationResp) Size() (n int) {
 	}
 	var l int
 	_ = l
-	if m.Success {
-		n += 2
+	return n
+}
+
+func (m *DeleteReservationsWithScreeningReq) Size() (n int) {
+	if m == nil {
+		return 0
 	}
+	var l int
+	_ = l
+	if m.ScreeningID != 0 {
+		n += 1 + sovReservationService(uint64(m.ScreeningID))
+	}
+	return n
+}
+
+func (m *DeleteReservationsWithScreeningResp) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
 	return n
 }
 
@@ -1417,7 +1585,6 @@ func (this *ActivateReservationResp) String() string {
 		return "nil"
 	}
 	s := strings.Join([]string{`&ActivateReservationResp{`,
-		`Success:` + fmt.Sprintf("%v", this.Success) + `,`,
 		`}`,
 	}, "")
 	return s
@@ -1437,7 +1604,25 @@ func (this *DeleteReservationResp) String() string {
 		return "nil"
 	}
 	s := strings.Join([]string{`&DeleteReservationResp{`,
-		`Success:` + fmt.Sprintf("%v", this.Success) + `,`,
+		`}`,
+	}, "")
+	return s
+}
+func (this *DeleteReservationsWithScreeningReq) String() string {
+	if this == nil {
+		return "nil"
+	}
+	s := strings.Join([]string{`&DeleteReservationsWithScreeningReq{`,
+		`ScreeningID:` + fmt.Sprintf("%v", this.ScreeningID) + `,`,
+		`}`,
+	}, "")
+	return s
+}
+func (this *DeleteReservationsWithScreeningResp) String() string {
+	if this == nil {
+		return "nil"
+	}
+	s := strings.Join([]string{`&DeleteReservationsWithScreeningResp{`,
 		`}`,
 	}, "")
 	return s
@@ -1780,26 +1965,6 @@ func (m *ActivateReservationResp) Unmarshal(dAtA []byte) error {
 			return fmt.Errorf("proto: ActivateReservationResp: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
-		case 1:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Success", wireType)
-			}
-			var v int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowReservationService
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				v |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			m.Success = bool(v != 0)
 		default:
 			iNdEx = preIndex
 			skippy, err := skipReservationService(dAtA[iNdEx:])
@@ -1925,11 +2090,64 @@ func (m *DeleteReservationResp) Unmarshal(dAtA []byte) error {
 			return fmt.Errorf("proto: DeleteReservationResp: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
+		default:
+			iNdEx = preIndex
+			skippy, err := skipReservationService(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthReservationService
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthReservationService
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *DeleteReservationsWithScreeningReq) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowReservationService
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: DeleteReservationsWithScreeningReq: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: DeleteReservationsWithScreeningReq: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
 		case 1:
 			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Success", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field ScreeningID", wireType)
 			}
-			var v int
+			m.ScreeningID = 0
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowReservationService
@@ -1939,12 +2157,64 @@ func (m *DeleteReservationResp) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				v |= int(b&0x7F) << shift
+				m.ScreeningID |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
-			m.Success = bool(v != 0)
+		default:
+			iNdEx = preIndex
+			skippy, err := skipReservationService(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthReservationService
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthReservationService
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *DeleteReservationsWithScreeningResp) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowReservationService
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: DeleteReservationsWithScreeningResp: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: DeleteReservationsWithScreeningResp: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
 		default:
 			iNdEx = preIndex
 			skippy, err := skipReservationService(dAtA[iNdEx:])

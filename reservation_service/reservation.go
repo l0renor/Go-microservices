@@ -1,9 +1,12 @@
-package reservation_service
+package main
 
 import (
 	"context"
+	"github.com/micro/go-micro"
 	"github.com/micro/go-micro/errors"
 	"github.com/ob-vss-ws19/blatt-4-myteam/api"
+	"github.com/ob-vss-ws19/blatt-4-myteam/helpers"
+	"log"
 )
 
 type Reservation struct {
@@ -14,23 +17,21 @@ type Reservation struct {
 }
 
 type Service struct {
-	reservations     map[int32]Reservation
-	nextID           func() int32
-	screeningService api.Screening_Service
-	userService      api.User_Service
+	reservations map[int32]Reservation
+	nextID       func() int32
+	screening    api.Screening_Service
+	user         api.User_Service
 }
 
 func (service *Service) CreateReservation(ctx context.Context, req *api.CreateReservationReq, resp *api.CreateReservationResp) error {
 	reservationID := service.nextID()
-	_, err := service.screeningService.GetScreening(ctx, &api.GetScreeningReq{ScreeningID: req.ScreeningID})
+	_, err := service.screening.GetScreening(ctx, &api.GetScreeningReq{ScreeningID: req.GetScreeningID()})
 	if err != nil {
-		return errors.NotFound("screening_not_found", "screening(ID: %v not found", req.ScreeningID)
+		return err
 	}
-	_, err = service.userService.GetUser(ctx, &api.GetUserReq{
-		UserID: req.UserID,
-	})
+	_, err = service.user.GetUser(ctx, &api.GetUserReq{UserID: req.GetUserID()})
 	if err != nil {
-		return errors.NotFound("user_not_found", "user(ID: %v not found", req.UserID)
+		return err
 	}
 	service.reservations[reservationID] = Reservation{
 		screeningID: req.GetScreeningID(),
@@ -42,48 +43,71 @@ func (service *Service) CreateReservation(ctx context.Context, req *api.CreateRe
 }
 
 func (service *Service) ActivateReservation(ctx context.Context, req *api.ActivateReservationReq, resp *api.ActivateReservationResp) error {
-	reservation, ok := service.reservations[req.ReservationID]
-	if ok {
-		screeningRsp, err := service.screeningService.GetScreening(ctx, &api.GetScreeningReq{ScreeningID: reservation.screeningID})
-		if err != nil {
-			return errors.NotFound("screening_not_found", "screening(ID: %v not found", reservation.screeningID)
-		}
-		if screeningRsp.NrOfFreeSeats < reservation.seats {
-			return errors.Conflict("Not_enough_Seats", "Not_enough_Seats needed %v; free %v", screeningRsp.NrOfFreeSeats, reservation.seats)
-		}
-		reservation.isActive = true
-		service.reservations[req.ReservationID] = reservation
-		_, err = service.userService.AddReservation(ctx, &api.AddReservationReq{
-			UserID: reservation.userID,
-		})
-		if err != nil {
-			return errors.NotFound("Error reserving in user profile", "error reserving in user profile")
-		}
-	} else {
-		return errors.InternalServerError("Reservation activation failed", "Reservation activation failed id %v", req.ReservationID)
+	reservation, ok := service.reservations[req.GetReservationID()]
+	if !ok {
+		return errors.NotFound("ERR-NO-RESERVATION", "Reservation (ID: %d) not found!", req.GetReservationID())
 	}
+	_, err := service.screening.ChangeFreeSeats(context.TODO(), &api.ChangeFreeSeatsReq{
+		ScreeningID: reservation.screeningID,
+		Change:      -reservation.seats,
+	})
+	if err != nil {
+		return err
+	}
+	_, err = service.user.AddUserReservation(ctx, &api.AddUserReservationReq{UserID: reservation.userID})
+	if err != nil {
+		_, changeErr := service.screening.ChangeFreeSeats(context.TODO(), &api.ChangeFreeSeatsReq{
+			ScreeningID: reservation.screeningID,
+			Change:      reservation.seats,
+		})
+		if changeErr != nil {
+			return errors.InternalServerError("ERR-ROLLBACK", "Error rolling back screening after user service failure, data is now inconsistent!\nPlease contact admin.")
+		}
+		return err
+	}
+	reservation.isActive = true
+	service.reservations[req.GetReservationID()] = reservation
 	return nil
 }
 
 func (service *Service) DeleteReservation(ctx context.Context, req *api.DeleteReservationReq, resp *api.DeleteReservationResp) error {
-	_, ok := service.reservations[req.ReservationID]
-	if ok {
-		delete(service.reservations, req.ReservationID)
-	} else {
-		return errors.NotFound("Reservation_not_found", "Reservation(%v)not_found", req.ReservationID)
+	reservation, ok := service.reservations[req.GetReservationID()]
+	if !ok {
+		return errors.NotFound("ERR-NO-RESERVATION", "Reservation (ID: %d) not found!", req.GetReservationID())
+	}
+	_, err := service.user.DeleteUserReservation(context.TODO(), &api.DeleteUserReservationReq{ReservationID: req.GetReservationID(), UserID: reservation.userID})
+	if err != nil {
+		return err
+	}
+	delete(service.reservations, req.GetReservationID())
+	return nil
+}
+
+func (service *Service) DeleteReservationsWithScreening(ctx context.Context, req *api.DeleteReservationsWithScreeningReq, resp *api.DeleteReservationsWithScreeningResp) error {
+	ids := make([]int32, 0)
+	for id, reservation := range service.reservations {
+		if reservation.screeningID == req.GetScreeningID() {
+			ids = append(ids, id)
+		}
+	}
+	for _, id := range ids {
+		err := service.DeleteReservation(ctx, &api.DeleteReservationReq{ReservationID: id}, &api.DeleteReservationResp{})
+		if err != nil {
+			return err
+		}
 	}
 	return nil
 }
 
 func (service *Service) GetReservation(ctx context.Context, req *api.GetReservationReq, resp *api.GetReservationResp) error {
 	reservation, ok := service.reservations[req.ReservationID]
-	if ok {
-		resp.ScreeningID = reservation.screeningID
-		resp.UserID = reservation.userID
-		resp.Active = reservation.isActive
-		resp.NrOfSeats = reservation.seats
-		return errors.NotFound("Reservation_not_found", "Reservation(%v)not_found", req.ReservationID)
+	if !ok {
+		return errors.NotFound("ERR-NO-RESERVATION", "Reservation (ID: %d) not found!", req.GetReservationID())
 	}
+	resp.ScreeningID = reservation.screeningID
+	resp.UserID = reservation.userID
+	resp.Active = reservation.isActive
+	resp.NrOfSeats = reservation.seats
 	return nil
 }
 
@@ -99,4 +123,32 @@ func (service *Service) GetReservations(ctx context.Context, req *api.GetReserva
 	}
 	resp.Reservations = reservations
 	return nil
+}
+
+func main() {
+	service := micro.NewService(
+		micro.Name("reservation"),
+		micro.Version("latest"),
+	)
+
+	screening := micro.NewService()
+	screening.Init()
+
+	user := micro.NewService()
+	user.Init()
+
+	service.Init()
+
+	if err := api.RegisterReservation_ServiceHandler(service.Server(), &Service{
+		reservations: make(map[int32]Reservation),
+		nextID:       helpers.IDGenerator(),
+		screening:    api.NewScreening_Service("screening", screening.Client()),
+		user:         api.NewUser_Service("user", user.Client()),
+	}); err != nil {
+		log.Fatal(err)
+	}
+
+	if err := service.Run(); err != nil {
+		log.Fatal(err)
+	}
 }
