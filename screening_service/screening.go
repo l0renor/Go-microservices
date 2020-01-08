@@ -137,7 +137,7 @@ func main() {
 
 	if err := api.RegisterScreening_ServiceHandler(service.Server(), &Service{
 		screenings:  make(map[int32]Screening),
-		nextID:      helpers.IDGenerator(),
+		nextID:      helpers.IDGenerator(0),
 		room:        api.NewRoom_Service("room", room.Client()),
 		movie:       api.NewMovie_Service("movie", movie.Client()),
 		reservation: api.NewReservation_Service("reservation", reservation.Client()),

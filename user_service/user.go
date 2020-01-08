@@ -96,7 +96,7 @@ func main() {
 
 	if err := api.RegisterUser_ServiceHandler(service.Server(), &Service{
 		users:  make(map[int32]User),
-		nextID: helpers.IDGenerator(),
+		nextID: helpers.IDGenerator(0),
 	}); err != nil {
 		log.Fatal(err)
 	}

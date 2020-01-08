@@ -141,7 +141,7 @@ func main() {
 
 	if err := api.RegisterReservation_ServiceHandler(service.Server(), &Service{
 		reservations: make(map[int32]Reservation),
-		nextID:       helpers.IDGenerator(),
+		nextID:       helpers.IDGenerator(0),
 		screening:    api.NewScreening_Service("screening", screening.Client()),
 		user:         api.NewUser_Service("user", user.Client()),
 	}); err != nil {

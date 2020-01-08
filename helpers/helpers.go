@@ -1,9 +1,9 @@
 package helpers
 
-func IDGenerator() func() int32 {
-	i := 0
+func IDGenerator(start int32) func() int32 {
+	i := start - 1
 	return func() int32 {
 		i++
-		return int32(i)
+		return i
 	}
 }

@@ -82,7 +82,7 @@ func main() {
 
 	if err := api.RegisterRoom_ServiceHandler(service.Server(), &Service{
 		rooms:     make(map[int32]Room),
-		nextID:    helpers.IDGenerator(),
+		nextID:    helpers.IDGenerator(0),
 		screening: api.NewScreening_Service("screening", screening.Client()),
 	}); err != nil {
 		log.Fatal(err)

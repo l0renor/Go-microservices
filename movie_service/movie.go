@@ -69,7 +69,7 @@ func main() {
 
 	if err := api.RegisterMovie_ServiceHandler(service.Server(), &movieService{
 		movies:    make(map[int32]string),
-		nextID:    helpers.IDGenerator(),
+		nextID:    helpers.IDGenerator(0),
 		screening: api.NewScreening_Service("screening", screening.Client()),
 	}); err != nil {
 		log.Fatal(err)
