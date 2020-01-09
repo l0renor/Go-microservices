@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"github.com/micro/go-micro"
 	"github.com/ob-vss-ws19/blatt-4-myteam/api"
 	"log"
@@ -137,7 +136,8 @@ func (c Client) setup() {
 
 //Call after setup()
 func (c Client) deletedRoom() {
-	reservationrsp, err := c.reservationService.CreateReservation(context.TODO(), &api.CreateReservationReq{
+	log.Print("---------------- Deleting Room -----------------")
+	createReservationResp, err := c.reservationService.CreateReservation(context.TODO(), &api.CreateReservationReq{
 		UserID:      c.ids["Oleg"],
 		ScreeningID: c.ids["3"],
 		NrOfSeats:   2,
@@ -145,24 +145,26 @@ func (c Client) deletedRoom() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	_, err = c.reservationService.ActivateReservation(context.TODO(), &api.ActivateReservationReq{ReservationID: reservationrsp.ReservationID})
+	log.Printf("Created Reservation (ID: %v)", createReservationResp.GetReservationID())
+	_, err = c.reservationService.ActivateReservation(context.TODO(), &api.ActivateReservationReq{ReservationID: createReservationResp.GetReservationID()})
 	if err != nil {
 		log.Fatal(err)
 	}
-
+	log.Printf("Activated Reservation (ID: %v)", createReservationResp.GetReservationID())
 	_, err = c.roomService.DeleteRoom(context.TODO(), &api.DeleteRoomReq{RoomID: c.ids["Mordor"]})
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	reservationsrsp, err := c.reservationService.GetReservations(context.TODO(), &api.GetReservationsReq{})
-
-	fmt.Print("Deleted room of reservation")
-	for i := 0; i < len(reservationsrsp.Reservations); i++ {
-
-		fmt.Print(reservationsrsp.Reservations[i])
+	log.Printf("Deleted Room (ID: %v), checking screening and reservation service for consistency", c.ids["Mordor"])
+	_, err = c.screeningService.GetScreening(context.TODO(), &api.GetScreeningReq{ScreeningID: c.ids["3"]})
+	if err == nil {
+		log.Fatal("Screening still present although room was deleted!")
 	}
-
+	_, err = c.reservationService.GetReservation(context.TODO(), &api.GetReservationReq{ReservationID: createReservationResp.GetReservationID()})
+	if err == nil {
+		log.Fatal("Reservation still present although screening was deleted!")
+	}
+	log.Print("Success, all services are consistent")
 }
 
 // Call after setup()
@@ -192,14 +194,13 @@ func (c Client) conflictReservation() {
 	}
 	log.Print("1st Reservation activated")
 	_, err = c.reservationService.ActivateReservation(context.TODO(), &api.ActivateReservationReq{ReservationID: createReservationResp2.ReservationID})
-	if err != nil {
-		log.Fatal(err)
+	if err == nil {
+		log.Fatal("Error: Was able to activate 2nd reservations although there are no more free seats!")
 	}
-	log.Print("res 2 activated")
+	log.Print("Got expected error from activating 2nd reservation")
 	reservationsrsp, err := c.reservationService.GetReservations(context.TODO(), &api.GetReservationsReq{})
-
 	for i := 0; i < len(reservationsrsp.Reservations); i++ {
-		log.Printf("Reservation| ID: %v, screeningID: %v, nrSeats: %v , aktive %v", reservationsrsp.Reservations[i].UserID, reservationsrsp.Reservations[i].ScreeningID, reservationsrsp.Reservations[i].NrOfSeats, reservationsrsp.Reservations[i].Active)
+		log.Printf("Reservation| ID: %v, screeningID: %v, nrSeats: %v , active %v", i, reservationsrsp.Reservations[i].ScreeningID, reservationsrsp.Reservations[i].NrOfSeats, reservationsrsp.Reservations[i].Active)
 	}
 
 }
@@ -230,7 +231,8 @@ func main() {
 		movieService:       api.NewMovie_Service("movie", serviceMovie.Client()),
 		ids:                make(map[string]int32),
 	}
+
 	client.setup()
 	client.conflictReservation()
-
+	client.deletedRoom()
 }

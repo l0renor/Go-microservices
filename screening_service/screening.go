@@ -50,6 +50,7 @@ func (service *Service) ChangeFreeSeats(ctx context.Context, req *api.ChangeFree
 		return errors.Conflict("ERR-FULL", "Screening (ID: %v) already has too many reservations!", req.GetScreeningID())
 	} else {
 		screening.freeSeats += req.GetChange()
+		service.screenings[req.GetScreeningID()] = screening
 		return nil
 	}
 }
