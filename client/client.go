@@ -27,6 +27,7 @@ Sets up:
 
 */
 func (c Client) setup() {
+	log.Print("-------------- Setup -----------------")
 	rsp, err := c.userService.CreateUser(context.TODO(), &api.CreateUserReq{Name: "Oleg"})
 	if err != nil {
 		log.Fatal(err)
@@ -105,7 +106,6 @@ func (c Client) setup() {
 
 	c.ids["1"] = scrreningrsp.ScreeningID
 	log.Print("Screening 1 created")
-	log.Print(c.ids)
 	scrreningrsp, err = c.screeningService.CreateScreening(context.TODO(), &api.CreateScreeningReq{
 		MovieID: c.ids["Mogli"],
 		RoomID:  c.ids["Isengard"],
@@ -135,7 +135,6 @@ func (c Client) setup() {
 	}
 	c.ids["4"] = scrreningrsp.ScreeningID
 	time.Sleep(1 * time.Second)
-	log.Print("-------------- Setup done -----------------")
 }
 
 //Call after setup()
@@ -206,7 +205,7 @@ func (c Client) conflictReservation() {
 		log.Fatal("Empty response")
 	}
 	for i := 0; i < len(reservationsrsp.Reservations); i++ {
-		log.Printf("Reservation| ID: %v, screeningID: %v, nrSeats: %v , active %v", i, reservationsrsp.Reservations[i].ScreeningID, reservationsrsp.Reservations[i].NrOfSeats, reservationsrsp.Reservations[i].Active)
+		log.Printf("Reservation | ID: %v, screeningID: %v, nrSeats: %v , active %v", i, reservationsrsp.Reservations[i].ScreeningID, reservationsrsp.Reservations[i].NrOfSeats, reservationsrsp.Reservations[i].Active)
 	}
 }
 
