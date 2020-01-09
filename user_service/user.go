@@ -73,6 +73,7 @@ func (service *Service) AddUserReservation(ctx context.Context, req *api.AddUser
 		return errors.Conflict("ERR-RESERVATION-EXISTS", "Reservation (ID: %d) already exists!", req.GetReservationID())
 	}
 	user.reservations = append(user.reservations, req.GetReservationID())
+	service.users[req.GetUserID()] = user
 	return nil
 }
 
