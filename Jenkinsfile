@@ -34,11 +34,5 @@ pipeline {
                 sh "docker-build-and-push -b ${BRANCH_NAME} -s client -f client.dockerfile"
             }
         }
-        stage('Run Example') {
-            agent any
-            steps {
-                sh "docker-compose up --exit-code-from client"
-            }
-        }
     }
 }
