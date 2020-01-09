@@ -36,6 +36,7 @@ func (service *Service) CreateReservation(ctx context.Context, req *api.CreateRe
 	service.reservations[reservationID] = Reservation{
 		screeningID: req.GetScreeningID(),
 		userID:      req.GetUserID(),
+		seats:       req.GetNrOfSeats(),
 		isActive:    false,
 	}
 	resp.ReservationID = reservationID
