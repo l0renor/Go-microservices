@@ -55,6 +55,10 @@ func TestDeleteRoom(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
+	_, err = roomservice.GetRoom(context.TODO(), &api.GetRoomReq{RoomID: id1})
+	if err == nil {
+		t.Error("Room was deleted should't exist")
+	}
 }
 
 func TestCreateRooms(t *testing.T) {
@@ -73,6 +77,9 @@ func TestCreateRooms(t *testing.T) {
 	rsp, err := roomservice.GetRooms(context.TODO(), &api.GetRoomsReq{})
 	if err != nil {
 		t.Error(err)
+	}
+	if len(rsp.Rooms) != 10 {
+		t.Errorf("Expected 10 seaTS GOT %v", len(rsp.Rooms))
 	}
 	for i := 0; i < 10; i++ {
 		if rsp.Rooms[i].Name != "Raum"+strconv.Itoa(i) || rsp.Rooms[i].NrOfSeats != int32(i) {
