@@ -6,7 +6,7 @@ all:
 	@echo "make screening"
 	@echo "make reservation"
 	@echo "make client"
-    @echo "make docker"
+	@echo "make docker"
 
 registry:
 	etcd

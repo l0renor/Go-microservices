@@ -123,6 +123,7 @@ func (service *Service) GetScreenings(ctx context.Context, req *api.GetScreening
 }
 
 func main() {
+	log.SetFlags(log.LstdFlags | log.Lshortfile)
 	service := micro.NewService(
 		micro.Name("screening"),
 		micro.Version("latest"),
