@@ -9,36 +9,28 @@ services:
       - "8500:8500"
       - "8600:53/udp"
   movie_service:
-    build:
-      context: .
-      dockerfile: movie_service.dockerfile
+    image: terraform.cs.hm.edu:5043/ob-vss-ws19-blatt-4-myteam:develop-movie_service
     depends_on:
       - consul
     command: --registry_address=consul:8500
     links:
       - consul
   room_service:
-    build:
-      context: .
-      dockerfile: room_service.dockerfile
+    image: terraform.cs.hm.edu:5043/ob-vss-ws19-blatt-4-myteam:develop-room_service
     depends_on:
       - consul
     command: --registry_address=consul:8500
     links:
       - consul
   user_service:
-    build:
-      context: .
-      dockerfile: user_service.dockerfile
+    image: terraform.cs.hm.edu:5043/ob-vss-ws19-blatt-4-myteam:develop-user_service
     depends_on:
       - consul
     command: --registry_address=consul:8500
     links:
       - consul
   screening_service:
-    build:
-      context: .
-      dockerfile: screening_service.dockerfile
+    image: terraform.cs.hm.edu:5043/ob-vss-ws19-blatt-4-myteam:develop-screening_service
     depends_on:
       - movie_service
       - room_service
@@ -46,9 +38,7 @@ services:
     links:
       - consul
   reservation_service:
-    build:
-      context: .
-      dockerfile: reservation_service.dockerfile
+    image: terraform.cs.hm.edu:5043/ob-vss-ws19-blatt-4-myteam:develop-reservation_service
     depends_on:
       - screening_service
       - user_service
@@ -56,9 +46,7 @@ services:
     links:
       - consul
   client:
-    build:
-      context: .
-      dockerfile: client.dockerfile
+    image: terraform.cs.hm.edu:5043/ob-vss-ws19-blatt-4-myteam:develop-client
     depends_on:
       - reservation_service
     command: --registry_address=consul:8500
