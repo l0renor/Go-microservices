@@ -5,6 +5,7 @@ import (
 	"github.com/micro/go-micro"
 	"github.com/ob-vss-ws19/blatt-4-myteam/api"
 	"log"
+	"time"
 )
 
 type Client struct {
@@ -92,6 +93,8 @@ func (c Client) setup() {
 
 	log.Print("Movies created")
 
+	time.Sleep(1 * time.Second)
+
 	scrreningrsp, err := c.screeningService.CreateScreening(context.TODO(), &api.CreateScreeningReq{
 		MovieID: c.ids["Mitten im Leben der Film"],
 		RoomID:  c.ids["Isengard"],
@@ -99,10 +102,10 @@ func (c Client) setup() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	log.Print("Screening 1 created")
 
 	c.ids["1"] = scrreningrsp.ScreeningID
-
+	log.Print("Screening 1 created")
+	log.Print(c.ids)
 	scrreningrsp, err = c.screeningService.CreateScreening(context.TODO(), &api.CreateScreeningReq{
 		MovieID: c.ids["Mogli"],
 		RoomID:  c.ids["Isengard"],
@@ -110,7 +113,7 @@ func (c Client) setup() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	log.Print("Screening 3 created")
+	log.Print("Screening 2 created")
 	c.ids["2"] = scrreningrsp.ScreeningID
 
 	scrreningrsp, err = c.screeningService.CreateScreening(context.TODO(), &api.CreateScreeningReq{
@@ -131,6 +134,7 @@ func (c Client) setup() {
 		log.Fatal(err)
 	}
 	c.ids["4"] = scrreningrsp.ScreeningID
+	time.Sleep(1 * time.Second)
 	log.Print("-------------- Setup done -----------------")
 }
 
