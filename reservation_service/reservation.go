@@ -72,7 +72,6 @@ func (service *Service) ActivateReservation(ctx context.Context, req *api.Activa
 }
 
 func (service *Service) DeleteReservation(ctx context.Context, req *api.DeleteReservationReq, resp *api.DeleteReservationResp) error {
-	log.Print(req)
 	reservation, ok := service.reservations[req.GetReservationID()]
 	if !ok {
 		return errors.NotFound("ERR-NO-RESERVATION", "Reservation (ID: %d) not found!", req.GetReservationID())
@@ -94,7 +93,6 @@ func (service *Service) DeleteReservationsWithScreening(ctx context.Context, req
 			ids = append(ids, id)
 		}
 	}
-	log.Print(ids)
 	for _, id := range ids {
 		err := service.DeleteReservation(ctx, &api.DeleteReservationReq{ReservationID: id}, &api.DeleteReservationResp{})
 		if err != nil {

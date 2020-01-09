@@ -63,7 +63,6 @@ func (service *Service) GetUsers(ctx context.Context, req *api.GetUsersReq, resp
 }
 
 func (service *Service) AddUserReservation(ctx context.Context, req *api.AddUserReservationReq, resp *api.AddUserReservationResp) error {
-	log.Print(req.GoString())
 	user, ok := service.users[req.GetUserID()]
 	if !ok {
 		return errors.NotFound("ERR-NO-USER", "User (ID: %d) not found!", req.GetUserID())
@@ -78,12 +77,10 @@ func (service *Service) AddUserReservation(ctx context.Context, req *api.AddUser
 }
 
 func (service *Service) DeleteUserReservation(ctx context.Context, req *api.DeleteUserReservationReq, resp *api.DeleteUserReservationResp) error {
-	log.Print(service.users)
 	user, ok := service.users[req.GetUserID()]
 	if !ok {
 		return errors.NotFound("ERR-NO-USER", "User (ID: %d) not found!", req.GetUserID())
 	}
-	log.Print(user.reservations)
 	exists := remove(user.reservations, req.GetReservationID())
 	if !exists {
 		return errors.NotFound("ERR-NO-RESERVATION", "Reservation (ID: %d) not found!", req.GetReservationID())
