@@ -167,6 +167,7 @@ func (c Client) deletedRoom() {
 
 //Call after setup()
 func (c Client) conflictReservation() {
+	log.Print("---------------- Conflicting Reservations -----------------")
 	reservationrsp, err := c.reservationService.CreateReservation(context.TODO(), &api.CreateReservationReq{
 		UserID:      c.ids["Oleg"],
 		ScreeningID: c.ids["1"],
@@ -184,21 +185,21 @@ func (c Client) conflictReservation() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
+	log.Print("2 Reservations created")
 	_, err = c.reservationService.ActivateReservation(context.TODO(), &api.ActivateReservationReq{ReservationID: reservationrsp.ReservationID})
 	if err != nil {
 		log.Fatal(err)
 	}
-
+	log.Print("1 res aktiveated")
 	_, err = c.reservationService.ActivateReservation(context.TODO(), &api.ActivateReservationReq{ReservationID: reservationrsp2.ReservationID})
 	if err != nil {
 		log.Fatal(err)
 	}
-
+	log.Print("2 res aktiveated")
 	reservationsrsp, err := c.reservationService.GetReservations(context.TODO(), &api.GetReservationsReq{})
 
 	for i := 0; i < len(reservationsrsp.Reservations); i++ {
-		fmt.Print(reservationsrsp.Reservations[i])
+		log.Printf("Reservation| ID: %v, screeningID: %v, nrSeats: %v , aktive %v", reservationsrsp.Reservations[i].UserID, reservationsrsp.Reservations[i].ScreeningID, reservationsrsp.Reservations[i].NrOfSeats, reservationsrsp.Reservations[i].Active)
 	}
 
 }
@@ -230,5 +231,6 @@ func main() {
 		ids:                make(map[string]int32),
 	}
 	client.setup()
+	client.conflictReservation()
 
 }
