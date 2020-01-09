@@ -76,7 +76,10 @@ func (service *Service) DeleteScreeningsWithRoom(ctx context.Context, req *api.D
 		}
 	}
 	for _, id := range ids {
-		delete(service.screenings, id)
+		err := service.DeleteScreening(ctx, &api.DeleteScreeningReq{ScreeningID: id}, &api.DeleteScreeningResp{})
+		if err != nil {
+			return err
+		}
 	}
 	return nil
 }

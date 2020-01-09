@@ -55,7 +55,7 @@ func (service *Service) ActivateReservation(ctx context.Context, req *api.Activa
 	if err != nil {
 		return err
 	}
-	_, err = service.user.AddUserReservation(ctx, &api.AddUserReservationReq{UserID: reservation.userID})
+	_, err = service.user.AddUserReservation(ctx, &api.AddUserReservationReq{UserID: reservation.userID, ReservationID: req.GetReservationID()})
 	if err != nil {
 		_, changeErr := service.screening.ChangeFreeSeats(context.TODO(), &api.ChangeFreeSeatsReq{
 			ScreeningID: reservation.screeningID,
@@ -72,13 +72,16 @@ func (service *Service) ActivateReservation(ctx context.Context, req *api.Activa
 }
 
 func (service *Service) DeleteReservation(ctx context.Context, req *api.DeleteReservationReq, resp *api.DeleteReservationResp) error {
+	log.Print(req)
 	reservation, ok := service.reservations[req.GetReservationID()]
 	if !ok {
 		return errors.NotFound("ERR-NO-RESERVATION", "Reservation (ID: %d) not found!", req.GetReservationID())
 	}
-	_, err := service.user.DeleteUserReservation(context.TODO(), &api.DeleteUserReservationReq{ReservationID: req.GetReservationID(), UserID: reservation.userID})
-	if err != nil {
-		return err
+	if reservation.isActive {
+		_, err := service.user.DeleteUserReservation(context.TODO(), &api.DeleteUserReservationReq{ReservationID: req.GetReservationID(), UserID: reservation.userID})
+		if err != nil {
+			return err
+		}
 	}
 	delete(service.reservations, req.GetReservationID())
 	return nil
@@ -91,6 +94,7 @@ func (service *Service) DeleteReservationsWithScreening(ctx context.Context, req
 			ids = append(ids, id)
 		}
 	}
+	log.Print(ids)
 	for _, id := range ids {
 		err := service.DeleteReservation(ctx, &api.DeleteReservationReq{ReservationID: id}, &api.DeleteReservationResp{})
 		if err != nil {

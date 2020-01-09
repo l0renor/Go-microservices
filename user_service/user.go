@@ -22,7 +22,8 @@ type Service struct {
 func (service *Service) CreateUser(ctx context.Context, req *api.CreateUserReq, resp *api.CreateUserResp) error {
 	userID := service.nextID()
 	service.users[userID] = User{
-		name: req.GetName(),
+		name:         req.GetName(),
+		reservations: make([]int32, 0),
 	}
 	resp.UserID = userID
 	return nil
@@ -75,10 +76,12 @@ func (service *Service) AddUserReservation(ctx context.Context, req *api.AddUser
 }
 
 func (service *Service) DeleteUserReservation(ctx context.Context, req *api.DeleteUserReservationReq, resp *api.DeleteUserReservationResp) error {
+	log.Print(service.users)
 	user, ok := service.users[req.GetUserID()]
 	if !ok {
 		return errors.NotFound("ERR-NO-USER", "User (ID: %d) not found!", req.GetUserID())
 	}
+	log.Print(user.reservations)
 	exists := remove(user.reservations, req.GetReservationID())
 	if !exists {
 		return errors.NotFound("ERR-NO-RESERVATION", "Reservation (ID: %d) not found!", req.GetReservationID())
