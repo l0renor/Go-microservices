@@ -63,6 +63,7 @@ func (service *Service) GetUsers(ctx context.Context, req *api.GetUsersReq, resp
 }
 
 func (service *Service) AddUserReservation(ctx context.Context, req *api.AddUserReservationReq, resp *api.AddUserReservationResp) error {
+	log.Print(req.GoString())
 	user, ok := service.users[req.GetUserID()]
 	if !ok {
 		return errors.NotFound("ERR-NO-USER", "User (ID: %d) not found!", req.GetUserID())

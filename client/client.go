@@ -182,7 +182,6 @@ func (c Client) conflictReservation() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	createReservationResp2, err := c.reservationService.CreateReservation(context.TODO(), &api.CreateReservationReq{
 		UserID:      c.ids["Fabi"],
 		ScreeningID: c.ids["1"],
@@ -203,10 +202,12 @@ func (c Client) conflictReservation() {
 	}
 	log.Print("Got expected error from activating 2nd reservation")
 	reservationsrsp, err := c.reservationService.GetReservations(context.TODO(), &api.GetReservationsReq{})
+	if reservationsrsp == nil {
+		log.Fatal("Empty response")
+	}
 	for i := 0; i < len(reservationsrsp.Reservations); i++ {
 		log.Printf("Reservation| ID: %v, screeningID: %v, nrSeats: %v , active %v", i, reservationsrsp.Reservations[i].ScreeningID, reservationsrsp.Reservations[i].NrOfSeats, reservationsrsp.Reservations[i].Active)
 	}
-
 }
 
 func main() {
