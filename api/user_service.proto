@@ -1,0 +1,70 @@
+syntax = "proto3";
+option go_package = "api";
+
+service User_Service {
+    rpc CreateUser (CreateUserReq) returns (CreateUserResp) {
+    }
+    rpc DeleteUser (DeleteUserReq) returns (DeleteUserResp) {
+    }
+    rpc GetUser (GetUserReq) returns (GetUserResp) {
+    }
+    rpc GetUsers (GetUsersReq) returns (GetUsersResp) {
+    }
+    rpc AddUserReservation (AddUserReservationReq) returns (AddUserReservationResp) {
+    }
+    rpc DeleteUserReservation (DeleteUserReservationReq) returns (DeleteUserReservationResp) {
+    }
+
+}
+
+message CreateUserReq {
+    string name = 1;
+}
+
+message CreateUserResp {
+    int32 userID = 1;
+}
+
+message DeleteUserReq {
+    int32 userID = 1;
+}
+
+message DeleteUserResp {
+}
+
+message GetUserReq {
+    int32 userID = 1;
+}
+
+message GetUserResp {
+    string name = 1;
+}
+
+message GetUsersReq {
+}
+
+message GetUsersResp {
+    repeated User Users = 1;
+
+    message User {
+        int32 userID = 1;
+        string name = 2;
+    }
+}
+
+message AddUserReservationReq {
+    int32 userID = 1;
+    int32 reservationID = 2;
+}
+
+message AddUserReservationResp {
+}
+
+message DeleteUserReservationReq {
+    int32 userID = 1;
+    int32 reservationID = 2;
+}
+
+message DeleteUserReservationResp {
+}
+

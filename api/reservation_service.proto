@@ -1,0 +1,66 @@
+syntax = "proto3";
+option go_package = "api";
+
+service Reservation_Service {
+    rpc CreateReservation (CreateReservationReq) returns (CreateReservationResp) {
+    }
+    rpc ActivateReservation (ActivateReservationReq) returns (ActivateReservationResp) {
+    }
+    rpc DeleteReservation (DeleteReservationReq) returns (DeleteReservationResp) {
+    }
+    rpc DeleteReservationsWithScreening (DeleteReservationsWithScreeningReq) returns (DeleteReservationsWithScreeningResp) {
+    }
+    rpc GetReservation (GetReservationReq) returns (GetReservationResp) {
+    }
+    rpc GetReservations (GetReservationsReq) returns (GetReservationsResp) {
+    }
+}
+
+message CreateReservationReq {
+    int32 userID = 1;
+    int32 screeningID = 2;
+    int32 nrOfSeats = 3;
+}
+
+message CreateReservationResp {
+    int32 reservationID = 1;
+}
+
+message ActivateReservationReq {
+    int32 reservationID = 1;
+}
+
+message ActivateReservationResp {
+}
+
+message DeleteReservationReq {
+    int32 reservationID = 1;
+}
+
+message DeleteReservationResp {
+}
+
+message DeleteReservationsWithScreeningReq {
+    int32 screeningID = 1;
+}
+
+message DeleteReservationsWithScreeningResp {
+}
+
+message GetReservationReq {
+    int32 reservationID = 1;
+}
+
+message GetReservationResp {
+    int32 userID = 1;
+    int32 screeningID = 2;
+    int32 nrOfSeats = 3;
+    bool active = 4;
+}
+
+message GetReservationsReq {
+}
+
+message GetReservationsResp {
+    repeated GetReservationResp Reservations = 1;
+}

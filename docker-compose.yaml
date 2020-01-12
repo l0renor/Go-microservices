@@ -1,0 +1,54 @@
+version: "3"
+services:
+  consul:
+    command: -server -bootstrap -rejoin
+    image: progrium/consul:latest
+    ports:
+      - "8300:8300"
+      - "8400:8400"
+      - "8500:8500"
+      - "8600:53/udp"
+  movie_service:
+    image: terraform.cs.hm.edu:5043/ob-vss-ws19-blatt-4-myteam:develop-movie_service
+    depends_on:
+      - consul
+    command: --registry_address=consul:8500
+    links:
+      - consul
+  room_service:
+    image: terraform.cs.hm.edu:5043/ob-vss-ws19-blatt-4-myteam:develop-room_service
+    depends_on:
+      - consul
+    command: --registry_address=consul:8500
+    links:
+      - consul
+  user_service:
+    image: terraform.cs.hm.edu:5043/ob-vss-ws19-blatt-4-myteam:develop-user_service
+    depends_on:
+      - consul
+    command: --registry_address=consul:8500
+    links:
+      - consul
+  screening_service:
+    image: terraform.cs.hm.edu:5043/ob-vss-ws19-blatt-4-myteam:develop-screening_service
+    depends_on:
+      - movie_service
+      - room_service
+    command: --registry_address=consul:8500
+    links:
+      - consul
+  reservation_service:
+    image: terraform.cs.hm.edu:5043/ob-vss-ws19-blatt-4-myteam:develop-reservation_service
+    depends_on:
+      - screening_service
+      - user_service
+    command: --registry_address=consul:8500
+    links:
+      - consul
+  client:
+    image: terraform.cs.hm.edu:5043/ob-vss-ws19-blatt-4-myteam:develop-client
+    depends_on:
+      - reservation_service
+    command: --registry_address=consul:8500
+    links:
+      - consul
